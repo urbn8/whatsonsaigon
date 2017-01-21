@@ -8,7 +8,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const config = require('./webpack.config')
 
-const host = "http://localhost/whatsonsaigon"
+const APP_HOST = "http://localhost/whatsonsaigon"
+const HOST_SERVER_ADDRESS = 'localhost'
+const HOST_SERVER_PORT = 5000
 
 const bundler = webpack(config)
 
@@ -20,7 +22,7 @@ function filter(path, req) {
 
 gulp.task('watch', function() {
   browserSync.init({
-    port: 5000,
+    port: HOST_SERVER_PORT,
     logPrefix		: "Laravel BrowserSync",
     logConnections	: false,
     reloadOnRestart : false,
@@ -44,7 +46,7 @@ gulp.task('watch', function() {
         }),
         webpackHotMiddleware(bundler),
         proxyMiddleware(filter, {
-          target: host,
+          target: APP_HOST,
           changeOrigin: true,
           ws: true,
           logLevel: 'warn'
