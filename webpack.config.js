@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const assetsPath = path.resolve('./themes/default/assets/scripts')
+const scriptsPath = path.resolve('./themes/default/assets/scripts')
 
 module.exports = {
     babel: {
@@ -13,11 +13,9 @@ module.exports = {
         plugins: [ 'react-hot-loader/babel' ]
     },
     entry: [
-        // 'webpack-dev-server/client?http://localhost:3000',
-        // 'webpack/hot/only-dev-server',
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
-        assetsPath + '/app.js'
+        scriptsPath + '/app.js'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
@@ -32,12 +30,12 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel',
-                include: assetsPath,
+                include: scriptsPath,
             },
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
-                include: assetsPath,
+                include: scriptsPath,
             },
         ]
     },

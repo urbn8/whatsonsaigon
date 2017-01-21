@@ -13,7 +13,7 @@ render(
 
 if (module.hot) {
   module.hot.accept('./HelloWorld', () => {
-      const HelloWorld = require('./HelloWorld').default
+    const HelloWorld = require('./HelloWorld').default
 
     render(
         <AppContainer>
