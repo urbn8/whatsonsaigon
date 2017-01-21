@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Hello from './Hello'
+
 const World = require('./World').default
 
 const HelloWorld = () => (

@@ -1503,6 +1503,10 @@ forwarded@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.0.tgz#19ef9874c4ae1c297bcf078fde63a09b66a84363"
 
+free-style@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/free-style/-/free-style-2.2.0.tgz#c7f65fbd6fbb7f84633c58bf5fd09c74a433e4a1"
+
 fresh@0.3.0, fresh@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.3.0.tgz#651f838e22424e7566de161d8358caa199f83d4f"
@@ -3603,6 +3607,12 @@ type-is@~1.6.13:
 typescript@^2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.1.5.tgz#6fe9479e00e01855247cea216e7561bafcdbcd4a"
+
+typestyle@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/typestyle/-/typestyle-0.26.1.tgz#6427c94138675520455b67db24f7a5ec8ec85f30"
+  dependencies:
+    free-style "2.2.0"
 
 ua-parser-js@0.7.12, ua-parser-js@^0.7.9:
   version "0.7.12"
