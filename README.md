@@ -31,4 +31,5 @@ yarn add package-name --dev
 
 ```
 yarn global add gulp
+yarn add @types/react
 ```
