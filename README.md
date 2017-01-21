@@ -1,15 +1,38 @@
-# Installation wizard for October
+# What's on Saigon
 
-The wizard installation is a recommended way to install October. It is simpler than the command-line installation and doesn't require any special skills.
+## Development Setup Guide
 
-1. Prepare a directory on your server that is empty. It can be a sub-directory, domain root or a sub-domain.
-1. [Download the installer archive file](https://github.com/octobercms/install/archive/master.zip).
-1. Unpack the installer archive to the prepared directory.
-1. Grant writing permissions on the installation directory and all its subdirectories and files.
-1. Navigate to the install.php script in your web browser.
-1. Follow the installation instructions.
+### prerequisites
 
-## Minimum System Requirements
+* NodeJs 6.x.x
+
+* Have `Yarn` installed. See (https://yarnpkg.com/en/docs/install)
+
+* Add `export PATH="$PATH:$(yarn global bin)" `to your `~/.bash_profile`
+
+* Have `gulp` installed at global level with `yarn add global gulp`
+
+### October CMS
+
+* Have the project hosted on local Apache server and accessible at `http://localhost/whatsonsaigon/`.
+
+* ave a mysql database named `whatsonsaigon` created. Have user `whatsonsaigon` with password `whatsonsaigon` accessible to the database with the same name.
+
+* Open terminal, `cd` to the root of the project.
+
+* run `php artisan october:up` to create tables.
+
+### react
+
+* Open terminal, `cd` to the root of the project.
+
+* Enter `yarn` command to pull external dependencies. This might take a while.
+
+* Enter `gulp`. This should start the development server and watching files at `themes/default/assets/scripts` to recompile.
+
+* The react development server should now be started at `http://localhost:5000`.
+
+## October CMS Minimum System Requirements
 
 October CMS has a few system requirements:
 
