@@ -29,4 +29,6 @@ When using Ubuntu, this can be done via ``apt-get install php5-json``.
 yarn add package-name --dev
 ```
 
-
+```
+yarn global add gulp
+```
