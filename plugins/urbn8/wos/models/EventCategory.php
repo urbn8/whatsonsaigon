@@ -11,7 +11,7 @@ class EventCategory extends Model
     use \October\Rain\Database\Traits\Sortable;
 
     /**
-     * Softly implement the TranslatableModel behavior.
+     * Hard implement the TranslatableModel behavior.
      */
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
