@@ -1,0 +1,6 @@
+plugin:
+    name: 'urbn8.wos::lang.plugin.name'
+    description: 'urbn8.wos::lang.plugin.description'
+    author: urbn8
+    icon: oc-icon-glass
+    homepage: ''
