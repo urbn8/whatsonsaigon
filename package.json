@@ -4,7 +4,8 @@
   "description": "The wizard installation is a recommended way to install October. It is simpler than the command-line installation and doesn't require any special skills.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-build": "gulp --gulpfile ./themes/default/assets/semantic/gulpfile.js build"
   },
   "author": "Tinh Ngo <tiengtinh@gmail.com>",
   "license": "ISC",

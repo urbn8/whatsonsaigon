@@ -22,6 +22,12 @@
 
 * run `php artisan october:up` to create tables.
 
+### Semantic UI
+
+* Open terminal, `cd` to the root of the project.
+
+* Run `npm run semantic-build` to build semantic UI.
+
 ### react
 
 * Open terminal, `cd` to the root of the project.
