@@ -56,3 +56,7 @@ yarn add package-name --dev
 yarn global add gulp
 yarn add @types/react
 ```
+
+```
+gulp --gulpfile ./node_modules/semantic-ui/gulpfile.js 
+```
