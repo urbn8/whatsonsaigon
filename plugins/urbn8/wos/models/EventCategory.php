@@ -24,7 +24,7 @@ class EventCategory extends Model
      * Validation
      */
     public $rules = [
-        'name' => 'required|between:4,16',
+        'name' => 'required|between:2,16',
     ];
 
     /**

@@ -7,14 +7,15 @@ columns:
         width: 50%
     status:
         label: 'urbn8.wos::lang.event.category.status'
-        type: number
+        type: partial
+        path: ~/plugins/urbn8/wos/models/eventcategory/_status_column.htm
         searchable: true
-        sortable: true
-    created_at:
-        label: 'urbn8.wos::lang.plugin.created_at'
-        type: datetime
         sortable: true
     updated_at:
         label: 'urbn8.wos::lang.plugin.updated_at'
+        type: timesince
+        sortable: true
+    created_at:
+        label: 'urbn8.wos::lang.plugin.created_at'
         type: datetime
         sortable: true
