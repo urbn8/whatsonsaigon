@@ -27,7 +27,8 @@ fields:
         span: left
         oc.commentPosition: ''
         options:
-            - Inactive
-            - Active
+            - 'urbn8.wos::lang.event.category.status_options.inactive'
+            - 'urbn8.wos::lang.event.category.status_options.active'
         required: 1
+        default: '1'
         type: dropdown

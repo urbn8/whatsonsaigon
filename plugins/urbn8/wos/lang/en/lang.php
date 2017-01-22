@@ -12,6 +12,10 @@
             'slug' => 'Slug',
             'desc' => 'Description',
             'status' => 'Status',
+            'status_options' => [
+                'active' => 'Active',
+                'inactive' => 'Inactive'
+            ],
             'permissions' => [
                 'access' => 'Access',
             ],
