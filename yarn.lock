@@ -887,6 +887,10 @@ chokidar@1.6.1, chokidar@^1.0.0:
   optionalDependencies:
     fsevents "^1.0.0"
 
+classnames@^2.1.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -1081,6 +1085,12 @@ debug@2.2.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
 debug@2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.3.tgz#40c453e67e6e13c901ddec317af8986cda9eff8c"
+  dependencies:
+    ms "0.7.2"
+
+debug@^2.4.5:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.0.tgz#bc596bcabe7617f11d9fa15361eded5608b8499b"
   dependencies:
     ms "0.7.2"
 
@@ -3199,6 +3209,14 @@ ripemd160@0.2.0:
 rx@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
+
+semantic-ui-react@0.64.0:
+  version "0.64.0"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.64.0.tgz#95cc9c13205d62f69b9c01e72ec8300a592d9cac"
+  dependencies:
+    classnames "^2.1.5"
+    debug "^2.4.5"
+    lodash "^4.17.2"
 
 "semver@2 || 3 || 4 || 5", semver@~5.3.0:
   version "5.3.0"
