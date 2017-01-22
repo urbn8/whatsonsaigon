@@ -1,0 +1,20 @@
+columns:
+    name:
+        label: 'urbn8.wos::lang.event.category.name'
+        type: text
+        searchable: true
+        sortable: true
+        width: 50%
+    status:
+        label: 'urbn8.wos::lang.event.category.status'
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: 'urbn8.wos::lang.plugin.created_at'
+        type: datetime
+        sortable: true
+    updated_at:
+        label: 'urbn8.wos::lang.plugin.updated_at'
+        type: datetime
+        sortable: true
