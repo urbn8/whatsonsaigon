@@ -4,6 +4,7 @@
         'description' => '',
         'created_at' => 'Created Time',
         'updated_at' => 'Updated Time',
+        'title' => 'WOS',
     ],
     'event' => [
         'category' => [
@@ -11,6 +12,10 @@
             'slug' => 'Slug',
             'desc' => 'Description',
             'status' => 'Status',
+            'permissions' => [
+                'access' => 'Access',
+            ],
+            'title' => 'Categories',
         ],
     ],
 ];

@@ -1,0 +1,11 @@
+name: EventCategories
+modelClass: Urbn8\Wos\Models\EventCategory
+form: $/urbn8/wos/models/eventcategory/fields.yaml
+defaultRedirect: urbn8/wos/eventcategories
+create:
+    redirect: 'urbn8/wos/eventcategories/update/:id'
+    redirectClose: urbn8/wos/eventcategories
+update:
+    redirect: urbn8/wos/eventcategories
+    redirectClose: urbn8/wos/eventcategories
+preview: {  }
