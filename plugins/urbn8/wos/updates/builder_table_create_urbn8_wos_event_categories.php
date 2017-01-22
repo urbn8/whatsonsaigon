@@ -12,6 +12,7 @@ class BuilderTableCreateUrbn8WosEventCategories extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 16)->nullable();
+            $table->string('slug', 16)->nullable()->unique();
             $table->text('desc')->nullable();
             $table->smallInteger('status')->nullable();
             $table->integer('updated_by')->nullable();
