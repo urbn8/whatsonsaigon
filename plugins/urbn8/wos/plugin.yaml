@@ -1,0 +1,22 @@
+plugin:
+    name: 'urbn8.wos::lang.plugin.name'
+    description: 'urbn8.wos::lang.plugin.description'
+    author: urbn8
+    icon: oc-icon-glass
+    homepage: ''
+navigation:
+    wos-main:
+        label: 'urbn8.wos::lang.plugin.title'
+        url: urbn8/wos/eventcategories
+        icon: icon-glass
+        sideMenu:
+            wos-event-category-list:
+                label: 'urbn8.wos::lang.event.category.title'
+                url: urbn8/wos/eventcategories
+                icon: icon-list-ul
+                permissions:
+                    - event.category.access
+permissions:
+    event.category.access:
+        tab: 'urbn8.wos::lang.event.category.permissions.access'
+        label: 'urbn8.wos::lang.event.category.permissions.access'
