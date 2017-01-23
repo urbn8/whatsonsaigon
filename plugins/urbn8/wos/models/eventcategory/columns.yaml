@@ -8,7 +8,7 @@ columns:
     status:
         label: 'urbn8.wos::lang.plugin.common.status'
         type: partial
-        path: ~/plugins/urbn8/wos/partials/_status_column.htm
+        path: ~/plugins/urbn8/wos/models/partials/_status_column.htm
         searchable: true
         sortable: true
     updated_at:
