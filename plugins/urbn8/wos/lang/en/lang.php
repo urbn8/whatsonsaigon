@@ -5,9 +5,7 @@
         'created_at' => 'Created Time',
         'updated_at' => 'Updated Time',
         'title' => 'WOS',
-    ],
-    'event' => [
-        'category' => [
+        'common' => [
             'name' => 'Name',
             'slug' => 'Slug',
             'desc' => 'Description',
@@ -16,10 +14,14 @@
                 'active' => 'Active',
                 'inactive' => 'Inactive'
             ],
+        ],
+    ],
+    'event' => [
+        'category' => [
             'permissions' => [
                 'access' => 'Access',
             ],
-            'title' => 'Categories',
+            'title' => 'Event categories',
         ],
     ],
 ];
