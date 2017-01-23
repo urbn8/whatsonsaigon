@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class EventCategory extends Model
+class BizType extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sortable;
@@ -31,5 +31,5 @@ class EventCategory extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'urbn8_wos_event_categories';
+    public $table = 'urbn8_wos_biz_types';
 }

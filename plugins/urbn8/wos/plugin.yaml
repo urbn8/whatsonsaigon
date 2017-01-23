@@ -16,7 +16,16 @@ navigation:
                 icon: icon-list-ul
                 permissions:
                     - event.category.access
+            wos-biz-type-list:
+                label: 'urbn8.wos::lang.biz.type.title'
+                url: urbn8/wos/biztypes
+                icon: icon-suitcase
+                permissions:
+                    - biz.type.access
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'
         label: 'urbn8.wos::lang.event.category.permissions.access'
+    biz.type.access:
+        tab: 'urbn8.wos::lang.lang.biz.type.permissions.access'
+        label: 'urbn8.wos::lang.lang.biz.type.permissions.access'

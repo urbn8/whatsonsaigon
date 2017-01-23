@@ -12,16 +12,30 @@
             'status' => 'Status',
             'status_options' => [
                 'active' => 'Active',
-                'inactive' => 'Inactive'
+                'inactive' => 'Inactive',
             ],
         ],
     ],
     'event' => [
         'category' => [
             'permissions' => [
-                'access' => 'Access',
+                'access' => 'Access event categories',
             ],
             'title' => 'Event categories',
+        ],
+    ],
+    'biz' => [
+        'type' => [
+            'title' => 'Business types',
+        ],
+    ],
+    'lang' => [
+        'biz' => [
+            'type' => [
+                'permissions' => [
+                    'access' => 'Access business types',
+                ],
+            ],
         ],
     ],
 ];
