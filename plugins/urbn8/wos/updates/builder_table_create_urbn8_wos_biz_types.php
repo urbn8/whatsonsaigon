@@ -3,11 +3,11 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateUrbn8WosEventCategories extends Migration
+class BuilderTableCreateUrbn8WosBizTypes extends Migration
 {
     public function up()
     {
-        Schema::create('urbn8_wos_event_categories', function($table)
+        Schema::create('urbn8_wos_biz_types', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -24,6 +24,6 @@ class BuilderTableCreateUrbn8WosEventCategories extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('urbn8_wos_event_categories');
+        Schema::dropIfExists('urbn8_wos_biz_types');
     }
 }

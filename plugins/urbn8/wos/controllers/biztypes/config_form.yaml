@@ -1,0 +1,10 @@
+name: BizTypes
+form: $/urbn8/wos/models/biztype/fields.yaml
+modelClass: Urbn8\Wos\Models\BizType
+defaultRedirect: urbn8/wos/biztypes
+create:
+    redirect: 'urbn8/wos/biztypes/update/:id'
+    redirectClose: urbn8/wos/biztypes
+update:
+    redirect: urbn8/wos/biztypes
+    redirectClose: urbn8/wos/biztypes

@@ -5,21 +5,37 @@
         'created_at' => 'Created Time',
         'updated_at' => 'Updated Time',
         'title' => 'WOS',
-    ],
-    'event' => [
-        'category' => [
+        'common' => [
             'name' => 'Name',
             'slug' => 'Slug',
             'desc' => 'Description',
             'status' => 'Status',
             'status_options' => [
                 'active' => 'Active',
-                'inactive' => 'Inactive'
+                'inactive' => 'Inactive',
             ],
+        ],
+    ],
+    'event' => [
+        'category' => [
             'permissions' => [
-                'access' => 'Access',
+                'access' => 'Access event categories',
             ],
-            'title' => 'Categories',
+            'title' => 'Event categories',
+        ],
+    ],
+    'biz' => [
+        'type' => [
+            'title' => 'Business types',
+        ],
+    ],
+    'lang' => [
+        'biz' => [
+            'type' => [
+                'permissions' => [
+                    'access' => 'Access business types',
+                ],
+            ],
         ],
     ],
 ];

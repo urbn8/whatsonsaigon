@@ -3,3 +3,6 @@
 1.0.2:
     - 'Created table urbn8_wos_event_categories'
     - builder_table_create_urbn8_wos_event_categories.php
+1.0.3:
+    - 'Created table urbn8_wos_biz_types'
+    - builder_table_create_urbn8_wos_biz_types.php
