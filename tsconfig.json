@@ -11,7 +11,9 @@
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata"]
   },
   "exclude": [
     "node_modules",
