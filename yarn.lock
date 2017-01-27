@@ -2589,6 +2589,14 @@ invariant@^2.2.0:
   dependencies:
     loose-envify "^1.0.0"
 
+inversify-binding-decorators@^3.0.0-beta.1:
+  version "3.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/inversify-binding-decorators/-/inversify-binding-decorators-3.0.0-beta.1.tgz#5c0394530d7d80852208a7d04bc9f42e1ac1be2b"
+
+inversify-inject-decorators@^3.0.0-beta.2:
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/inversify-inject-decorators/-/inversify-inject-decorators-3.0.0-beta.2.tgz#42e261d9d26793910ff37046627692ec584450c7"
+
 inversify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-3.0.0.tgz#b0e5f7e48f6a3535014b2f12e23385cae3894dab"
