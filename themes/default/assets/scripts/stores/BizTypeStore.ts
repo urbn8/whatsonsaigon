@@ -1,6 +1,7 @@
-import { provideSingleton } from "../IOC"
+// import { provideSingleton } from "../IOC"
+import { injectable } from "inversify"
 import {
-  observable, extendObservable, runInAction, action,
+  observable, extendObservable, action,
   IObservableArray,
 } from 'mobx'
 
@@ -9,8 +10,13 @@ interface BizType {
   name: string
 }
 
-@provideSingleton(BizTypeStore)
-export class BizTypeStore {
+export interface IBizTypeStore {
+  items: IObservableArray<BizType>
+  generateSamples(): Promise<IObservableArray<BizType>>
+}
+
+@injectable()
+export class BizTypeStore implements IBizTypeStore {
   @observable loading = false
   @observable items: IObservableArray<BizType> = observable([])
 
@@ -25,10 +31,8 @@ export class BizTypeStore {
       })
     }
 
-    // runInAction(() => {
-      this.items.replace(generatedItems)
-      this.loading = false
-    // })
+    this.items.replace(generatedItems)
+    this.loading = false
 
     return this.items
   }

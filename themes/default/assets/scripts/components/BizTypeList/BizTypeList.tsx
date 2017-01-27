@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { style } from "typestyle"
 
 import { inject } from '../../IOC'
-import { BizTypeStore } from '../../stores/BizTypeStore'
+import { IBizTypeStore, BizTypeStore } from '../../stores/BizTypeStore'
 
 const textStyle = style({color: 'red'})
 
@@ -11,10 +11,9 @@ const textStyle = style({color: 'red'})
 export class BizTypeList extends React.Component<{}, {}>{
 
   @inject(BizTypeStore)
-  private store: BizTypeStore
+  private store: IBizTypeStore
 
   componentDidMount() {
-    console.log('generateSamples')
     this.store.generateSamples()
   }
 
@@ -22,7 +21,7 @@ export class BizTypeList extends React.Component<{}, {}>{
     return (
       <ul>
         { this.store.items.map((item) => (
-          <li> { item.name } </li>
+          <li key={ item.slug }> { item.name } </li>
         )) }
       </ul>
     )
