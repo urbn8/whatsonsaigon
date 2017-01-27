@@ -9,6 +9,7 @@ class BizType extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sortable;
+    use \October\Rain\Database\Traits\Sluggable;
 
     /**
      * Hard implement the TranslatableModel behavior.
@@ -19,13 +20,18 @@ class BizType extends Model
      * @var array Attributes that support translation, if available.
      */
     public $translatable = ['name', 'desc'];
+
+    /**
+     * @var array Generate slugs for these attributes.
+     */
+    protected $slugs = ['slug' => 'name'];
     
     /*
      * Validation
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique',
+        'slug' => 'required|unique:urbn8_wos_biz_types',
     ];
 
     /**

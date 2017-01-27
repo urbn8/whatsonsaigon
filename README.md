@@ -40,6 +40,10 @@
 
 * Enjoy coding!
 
+## Urls
+
+Backend url: `http://localhost/whatsonsaigon/backend/urbn8/wos/eventcategories` username/pass: `admin/admin`
+
 ## October CMS Minimum System Requirements
 
 October CMS has a few system requirements:
