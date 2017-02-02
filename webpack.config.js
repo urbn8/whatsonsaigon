@@ -4,14 +4,6 @@ const webpack = require('webpack')
 const scriptsPath = path.resolve('./themes/default/assets/scripts')
 
 module.exports = {
-    babel: {
-        // Loader results would be cached for future use
-        cacheDirectory: true,
-        // Do not use .babelrc file
-        babelrc: false,
-        presets: [ 'es2015', 'react' ],
-        plugins: [ 'react-hot-loader/babel' ]
-    },
     entry: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
@@ -23,14 +15,22 @@ module.exports = {
         publicPath: '/static/'
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: scriptsPath,
+                options: {
+                    // Loader results would be cached for future use
+                    cacheDirectory: true,
+                    // Do not use .babelrc file
+                    babelrc: false,
+                    presets: [ 'es2015', 'react' ],
+                    plugins: [ 'react-hot-loader/babel' ]
+                },
             },
             {
                 test: /\.tsx?$/,
@@ -45,10 +45,8 @@ module.exports = {
             __DEV__: true
         }),
 
-        new webpack.optimize.OccurrenceOrderPlugin(true),
-
         // For HMR
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
 }
