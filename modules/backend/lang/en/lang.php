@@ -78,6 +78,8 @@ return [
         'make_default' => 'Make default',
         'make_default_confirm' => 'Set the current layout as the default?',
         'make_default_success' => 'Current layout is now the default',
+        'collapse_all' => 'Collapse all',
+        'expand_all' => 'Expand all',
         'status' => [
             'widget_title_default' => 'System status',
             'update_available' => '{0} updates available!|{1} update available!|[2,Inf] updates available!',
@@ -165,6 +167,8 @@ return [
         'behavior_not_ready' => 'List behavior has not been initialized, check that you have called makeLists() in your controller.',
         'invalid_column_datetime' => "Column value ':column' is not a DateTime object, are you missing a \$dates reference in the Model?",
         'pagination' => 'Displayed records: :from-:to of :total',
+        'first_page' => 'First page',
+        'last_page' => 'Last page',
         'prev_page' => 'Previous page',
         'next_page' => 'Next page',
         'refresh' => 'Refresh',

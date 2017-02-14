@@ -2628,7 +2628,7 @@ function removeElement(){$element.remove()}
 function remove(){window.clearInterval(timer)
 $element.removeClass('in')
 $.support.transition&&$element.hasClass('fade')?$element.one($.support.transition.end,removeElement).emulateTransitionEnd(500):removeElement()}}
-FlashMessage.DEFAULTS={class:'success',text:'Default text',interval:2}
+FlashMessage.DEFAULTS={class:'success',text:'Default text',interval:5}
 if($.oc===undefined)
 $.oc={}
 $.oc.flashMsg=FlashMessage
@@ -3898,10 +3898,10 @@ if(prefix===undefined)
 prefix=''
 if($el.val().length&&$el.val()!=prefix)
 return
-$el.val(prefix)
+$el.val(prefix).trigger('oc.inputPreset.afterUpdate')
 this.$src=$(options.inputPreset,parent),this.$src.on('keyup',function(){if(self.cancelled)
 return
-$el.val(prefix+self.formatValue())})
+$el.val(prefix+self.formatValue()).trigger('oc.inputPreset.afterUpdate')})
 this.$el.on('change',function(){self.cancelled=true})}
 InputPreset.prototype.formatNamespace=function(){var value=toCamel(this.$src.val())
 return value.substr(0,1).toUpperCase()+value.substr(1)}
