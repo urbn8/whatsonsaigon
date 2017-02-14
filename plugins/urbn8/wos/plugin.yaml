@@ -22,6 +22,12 @@ navigation:
                 icon: icon-suitcase
                 permissions:
                     - biz.type.access
+            biz-categories:
+                label: 'urbn8.wos::lang.biz.category.title'
+                url: urbn8/wos/bizcategories
+                icon: icon-briefcase
+                permissions:
+                    - biz.category.access
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'
@@ -29,3 +35,6 @@ permissions:
     biz.type.access:
         tab: 'urbn8.wos::lang.lang.biz.type.permissions.access'
         label: 'urbn8.wos::lang.lang.biz.type.permissions.access'
+    biz.category.access:
+        tab: 'urbn8.wos::lang.lang.biz.category.permissions.access'
+        label: 'urbn8.wos::lang.lang.biz.category.permissions.access'

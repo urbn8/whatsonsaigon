@@ -1,0 +1,4 @@
+title: BizCategories
+modelClass: Urbn8\Wos\Models\BizCategory
+toolbar:
+    buttons: reorder_toolbar

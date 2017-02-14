@@ -28,12 +28,20 @@
         'type' => [
             'title' => 'Business types',
         ],
+        'category' => [
+            'title' => 'Business Categories',
+        ],
     ],
     'lang' => [
         'biz' => [
             'type' => [
                 'permissions' => [
                     'access' => 'Access business types',
+                ],
+            ],
+            'category' => [
+                'permissions' => [
+                    'access' => 'Access Business Categories',
                 ],
             ],
         ],
