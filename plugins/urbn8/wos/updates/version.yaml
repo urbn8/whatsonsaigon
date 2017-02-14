@@ -9,3 +9,6 @@
 1.0.4:
     - 'Create default data table urbn8_wos_biz_types'
     - create_default_wos_biz_types.php
+1.0.5:
+    - 'Created table urbn8_wos_biz_categories'
+    - builder_table_create_urbn8_wos_biz_categories.php

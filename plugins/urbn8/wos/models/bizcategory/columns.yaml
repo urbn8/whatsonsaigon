@@ -1,0 +1,21 @@
+columns:
+    name:
+        label: 'urbn8.wos::lang.plugin.name'
+        type: text
+        searchable: true
+        sortable: true
+        width: 50%
+    status:
+        label: 'urbn8.wos::lang.plugin.common.status'
+        type: partial
+        path: ~/plugins/urbn8/wos/models/partials/_status_column.htm
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'urbn8.wos::lang.plugin.updated_at'
+        type: timesince
+        sortable: true
+    created_at:
+        label: 'urbn8.wos::lang.plugin.created_at'
+        type: datetime
+        sortable: true
