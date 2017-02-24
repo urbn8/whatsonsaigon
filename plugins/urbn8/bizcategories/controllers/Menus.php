@@ -28,7 +28,7 @@ class Menus extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('urbn8.bizcategories', 'bizcategories', 'edit');
+        BackendMenu::setContext('Urbn8.BizCategories', 'bizcategories', 'edit');
 
         // Add my assets
         $this->addJs('/plugins/urbn8/bizcategories/assets/js/urbn8.bizcategories.js');
@@ -62,7 +62,7 @@ class Menus extends Controller
     public function reorder()
     {
         // Ensure the correct sidemenu is active
-        BackendMenu::setContext('urbn8.bizcategories', 'bizcategories', 'reorder');
+        BackendMenu::setContext('Urbn8.BizCategories', 'bizcategories', 'reorder');
 
         $this->pageTitle = Lang::get('urbn8.bizcategories::lang.menu.reordermenu');
 
