@@ -6,7 +6,7 @@
 list: ~/plugins/urbn8/bizcategories/models/menu/columns.yaml
 
 # Model Class name
-modelClass: Urbn8\BizCategory\Models\Menu
+modelClass: Urbn8\BizCategories\Models\Menu
 
 # List Title
 title: urbn8.bizcategories::lang.form.manage

@@ -1,4 +1,4 @@
-<?php namespace Urbn8\BizCategory;
+<?php namespace Urbn8\BizCategories;
 
 use Backend;
 use Controller;
@@ -72,7 +72,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            '\Urbn8\BizCategory\Components\Menu' => 'menu',
+            '\Urbn8\BizCategories\Components\Menu' => 'menu',
         ];
     }
 

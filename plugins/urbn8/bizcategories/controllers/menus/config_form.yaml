@@ -9,7 +9,7 @@ name: urbn8.bizcategories::lang.menu.name
 form: ~/plugins/urbn8/bizcategories/models/menu/fields.yaml
 
 # Model Class name
-modelClass: Urbn8\BizCategory\Models\Menu
+modelClass: Urbn8\BizCategories\Models\Menu
 
 # Default redirect location
 defaultRedirect: urbn8/bizcategories/menus

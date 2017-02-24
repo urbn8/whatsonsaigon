@@ -1,7 +1,7 @@
-<?php namespace Urbn8\BizCategory\Components;
+<?php namespace Urbn8\BizCategories\Components;
 
 use App;
-use Urbn8\BizCategory\Models\Menu as menuModel;
+use Urbn8\BizCategories\Models\Menu as menuModel;
 use Cms\Classes\ComponentBase;
 use DB;
 use Lang;

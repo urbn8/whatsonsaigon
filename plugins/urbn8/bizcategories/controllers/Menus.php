@@ -1,8 +1,8 @@
-<?php namespace Urbn8\BizCategory\Controllers;
+<?php namespace Urbn8\BizCategories\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use Urbn8\BizCategory\Models\Menu;
+use Urbn8\BizCategories\Models\Menu;
 use Illuminate\Support\Facades\Input;
 use Lang;
 

@@ -2,33 +2,33 @@
 
 return [
     'plugin' => [
-        'name' => 'Biz categories',
+        'name' => 'BizCategories',
         'description' => 'Plugin to enable management of menus within October CMS.'
     ],
     'menu' => [
-        'name' => 'Menus',
-        'description' => 'Displays a menu on the page.',
-        'editmenu' => 'Edit Menus',
-        'reordermenu' => 'Reorder Menus'
+        'name' => 'Categories',
+        'description' => 'Displays a category on the page.',
+        'editmenu' => 'Edit Categories',
+        'reordermenu' => 'Reorder Categories'
     ],
     'misc' => [
-        'menu' => 'Menu',
-        'newmenu' => 'New Menu',
-        'manageorder' => 'Manage Menu Order',
-        'returntomenus' => 'Return to Menus'
+        'menu' => 'Category',
+        'newmenu' => 'New Category',
+        'manageorder' => 'Manage Category Order',
+        'returntomenus' => 'Return to Categorys'
     ],
     'form' => [
-        'create' => 'Create a Menu item',
-        'update' => 'Edit a Menu item',
-        'preview' => 'Preview Menus',
-        'flashcreate' => 'Menu has been created',
-        'flashupdate' => 'Menu updated',
-        'flashdelete' => 'Menu deleted',
-        'manage' => 'Manage Menus'
+        'create' => 'Create a Category item',
+        'update' => 'Edit a Category item',
+        'preview' => 'Preview Categorys',
+        'flashcreate' => 'Category has been created',
+        'flashupdate' => 'Category updated',
+        'flashdelete' => 'Category deleted',
+        'manage' => 'Manage Categorys'
     ],
     'create' => [
-        'menus' => 'Menus',
-        'creating' => 'Creating Menu...',
+        'menus' => 'Categorys',
+        'creating' => 'Creating Category...',
         'create' => 'Create',
         'createclose' => 'Create and Close',
         'cancel' => 'Cancel',
@@ -37,10 +37,10 @@ return [
         'nolink' => 'No page link'
     ],
     'update' => [
-        'saving' => 'Saving Menu...',
+        'saving' => 'Saving Category...',
         'save' => 'Save',
         'saveclose' => 'Save and Close',
-        'deleting' => 'Deleting Menu...',
+        'deleting' => 'Deleting Category...',
         'reallydelete' => 'Do you really want to delete this menu?'
     ],
     'modeldata' => [
@@ -57,8 +57,8 @@ return [
         'enabled' => 'Enable/disable this link',
         'optdisabled' => 'Disabled',
         'optenabled' => 'Enabled',
-        'external' => 'Menu type',
-        'selectmenutype' => '-- Select Menu Type --',
+        'external' => 'Category type',
+        'selectmenutype' => '-- Select Category Type --',
         'optinternal' => 'Internal',
         'optexternal' => 'External',
         'internalurl' => 'File to link To',

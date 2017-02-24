@@ -1,4 +1,4 @@
-<?php namespace Urbn8\BizCategory\Models;
+<?php namespace Urbn8\BizCategories\Models;
 
 use Cms\Classes\Controller as BaseController;
 use Cms\Classes\Page;

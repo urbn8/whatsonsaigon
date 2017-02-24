@@ -1,4 +1,4 @@
-<?php namespace Urbn8\BizCategory\Updates;
+<?php namespace Urbn8\BizCategories\Updates;
 
 use DB;
 use October\Rain\Database\Updates\Migration;

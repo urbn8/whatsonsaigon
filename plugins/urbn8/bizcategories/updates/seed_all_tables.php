@@ -1,8 +1,8 @@
-<?php namespace Urbn8\BizCategory\Updates;
+<?php namespace Urbn8\BizCategories\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Seeder;
-use Urbn8\BizCategory\Models\Menu;
+use Urbn8\BizCategories\Models\Menu;
 
 class SeedAllTables extends Seeder
 {
