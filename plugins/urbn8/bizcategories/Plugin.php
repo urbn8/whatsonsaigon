@@ -5,7 +5,7 @@ use Controller;
 use System\Classes\PluginBase;
 
 /**
- * BizCategory Plugin Information File
+ * BizCategories Plugin Information File
  */
 class Plugin extends PluginBase
 {
@@ -60,7 +60,7 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return array(
-            'urbn8.bizcategories.access_bizcategories' => ['label' => 'Manage categories', 'tab' => 'BizCategory']
+            'urbn8.bizcategories.access_bizcategories' => ['label' => 'Manage categories', 'tab' => 'BizCategories']
         );
     }
 
