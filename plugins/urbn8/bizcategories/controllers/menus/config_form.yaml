@@ -1,0 +1,35 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: urbn8.bizcategories::lang.menu.name
+
+# Model Form Field configuration
+form: ~/plugins/urbn8/bizcategories/models/menu/fields.yaml
+
+# Model Class name
+modelClass: Urbn8\BizCategory\Models\Menu
+
+# Default redirect location
+defaultRedirect: urbn8/bizcategories/menus
+
+# Create page
+create:
+    title: urbn8.bizcategories::lang.form.create
+    redirect: urbn8/bizcategories/menus/update/:id
+    redirectClose: urbn8/bizcategories/menus
+    flash-save: urbn8.bizcategories::lang.form.flashcreate
+
+# Update page
+update:
+    title: urbn8.bizcategories::lang.form.update
+    redirect: urbn8/bizcategories/menus
+    redirectClose: urbn8/bizcategories/menus
+    flash-save: urbn8.bizcategories::lang.form.flashupdate
+    flash-delete: urbn8.bizcategories::lang.form.flashdelete
+
+# Preview page
+preview:
+    title: urbn8.bizcategories::lang.form.preview
+
