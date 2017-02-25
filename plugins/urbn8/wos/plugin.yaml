@@ -28,6 +28,12 @@ navigation:
                 icon: icon-briefcase
                 permissions:
                     - biz.category.access
+            wos-businesses:
+                label: 'urbn8.wos::lang.businesses.menu.name'
+                url: urbn8/wos/businesses
+                icon: icon-sitemap
+                permissions:
+                    - urbn8.wos.access_businesses
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'
@@ -38,3 +44,6 @@ permissions:
     biz.category.access:
         tab: 'urbn8.wos::lang.lang.biz.category.permissions.access'
         label: 'urbn8.wos::lang.lang.biz.category.permissions.access'
+    urbn8.wos.access_businesses:
+        tab: 'urbn8.wos::lang.lang.businesses.permissions.access'
+        label: 'urbn8.wos::lang.lang.businesses.permissions.access'
