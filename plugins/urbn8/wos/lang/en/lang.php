@@ -45,5 +45,27 @@
                 ],
             ],
         ],
+        'businesses' => [
+            'permissions' => [
+                'access' => 'Access Businesses',
+            ],
+        ],
+    ],
+    'common' => [
+        'modeldataform' => [
+            'name' => 'Name',
+            'slug' => 'Slug',
+            'desc' => 'Description',
+            'status' => 'Status',
+            'status_options' => [
+                'active' => 'Active',
+                'inactive' => 'Inactive',
+            ],
+        ],
+    ],
+    'businesses' => [
+        'menu' => [
+            'name' => 'Businesses',
+        ],
     ],
 ];

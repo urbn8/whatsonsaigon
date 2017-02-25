@@ -1,0 +1,11 @@
+list: $/urbn8/wos/models/business/columns.yaml
+modelClass: Urbn8\Wos\Models\Business
+title: Businesses
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'urbn8/wos/businesses/update/:id'

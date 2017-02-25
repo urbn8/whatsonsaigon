@@ -1,0 +1,62 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: urbn8.bizcategories::lang.modeldataform.title
+        span: left
+    description:
+        label: urbn8.bizcategories::lang.modeldataform.description
+        span: right
+    enabled:
+        label: urbn8.bizcategories::lang.modeldataform.enabled
+        type: radio
+        options:
+            0: urbn8.bizcategories::lang.modeldataform.optdisabled
+            1: urbn8.bizcategories::lang.modeldataform.optenabled
+        default: 1
+        span: left
+    is_external:
+        label: urbn8.bizcategories::lang.modeldataform.external
+        type: dropdown
+        placeholder: urbn8.bizcategories::lang.modeldataform.selectmenutype
+        options:
+            0: urbn8.bizcategories::lang.modeldataform.optinternal
+            1: urbn8.bizcategories::lang.modeldataform.optexternal
+        default: 0
+        cssClass: bizcategories-type-controller
+        span: left
+    internal_url:
+        label: urbn8.bizcategories::lang.modeldataform.internalurl
+        type: dropdown
+        placeholder: urbn8.bizcategories::lang.modeldataform.internalurlplaceholder
+        options: getUrlOptions
+        cssClass: bizcategories-type type-0
+        span: right
+    external_url:
+        label: Url
+        placeholder: urbn8.bizcategories::lang.modeldataform.externalurl
+        cssClass: bizcategories-type type-1
+        comment: urbn8.bizcategories::lang.modeldataform.externalurlcomment
+        span: right
+    link_target:
+        label: urbn8.bizcategories::lang.modeldataform.linktarget
+        type: radio
+        options:
+            _self: urbn8.bizcategories::lang.modeldataform.self
+            _blank: urbn8.bizcategories::lang.modeldataform.blank
+        default: _self
+    parameters:
+        label: urbn8.bizcategories::lang.modeldataform.parameters
+        commentAbove: urbn8.bizcategories::lang.modeldataform.parameterscomment
+        type: text
+        size: tiny
+    query_string:
+        label: urbn8.bizcategories::lang.modeldataform.querystr
+        commentAbove: urbn8.bizcategories::lang.modeldataform.querystrcomment
+        type: text
+        size: tiny
+    url:
+        label: urbn8.bizcategories::lang.modeldataform.url
+        cssClass: hidden

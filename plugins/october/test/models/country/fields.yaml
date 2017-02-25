@@ -1,0 +1,90 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: Name
+        span: auto
+        default: Australia
+
+    code:
+        label: Code
+        span: auto
+        preset:
+            field: name
+            type: slug
+
+    is_active:
+        label: Active
+        comment: Check this box to hide some tabs, using depends and trigger API.
+        type: checkbox
+        default: true
+
+tabs:
+    fields:
+
+        types:
+            tab: Characters
+            label: Class types
+            commentAbove: Character known to spawn in this location
+            type: relation
+
+        language:
+            label: Language
+            tab: Language
+            trigger:
+                field: is_active
+                condition: checked
+                action: hide
+
+        currency:
+            label: Currency
+            tab: Currency
+            dependsOn: is_active
+
+        pages_section:
+            label: Pages
+            tab: Pages
+            comment: This will disappear when a page is selected
+            type: section
+            dependsOn: pages
+
+        pages:
+            tab: Pages
+            type: checkboxlist
+
+        states:
+            tab: States
+            type: repeater
+            form:
+                fields:
+                    title:
+                        label: State
+                    item:
+                        type: repeater
+                        prompt: Add new suburb
+                        form:
+                            fields:
+                                subtitle:
+                                    label: Suburb
+                                    span: left
+
+        locations:
+            tab: Related
+            label: Locations
+            prompt: Add new location
+            span: full
+            type: repeater
+            form:
+                fields:
+                    country:
+                        label: Country
+                        span: auto
+                        type: dropdown
+                    state:
+                        label: State
+                        span: auto
+                        dependsOn: country
+                        type: dropdown
