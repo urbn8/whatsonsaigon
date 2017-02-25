@@ -1,0 +1,88 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: Name
+        commentAbove: Text field, <a href="#">required</a>.
+        commentHtml: true
+        span: auto
+
+    # Relation form field (default)
+    status:
+        label: Status
+        type: relation
+        span: auto
+        commentAbove: Generic model filtered by relation conditions.
+        context: [create, update, relation]
+
+    # Relation Controller
+    status@relationcontroller:
+        label: Status
+        commentAbove: Generic model filtered by relation conditions.
+        type: partial
+
+    # Record finder
+    status@recordfinder:
+        label: Status
+        type: recordfinder
+        list: $/october/test/models/attribute/columns.yaml
+        nameFrom: name
+        descriptionFrom: label
+        span: auto
+        commentAbove: Generic model filtered by relation conditions.
+
+    published_at:
+        label: Published date and time
+        type: datepicker
+        span: full
+        default: "tomorrow + 3 hours 15 minutes"
+
+tabs:
+    fields:
+
+        comments:
+            label: Comments
+            commentAbove: RelationController used as a partial field type.
+            type: partial
+            tab: Comments
+
+        galleries:
+            label: Galleries
+            commentAbove: RelationController demonstrating morphToMany relationship.
+            type: partial
+            tab: Galleries
+
+        review:
+            label: Review
+            commentAbove: RelationController demonstrating morphOne relationship.
+            type: partial
+            tab: Reviews
+
+secondaryTabs:
+    fields:
+
+        content:
+            label: Content
+            type: codeeditor
+            size: huge
+            tab: Code Editor
+            # language: text
+            commentAbove: Code editor field.
+
+        content_md:
+            label: Content
+            type: markdown
+            size: huge
+            mode: split
+            tab: Markdown Editor
+            commentAbove: Markdown editor field.
+
+        content_html:
+            label: Content
+            type: richeditor
+            size: huge
+            tab: Rich Editor
+            commentAbove: Rich editor (WYSIWYG) field.
