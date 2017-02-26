@@ -44,4 +44,9 @@ class BusinessBranch extends Model
     public $belongsTo = [
         'business' => ['Urbn8\Wos\Models\Business'],
     ];
+
+    public function scopeTestScope($query)
+    {
+        return $query;
+    }
 }

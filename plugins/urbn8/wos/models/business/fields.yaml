@@ -36,3 +36,10 @@ tabs:
             span: full
             type: partial
             tab: 'urbn8.wos::lang.business_branches.name'
+secondaryTabs:
+    fields:
+        users:
+            label: 'urbn8.wos::lang.businesses.tabs.users.name'
+            span: full
+            type: partial
+            tab: 'urbn8.wos::lang.businesses.tabs.users.name'

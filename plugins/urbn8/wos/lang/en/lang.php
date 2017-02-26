@@ -67,6 +67,11 @@
         'menu' => [
             'name' => 'Businesses',
         ],
+        'tabs' => [
+            'users' => [
+                'name' => 'Users',
+            ],
+        ],
     ],
     'business_branches' => [
         'modeldataform' => [

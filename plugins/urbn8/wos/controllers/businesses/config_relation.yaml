@@ -9,3 +9,11 @@ branches:
     readOnly: true
     manage:
         context: relation
+users:
+    label: 'urbn8.wos::lang.businesses.tabs.users.name'
+    list: ~/plugins/rainlab/user/models/user/columns.yaml
+    form: ~/plugins/rainlab/user/models/user/fields.yaml
+    readOnly: true
+    manage:
+        context: relation
+        scope: orphan

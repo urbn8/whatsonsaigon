@@ -42,6 +42,13 @@ class Business extends Model
      * @var array Relations
      */
     public $hasMany = [
-        'branches' => ['Urbn8\Wos\Models\BusinessBranch'],
+        'branches' => ['Urbn8\Wos\Models\BusinessBranch', 'scope' => 'testScope'],
+    ];
+
+    public $belongsToMany = [
+        'users' => [
+            'RainLab\User\Models\User',
+            'table' => 'urbn8_wos_business_user',
+        ],
     ];
 }
