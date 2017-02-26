@@ -1,0 +1,11 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+branches:
+    label: 'urbn8.wos::lang.business_branches.name'
+    list: ~/plugins/urbn8/wos/models/businessbranch/columns.yaml
+    form: ~/plugins/urbn8/wos/models/businessbranch/fields.yaml
+    readOnly: true
+    manage:
+        context: relation

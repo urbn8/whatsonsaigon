@@ -1,4 +1,16 @@
 fields:
+
+    # Hide this field for context 'relation'
+    business:
+        label: 'urbn8.wos::lang.business_branches.modeldataform.business'
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: full
+        type: relation
+        comment: 'urbn8.wos::lang.business_branches.modeldataform.business_comment'
+        context: create
+        
     name:
         label: 'urbn8.wos::lang.common.modeldataform.name'
         oc.commentPosition: ''
@@ -29,10 +41,3 @@ fields:
             - Active
         span: auto
         type: dropdown
-tabs:
-    fields:
-        branches:
-            label: 'urbn8.wos::lang.business_branches.name'
-            span: full
-            type: partial
-            tab: 'urbn8.wos::lang.business_branches.name'

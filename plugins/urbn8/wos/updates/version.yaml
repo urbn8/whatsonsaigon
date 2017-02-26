@@ -24,3 +24,6 @@
 1.0.9:
     - 'Created table urbn8_wos_business_branches'
     - builder_table_create_urbn8_wos_business_branches.php
+1.0.10:
+    - 'Updated table urbn8_wos_business_branches'
+    - builder_table_update_urbn8_wos_business_branches.php
