@@ -67,5 +67,17 @@
         'menu' => [
             'name' => 'Businesses',
         ],
+        'tabs' => [
+            'users' => [
+                'name' => 'Users',
+            ],
+        ],
+    ],
+    'business_branches' => [
+        'modeldataform' => [
+            'business' => 'Business',
+            'business_comment' => 'This branch belongs to the selected business above',
+        ],
+        'name' => 'Business Branches',
     ],
 ];

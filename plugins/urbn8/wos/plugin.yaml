@@ -10,30 +10,18 @@ navigation:
         url: urbn8/wos/eventcategories
         icon: icon-glass
         sideMenu:
-            wos-event-category-list:
-                label: 'urbn8.wos::lang.event.category.title'
-                url: urbn8/wos/eventcategories
-                icon: icon-list-ul
-                permissions:
-                    - event.category.access
-            wos-biz-type-list:
-                label: 'urbn8.wos::lang.biz.type.title'
-                url: urbn8/wos/biztypes
-                icon: icon-suitcase
-                permissions:
-                    - biz.type.access
-            biz-categories:
-                label: 'urbn8.wos::lang.biz.category.title'
-                url: urbn8/wos/bizcategories
-                icon: icon-briefcase
-                permissions:
-                    - biz.category.access
             wos-businesses:
                 label: 'urbn8.wos::lang.businesses.menu.name'
                 url: urbn8/wos/businesses
                 icon: icon-sitemap
                 permissions:
                     - urbn8.wos.access_businesses
+            wos-event-category-list:
+                label: 'urbn8.wos::lang.event.category.title'
+                url: urbn8/wos/eventcategories
+                icon: icon-list-ul
+                permissions:
+                    - event.category.access
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'

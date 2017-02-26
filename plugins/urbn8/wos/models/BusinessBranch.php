@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class Business extends Model
+class BusinessBranch extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sluggable;
@@ -30,25 +30,23 @@ class Business extends Model
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique:urbn8_wos_businesses',
+        'slug' => 'required|unique:urbn8_wos_business_branches',
     ];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'urbn8_wos_businesses';
+    public $table = 'urbn8_wos_business_branches';
 
     /**
      * @var array Relations
      */
-    public $hasMany = [
-        'branches' => ['Urbn8\Wos\Models\BusinessBranch', 'scope' => 'testScope'],
+    public $belongsTo = [
+        'business' => ['Urbn8\Wos\Models\Business'],
     ];
 
-    public $belongsToMany = [
-        'users' => [
-            'RainLab\User\Models\User',
-            'table' => 'urbn8_wos_business_user',
-        ],
-    ];
+    public function scopeTestScope($query)
+    {
+        return $query;
+    }
 }
