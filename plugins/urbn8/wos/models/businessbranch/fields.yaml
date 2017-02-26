@@ -41,3 +41,11 @@ fields:
             - Active
         span: auto
         type: dropdown
+    categories:
+        label: 'urbn8.wos::lang.business_branches.categories'
+        span: full
+        tab: 'urbn8.wos::lang.business_branches.categories'
+        type: taglist
+        mode: relation
+        customTags: false
+        nameFrom: title

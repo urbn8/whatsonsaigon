@@ -45,6 +45,15 @@ class BusinessBranch extends Model
         'business' => ['Urbn8\Wos\Models\Business'],
     ];
 
+    public $belongsToMany = [
+        'categories' => [
+            'Urbn8\BizCategories\Models\Menu',
+            'table' => 'urbn8_wos_business_branch_biz_category',
+            'key'      => 'business_branch_id',
+            'otherKey' => 'biz_category_id',
+        ],
+    ];
+
     public function scopeTestScope($query)
     {
         return $query;
