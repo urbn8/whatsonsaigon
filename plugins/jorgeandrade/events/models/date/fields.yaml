@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: left
+    url:
+        label: Url
+        span: right
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+    time_init:
+        label: Start at
+        type: datepicker
+        mode: time
+    time_end:
+        label: End at
+        type: datepicker
+        mode: time

@@ -1,0 +1,75 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: left
+        required: true
+    slug:
+        label: Slug
+        span: right
+        required: true
+        preset:
+            field: name
+            type: slug
+
+tabs:
+    fields:
+        detail:
+            label: Detail
+            type: richeditor
+            size: giant
+            required: true
+            tab: Information
+        excerpt:
+            label: Excerpt
+            type: textarea
+            size: small
+            span: right
+            required: true
+            tab: Manage
+        banner:
+            label: Hero Image
+            type: fileupload
+            span: left
+            mode: image
+            tab: Manage
+        calendar:
+            label: Calendar
+            type: relation
+            required: true
+            tab: Manage
+        start_at:
+            label: Start at
+            type: datepicker
+            required: true
+            tab: Manage
+        ends_at:
+            label: Ends at
+            type: datepicker
+            required: true
+            tab: Manage
+        is_allday:
+            label: All day?
+            type: switch
+            tab: Manage
+        dates@update:
+            label: Dates
+            type: partial
+            path: field_dates
+            tab: Dates
+        maps:
+            type: partial
+            span: left
+            tab: Location
+        lat_long:
+            label: Geolocation
+            span: right
+            tab: Location
+        address:
+            label: Address
+            span: right
+            tab: Location
+

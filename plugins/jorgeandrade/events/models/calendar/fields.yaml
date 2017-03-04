@@ -1,0 +1,18 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: left
+    slug:
+        label: Code
+        span: right
+        preset:
+            field: name
+            type: slug
+    is_active:
+        label: Active
+        type: switch
+        default: true

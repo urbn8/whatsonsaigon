@@ -1,0 +1,13 @@
+{
+    "name": "jorgeandrade/events",
+    "description": "Manage properly your own events",
+    "require": {
+        "twig/extensions": "^1.4"
+    },
+    "authors": [
+        {
+            "name": "Jorge Andrade",
+            "email": "j.andrade.dev@gmail.com"
+        }
+    ]
+}

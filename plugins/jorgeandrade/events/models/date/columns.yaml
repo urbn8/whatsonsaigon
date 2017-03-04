@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    title:
+        label: Titulo
+    date:
+        label: Date
+    time_init:
+        label: Start at
+    time_end:
+        label: End at
