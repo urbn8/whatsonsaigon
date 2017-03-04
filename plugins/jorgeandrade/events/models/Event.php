@@ -21,9 +21,11 @@ class Event extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = ['name', 'slug', 'detail', 'calendar_id', 'course_id'];
+    protected $fillable = ['name', 'slug', 'detail', 'calendar_id', 'course_id', 'to_facebook'];
 
     protected $dates = ['start_at', 'ends_at', 'created_at', 'updated_at'];
+
+    protected $hidden = ['to_facebook'];
 
     /**
      * @var array Relations
@@ -49,4 +51,7 @@ class Event extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
+    public function setToFacebookAttribute($value) {
+        
+    }
 }
