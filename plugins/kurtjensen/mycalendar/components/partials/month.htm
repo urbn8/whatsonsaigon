@@ -1,0 +1,83 @@
+{% set MyM = __SELF__ %}
+{% set dayPointer = MyM.dayPointer %}
+{% set devents = MyM.monthEvents %}
+{% set dprops = MyM.monthProperties %}
+{% set trailDay = 0 %}
+<table class="mycal" 
+       data-request-data="month:{{ MyM.monthNum }}">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-right">
+                <a href="{{ this.page.baseFileName | app }}/{{ MyM.linkPrevious|date('m') }}/{{ MyM.linkPrevious|date('Y') }}">
+                {{ MyM.trans('kurtjensen.mycalendar::lang.com_prop_trait.previous') }}</a>
+            </th>
+            <th colspan="3"  class="monthHead">
+                {{ MyM.monthTitle }} {{ MyM.year }}
+            </th>
+            <th colspan="2" class="text-left">
+                <a href="{{ this.page.baseFileName | app }}/{{ MyM.linkNext|date('m') }}/{{ MyM.linkNext|date('Y') }}">
+                {{ MyM.trans('kurtjensen.mycalendar::lang.com_prop_trait.next') }}</a>
+            </th>
+        </tr>
+
+
+<!-- START DAY LABELS -->
+        <tr class="daysHead">
+
+{# 
+    ** START - walk through 7 days of week for titles  **
+#}
+{% for weekDayNum in range(0,6) %}
+{# 
+    ** calculate order of day labels based on week start setting  **
+#}
+{% set labelOffset = weekDayNum + MyM.weekstart %}
+{% set labelKey = labelOffset > 6 ? labelOffset - 7 : labelOffset %}
+            <th>{{ MyM.calHeadings[labelKey] }}</th>
+{% endfor %}
+{# 
+    ** END - walk through 7 days of week for titles  **
+#}
+        </tr>
+<!-- END DAY LABELS -->
+     </thead>
+
+
+<!-- START DAYS of Previous month -->
+     <tbody>
+{# ** START - walk through 6 weeks of month ** #}
+{% for rows in range(1,6) %}
+{% if dayPointer < MyM.days_in_month %}
+        <tr class="days">
+
+{# ** START - walk through 7 days of week ** #}
+{% for x in range(0, 6) %}
+
+{# ** Advance dayPointer ** #}
+{% set dayPointer = dayPointer + 1 %}
+
+{# ************ SHOW PREVIOUS MONTH DAYS ************ If dayPointer indicates that current month has not started yet. #}
+{% if dayPointer <1 %}
+
+{% set prevDay = MyM.prevMonthStartDay + x %}
+{% partial '@day' Container=MyM events= MyM.monthEvents(-1)[prevDay] dayProp = { class:'dis'} dayPointer=prevDay %}
+
+{# ************ SHOW NEXT MONTH DAYS ************ If dayPointer indicates that current month has past. #}
+{% elseif dayPointer > MyM.days_in_month %}
+{% set trailDay = trailDay + 1 %}
+{% partial '@day' Container=MyM events= MyM.monthEvents(1)[trailDay] dayProp = { class:'dis'} dayPointer=trailDay %}
+
+{# ************ SHOW CURRENT MONTH DAYS ************ If dayPointer indicates current month. ( Not Past or Previous ) #}
+{% else %}
+
+{% partial '@day' Container=MyM events=devents[dayPointer] dayProp = dprops[dayPointer] dayPointer=dayPointer %}
+
+{% endif %}{# ** END - If dayPointer indicates that current month ** #}
+
+{% endfor %}{# ** END - walk through 7 days of week ** #}
+        </tr>
+{% endif %}
+
+{% endfor %}{# ** END - walk through 6 weeks of month ** #}
+    </tbody>
+</table>
