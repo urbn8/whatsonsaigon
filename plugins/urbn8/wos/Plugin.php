@@ -35,6 +35,9 @@ class Plugin extends PluginBase
 
     public function registerComponents()
     {
+        return [
+            'Urbn8\Wos\Components\EventForm' => 'EventForm'
+        ];
     }
 
     public function registerSettings()
