@@ -5,18 +5,11 @@
         'created_at' => 'Created Time',
         'updated_at' => 'Updated Time',
         'title' => 'WOS',
-        'common' => [
-            'name' => 'Name',
-            'slug' => 'Slug',
-            'desc' => 'Description',
-            'status' => 'Status',
-            'status_options' => [
-                'active' => 'Active',
-                'inactive' => 'Inactive',
-            ],
-        ],
     ],
     'event' => [
+        'modeldataform' => [
+            'categories' => 'Categories',
+        ],
         'category' => [
             'permissions' => [
                 'access' => 'Access event categories',
@@ -25,6 +18,12 @@
             'modeldataform' => [
                 'parent' => 'Parent',
             ],
+        ],
+        'permissions' => [
+            'access' => 'Access events',
+        ],
+        'menu' => [
+            'name' => 'Events',
         ],
     ],
     'biz' => [

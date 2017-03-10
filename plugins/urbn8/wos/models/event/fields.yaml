@@ -17,3 +17,10 @@ fields:
             field: name
             type: slug
         type: text
+    categories:
+        label: 'urbn8.wos::lang.event.modeldataform.categories'
+        span: auto
+        type: taglist
+        mode: relation
+        customTags: false
+        nameFrom: name
