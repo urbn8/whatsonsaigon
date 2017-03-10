@@ -13,6 +13,13 @@
             'time' => 'Time',
             'length' => 'Length',
             'pattern' => 'Pattern',
+            'tabs' => [
+                'contents' => 'Contents',
+                'images' => 'Images',
+                'location' => 'Location',
+            ],
+            'lat_long' => 'Latitude - Longtitude',
+            'address' => 'Address',
         ],
         'category' => [
             'permissions' => [
@@ -67,6 +74,7 @@
                 'active' => 'Active',
                 'inactive' => 'Inactive',
             ],
+            'excerpt' => 'Excerpt',
         ],
     ],
     'businesses' => [

@@ -39,7 +39,7 @@ fields:
     length:
         label: 'urbn8.wos::lang.event.modeldataform.length'
         oc.commentPosition: ''
-        mode: datetime
+        mode: time
         span: auto
         type: datepicker
     pattern_text:
@@ -50,3 +50,45 @@ fields:
         type: rrule
         label: 'urbn8.wos::lang.event.modeldataform.pattern'
         span: full
+    status:
+        label: 'urbn8.wos::lang.common.modeldataform.status'
+        oc.commentPosition: ''
+        options:
+            - In-active
+            - Live
+            - Finished
+        span: auto
+        type: dropdown
+tabs:
+    fields:
+        excerpt:
+            label: 'urbn8.wos::lang.common.modeldataform.excerpt'
+            size: small
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.contents'
+        description:
+            label: 'urbn8.wos::lang.common.modeldataform.desc'
+            size: huge
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.contents'
+        maps:
+            span: left
+            path: $/urbn8/wos/controllers/events/_map.htm
+            type: partial
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.location'
+        lat_long:
+            label: 'urbn8.wos::lang.event.modeldataform.lat_long'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.location'
+        address:
+            label: 'urbn8.wos::lang.event.modeldataform.address'
+            oc.commentPosition: ''
+            span: right
+            type: text
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.location'

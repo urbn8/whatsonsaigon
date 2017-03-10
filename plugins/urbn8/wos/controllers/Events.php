@@ -18,5 +18,9 @@ class Events extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Urbn8.Wos', 'wos-main', 'events');
+
+        $this->addJs('http://maps.google.com/maps/api/js?language=en&key=AIzaSyBapEfdZSwOwxHNADMcze2RvCMpBH3sAso');
+        $this->addJs('/plugins/urbn8/wos/assets/js/gmap3.min.js');
+        $this->addJs('/plugins/urbn8/wos/assets/js/events.location.js');
     }
 }
