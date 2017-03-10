@@ -33,7 +33,7 @@ class BizCategory extends Model
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique:urbn8_wos_biz_categories',
+        'slug' => 'required|unique:urbn8_wos_biz_categories,slug',
     ];
 
     /**

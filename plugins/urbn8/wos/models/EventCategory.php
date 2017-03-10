@@ -8,7 +8,7 @@ use Model;
 class EventCategory extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\Sortable;
+    use \October\Rain\Database\Traits\NestedTree;
 
     /**
      * Hard implement the TranslatableModel behavior.
@@ -25,7 +25,7 @@ class EventCategory extends Model
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique',
+        'slug' => 'required|unique:urbn8_wos_event_categories',
     ];
 
     /**

@@ -23,13 +23,3 @@ fields:
         mode: tab
         span: full
         type: markdown
-    status:
-        label: 'urbn8.wos::lang.plugin.common.status'
-        span: left
-        oc.commentPosition: ''
-        options:
-            - 'urbn8.wos::lang.plugin.common.status_options.inactive'
-            - 'urbn8.wos::lang.plugin.common.status_options.active'
-        required: 1
-        default: '1'
-        type: dropdown
