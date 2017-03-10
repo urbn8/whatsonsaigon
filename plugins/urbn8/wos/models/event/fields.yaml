@@ -80,7 +80,9 @@ tabs:
             span: auto
             oc.commentPosition: ''
             mode: image
-            type: mediafinder
+            type: fileupload
+            imageHeight: 100
+            imageWidth: 100
             tab: 'urbn8.wos::lang.event.modeldataform.tabs.images'
         maps:
             span: left
