@@ -23,3 +23,10 @@ fields:
         mode: tab
         span: full
         type: markdown
+    parent:
+        label: 'urbn8.wos::lang.event.category.modeldataform.parent'
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        type: relation

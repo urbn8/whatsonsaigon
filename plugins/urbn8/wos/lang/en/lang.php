@@ -22,6 +22,9 @@
                 'access' => 'Access event categories',
             ],
             'title' => 'Event categories',
+            'modeldataform' => [
+                'parent' => 'Parent',
+            ],
         ],
     ],
     'biz' => [
