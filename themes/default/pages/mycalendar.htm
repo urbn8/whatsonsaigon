@@ -1,0 +1,42 @@
+title = "mycalendar"
+url = "/mycalendar"
+layout = "minimal"
+is_hidden = 0
+
+[Events]
+title_max = 100
+usePermissions = 0
+category = "{{ :cat }}"
+month = "{{ :month }}"
+year = "{{ :year }}"
+dayspast = 0
+daysfuture = 60
+relations[] = "event"
+raw_data = 0
+
+[EvList]
+color = "red"
+loadstyle = 1
+
+[ListEvents]
+color = "red"
+loadstyle = 1
+title_max = 100
+usePermissions = 0
+category = "{{ :cat }}"
+month = "{{ :month }}"
+year = "{{ :year }}"
+dayspast = 0
+daysfuture = 60
+relations[] = "event"
+raw_data = 0
+==
+{% component 'Events' %}
+
+<br>
+
+{% component 'EvList' %}
+
+<br>
+
+{% component 'ListEvents' %}

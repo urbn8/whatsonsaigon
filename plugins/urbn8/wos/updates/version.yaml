@@ -1,41 +1,35 @@
 1.0.1:
     - 'Initialize plugin.'
 1.0.2:
-    - 'Created table urbn8_wos_event_categories'
-    - builder_table_create_urbn8_wos_event_categories.php
-1.0.3:
     - 'Created table urbn8_wos_biz_types'
     - builder_table_create_urbn8_wos_biz_types.php
-1.0.4:
+1.0.3:
     - 'Create default data table urbn8_wos_biz_types'
     - create_default_wos_biz_types.php
-1.0.5:
+1.0.4:
     - 'Created table urbn8_wos_biz_categories'
     - builder_table_create_urbn8_wos_biz_categories.php
-1.0.6:
+1.0.5:
     - 'Drop table urbn8_wos_biz_categories'
     - builder_table_delete_urbn8_wos_biz_categories.php
-1.0.7:
+1.0.6:
     - 'Drop table urbn8_wos_biz_types'
     - builder_table_delete_urbn8_wos_biz_types.php
-1.0.8:
+1.0.7:
     - 'Created table urbn8_wos_businesses'
     - builder_table_create_urbn8_wos_businesses.php
-1.0.9:
+1.0.8:
     - 'Created table urbn8_wos_business_branches'
     - builder_table_create_urbn8_wos_business_branches.php
-1.0.10:
+1.0.9:
     - 'Updated table urbn8_wos_business_branches'
     - builder_table_update_urbn8_wos_business_branches.php
-1.0.11:
+1.0.10:
     - 'Drop table urbn8_wos_biz'
     - builder_table_delete_urbn8_wos_biz.php
+1.0.11:
+    - 'Created table urbn8_wos_business_user'
+    - builder_table_create_urbn8_wos_business_user.php
 1.0.12:
-    - 'Created table urbn8_wos_business_user'
-    - builder_table_create_urbn8_wos_business_user.php
-1.0.13:
-    - 'Created table urbn8_wos_business_user'
-    - builder_table_create_urbn8_wos_business_user.php
-1.0.14:
     - 'Created table urbn8_wos_business_branch_biz_category'
     - builder_table_create_urbn8_wos_business_branch_biz_category.php
