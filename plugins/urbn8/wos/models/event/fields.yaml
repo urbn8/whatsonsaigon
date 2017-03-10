@@ -24,3 +24,29 @@ fields:
         mode: relation
         customTags: false
         nameFrom: name
+    date:
+        label: 'urbn8.wos::lang.event.modeldataform.date'
+        oc.commentPosition: ''
+        mode: date
+        span: left
+        type: datepicker
+    time:
+        label: 'urbn8.wos::lang.event.modeldataform.time'
+        oc.commentPosition: ''
+        mode: time
+        span: auto
+        type: datepicker
+    length:
+        label: 'urbn8.wos::lang.event.modeldataform.length'
+        oc.commentPosition: ''
+        mode: datetime
+        span: auto
+        type: datepicker
+    pattern_text:
+        span: left
+        path: $/urbn8/wos/controllers/events/_pattern_text.htm
+        type: partial
+    pattern:
+        type: rrule
+        label: 'urbn8.wos::lang.event.modeldataform.pattern'
+        span: full

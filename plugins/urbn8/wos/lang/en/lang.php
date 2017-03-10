@@ -9,6 +9,10 @@
     'event' => [
         'modeldataform' => [
             'categories' => 'Categories',
+            'date' => 'Date',
+            'time' => 'Time',
+            'length' => 'Length',
+            'pattern' => 'Pattern',
         ],
         'category' => [
             'permissions' => [
