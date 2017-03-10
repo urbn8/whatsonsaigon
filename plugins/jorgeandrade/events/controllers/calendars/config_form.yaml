@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Calendar
+
+# Model Form Field configuration
+form: $/jorgeandrade/events/models/calendar/fields.yaml
+
+# Model Class name
+modelClass: JorgeAndrade\Events\Models\Calendar
+
+# Default redirect location
+defaultRedirect: jorgeandrade/events/calendars
+
+# Create page
+create:
+    title: Create Calendar
+    redirect: jorgeandrade/events/calendars/update/:id
+    redirectClose: jorgeandrade/events/calendars
+
+# Update page
+update:
+    title: Edit Calendar
+    redirect: jorgeandrade/events/calendars
+    redirectClose: jorgeandrade/events/calendars
+
+# Preview page
+preview:
+    title: Preview Calendar

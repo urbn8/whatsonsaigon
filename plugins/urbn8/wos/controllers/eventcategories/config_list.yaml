@@ -6,6 +6,7 @@ noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true
 showSorting: 1
+showTree: true
 toolbar:
     buttons: list_toolbar
     search:

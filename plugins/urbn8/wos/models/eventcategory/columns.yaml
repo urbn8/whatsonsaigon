@@ -1,16 +1,16 @@
 columns:
     name:
-        label: 'urbn8.wos::lang.plugin.common.name'
+        label: 'urbn8.wos::lang.common.modeldataform.name'
         type: text
         searchable: true
         sortable: true
         width: 50%
     status:
-        label: 'urbn8.wos::lang.plugin.common.status'
+        label: 'urbn8.wos::lang.common.modeldataform.status'
         type: partial
-        path: ~/plugins/urbn8/wos/models/partials/_status_column.htm
         searchable: true
         sortable: true
+        path: ~/plugins/urbn8/wos/models/partials/_status_column.htm
     updated_at:
         label: 'urbn8.wos::lang.plugin.updated_at'
         type: timesince

@@ -1,0 +1,11 @@
+{% for event in events %}
+    {% partial '@event.htm' event=event %}
+{% else %}
+    <div class="event-item">
+        <div class="details">
+            <h2 class="title">{{ noEventMessage }}</h2>
+        </div><!--//details-->
+    </div><!--event-item-->
+{% endfor %}
+
+{{ events.render | raw }}

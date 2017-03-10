@@ -1,0 +1,13 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+dates:
+    label: Dates
+    view:
+        list: $/jorgeandrade/events/models/date/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/jorgeandrade/events/models/date/fields.yaml
+        list: $/jorgeandrade/events/models/date/columns.yaml
+        recordsPerPage: 10

@@ -22,6 +22,10 @@ navigation:
                 icon: icon-list-ul
                 permissions:
                     - event.category.access
+            events:
+                label: 'urbn8.wos::lang.event.menu.name'
+                url: urbn8/wos/events
+                icon: icon-glass
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'
@@ -35,3 +39,6 @@ permissions:
     urbn8.wos.access_businesses:
         tab: 'urbn8.wos::lang.lang.businesses.permissions.access'
         label: 'urbn8.wos::lang.lang.businesses.permissions.access'
+    urbn8.wos.events:
+        tab: 'urbn8.wos::lang.event.permissions.access'
+        label: 'urbn8.wos::lang.event.permissions.access'

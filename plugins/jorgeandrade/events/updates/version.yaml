@@ -1,0 +1,8 @@
+1.0.1:
+    - First version of Events
+    - create_calendars_table.php
+    - create_events_table.php
+    - create_dates_table.php
+1.0.2: Fixing bugs in create Event
+1.0.3: Fixing bugs in create events table
+1.0.4: Fixing bug with Twig_Extensions_Extension_Intl and composer.json

@@ -1,0 +1,16 @@
+title = "jorgeandrade  events"
+url = "/events"
+layout = "minimal"
+is_hidden = 0
+
+[eventList]
+eventsPerPage = 10
+noEventMessage = "No events."
+calendar = 1
+eventPage = "events/event"
+
+[event]
+==
+{% component 'eventList' %}
+
+{% component 'event' %}

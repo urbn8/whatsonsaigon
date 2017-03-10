@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Title
+    start_at:
+        label: Start Time
+        type: datetime
+    ends_at:
+        label: End Time
+        type: datetime
+    calendar:
+        label: Calendar
+        relation: calendar
+        select: name
+    is_allday:
+        label: All Day
+        type: switch

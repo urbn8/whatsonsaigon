@@ -1,0 +1,10 @@
+name: Events
+form: $/urbn8/wos/models/event/fields.yaml
+modelClass: Urbn8\Wos\Models\Event
+defaultRedirect: urbn8/wos/events
+create:
+    redirect: 'urbn8/wos/events/update/:id'
+    redirectClose: urbn8/wos/events
+update:
+    redirect: urbn8/wos/events
+    redirectClose: urbn8/wos/events

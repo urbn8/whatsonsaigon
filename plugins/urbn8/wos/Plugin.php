@@ -9,6 +9,12 @@ Use RainLab\User\Models\User;
 
 class Plugin extends PluginBase
 {
+
+    /**
+     * @var array Plugin dependencies
+     */
+    public $require = ['Rainlab.User'];
+
     public function boot()
     {
         User::extend(function($model) {

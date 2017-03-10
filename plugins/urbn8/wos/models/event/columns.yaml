@@ -1,0 +1,12 @@
+columns:
+    name:
+        label: 'urbn8.wos::lang.common.modeldataform.name'
+        type: text
+        searchable: true
+        sortable: true
+        width: 50%
+    status:
+        label: 'urbn8.wos::lang.common.modeldataform.status'
+        type: number
+        searchable: true
+        sortable: true

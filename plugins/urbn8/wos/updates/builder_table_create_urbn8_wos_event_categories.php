@@ -3,7 +3,7 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateUrbn8WosEventCategories extends Migration
+class BuilderTableCreateUrbn8WosEventCategories2 extends Migration
 {
     public function up()
     {
@@ -11,12 +11,13 @@ class BuilderTableCreateUrbn8WosEventCategories extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 16)->nullable();
-            $table->string('slug', 16)->nullable()->unique();
+            $table->integer('parent_id')->nullable();
+            $table->string('name', 255);
+            $table->string('slug', 255);
             $table->text('desc')->nullable();
-            $table->smallInteger('status')->nullable()->default(1);
-            $table->integer('updated_by')->nullable();
-            $table->integer('sort_order');
+            $table->integer('nest_left')->nullable();
+            $table->integer('nest_right')->nullable();
+            $table->integer('nest_depth')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
