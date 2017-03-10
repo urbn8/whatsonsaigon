@@ -9,6 +9,7 @@ class EventCategory extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;
+    use \October\Rain\Database\Traits\Sluggable;
 
     /**
      * Hard implement the TranslatableModel behavior.
@@ -19,6 +20,11 @@ class EventCategory extends Model
      * @var array Attributes that support translation, if available.
      */
     public $translatable = ['name', 'desc'];
+
+    /**
+     * @var array Generate slugs for these attributes.
+     */
+    protected $slugs = ['slug' => 'name'];
     
     /*
      * Validation

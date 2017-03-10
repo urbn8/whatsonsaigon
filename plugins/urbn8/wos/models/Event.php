@@ -22,7 +22,7 @@ class Event extends Model
 
     public $belongsToMany = [
         'categories' => [
-            'Urbn8\BizCategories\Models\Menu',
+            'Urbn8\Wos\Models\EventCategory',
             'table' => 'urbn8_wos_business_events_categories',
             'key'      => 'event_id',
             'otherKey' => 'category_id',

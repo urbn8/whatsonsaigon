@@ -21,3 +21,6 @@
 1.0.8:
     - 'Created table urbn8_wos_business_events_categories'
     - builder_table_create_urbn8_wos_business_events_categories.php
+1.0.9:
+    - 'Seed data for table urbn8_wos_event_categories'
+    - seed_event_categories.php
