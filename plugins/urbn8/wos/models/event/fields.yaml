@@ -75,6 +75,13 @@ tabs:
             span: full
             type: richeditor
             tab: 'urbn8.wos::lang.event.modeldataform.tabs.contents'
+        thumbnail:
+            label: 'urbn8.wos::lang.event.modeldataform.thumbnail'
+            span: auto
+            oc.commentPosition: ''
+            mode: image
+            type: mediafinder
+            tab: 'urbn8.wos::lang.event.modeldataform.tabs.images'
         maps:
             span: left
             path: $/urbn8/wos/controllers/events/_map.htm

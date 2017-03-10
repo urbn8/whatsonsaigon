@@ -20,6 +20,7 @@
             ],
             'lat_long' => 'Latitude - Longtitude',
             'address' => 'Address',
+            'thumbnail' => 'Thumbnail',
         ],
         'category' => [
             'permissions' => [

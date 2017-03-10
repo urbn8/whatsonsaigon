@@ -28,4 +28,8 @@ class Event extends Model
             'otherKey' => 'category_id',
         ],
     ];
+
+    public $attachOne = [
+        'thumbnail' => 'System\Models\File'
+    ];
 }
