@@ -33,3 +33,6 @@
 1.0.12:
     - 'Created table urbn8_wos_business_branch_biz_category'
     - builder_table_create_urbn8_wos_business_branch_biz_category.php
+1.0.13:
+    - 'Created table urbn8_wos_event_categories'
+    - builder_table_create_urbn8_wos_event_categories_2.php
