@@ -11,6 +11,7 @@ class BuilderTableCreateUrbn8WosBusinessBranches extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('business_id')->nullable();
             $table->string('name', 128);
             $table->string('slug', 128);
             $table->text('desc')->nullable();
