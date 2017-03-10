@@ -12,7 +12,7 @@ class BuilderTableCreateUrbn8WosBusinessEventsCategories extends Migration
             $table->engine = 'InnoDB';
             $table->integer('event_id');
             $table->integer('category_id');
-            $table->primary(['event_id','category_id']);
+            $table->primary(['event_id','category_id'], 'event_category');
         });
     }
     
