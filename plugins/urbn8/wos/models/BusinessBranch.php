@@ -25,6 +25,8 @@ class BusinessBranch extends Model
      */
     protected $slugs = ['slug' => 'name'];
 
+    protected $fillable = ['name', 'desc', 'status'];
+
     /*
      * Validation
      */

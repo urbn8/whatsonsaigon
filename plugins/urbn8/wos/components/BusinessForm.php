@@ -4,6 +4,7 @@ use Auth;
 use Flash;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Business as BusinessModel;
+use Urbn8\Wos\Models\BusinessBranch as BusinessBranchModel;
 
 class BusinessForm extends ComponentBase
 {
@@ -57,6 +58,22 @@ class BusinessForm extends ComponentBase
       return $this->userBusiness = $business;
     }
 
+    public function getUserDefaultBusinessBranch()
+    {
+      $business = $this->getUserBusiness();
+      $branch = $business->branches()->first();
+
+      if (!$branch) {
+        $data = $business->toArray();
+        unset($data['id']);
+        $branch = new BusinessBranchModel($data);
+        $branch->slugAttributes();
+        $business->branches()->save($branch);
+      }
+
+      return $branch;
+    }
+
     public function onSave() {
       try {
           if (!$user = Auth::getUser()) {
@@ -64,6 +81,7 @@ class BusinessForm extends ComponentBase
           }
 
           $business = $this->getUserBusiness();
+          $this->getUserDefaultBusinessBranch();
 
           $business->update(post());
 
