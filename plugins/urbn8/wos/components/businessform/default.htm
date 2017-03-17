@@ -1,5 +1,10 @@
-{{ form_ajax('onSave', { model: business }) }}
-
+{{ form_ajax('onSave', {
+   model: business,
+   update: {
+     '@flashmessage': '#flashmessage'
+   }
+}) }}
+    <div id="flashmessage"></div>
     <div class="form-group">
         <label for="name">Name</label>
         <input name="name" type="text" class="form-control" id="name" value="{{ form_value('name') }}">
@@ -12,9 +17,13 @@
 
     <div class="form-group">
         <label for="status">status</label>
-        {{ form_select('status', {'0': 'Inactive', '1': 'Active'}, form_value('status'), {'class': 'form-control'}) }}
+        <select class="form-control" name="status">
+          {% for key, label in __SELF__.getStatusOptions() %}
+            <option value="{{ key }}" {% if form_value('status') == key %}selected="selected"{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
     </div>
 
-    <button type="submit" class="btn btn-default">Save</button>
+    <button type="submit" class="btn btn-default" data-request-loading="disabled">Save</button>
 
 {{ form_close() }}

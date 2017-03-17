@@ -1,6 +1,7 @@
 <?php namespace Urbn8\Wos\Components;
 
 use Auth;
+use Flash;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Business as BusinessModel;
 
@@ -15,8 +16,20 @@ class BusinessForm extends ComponentBase
     }
 
     public function onRun()
-    {
+    { 
+        if (!$user = Auth::getUser()) {
+          return Response::make('Access denied!', 403);
+        }
+
         $this->page['business'] = $this->getUserBusiness();
+    }
+
+    public function getStatusOptions()
+    {
+      return [
+        0 => 'Inactive',
+        1 => 'Active',
+      ];
     }
 
     public function getUserBusiness()
@@ -54,6 +67,7 @@ class BusinessForm extends ComponentBase
 
           $business->update(post());
 
+          Flash::success('flash from ajax handler');
           return $business;
       }
       catch (Exception $ex) {
