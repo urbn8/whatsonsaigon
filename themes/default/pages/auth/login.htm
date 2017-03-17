@@ -1,0 +1,26 @@
+title = "login"
+url = "/auth/login"
+layout = "minimal"
+is_hidden = 0
+
+[sociallogin]
+
+[account]
+redirect = "account/profile"
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "account/profile"
+==
+{% component 'session' %}
+
+<div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <h3>Sign in</h3>
+        {% partial account ~ '::signin' %}
+        
+        {% component 'sociallogin' %}
+    </div>
+</div>
