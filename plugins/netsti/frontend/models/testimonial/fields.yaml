@@ -1,0 +1,59 @@
+fields:
+    name:
+        label: 'netsti.frontend::lang.fields.name'
+        oc.commentPosition: ''
+        span: auto
+        cssClass: oc-icon-user
+        type: text
+    place:
+        label: 'netsti.frontend::lang.fields.place'
+        oc.commentPosition: ''
+        span: auto
+        cssClass: oc-icon-map-pin
+        type: text
+    content:
+        label: 'netsti.frontend::lang.fields.content'
+        size: small
+        oc.commentPosition: ''
+        span: full
+        cssClass: oc-icon-comments
+        required: 1
+        type: textarea
+    source:
+        label: 'netsti.frontend::lang.fields.source'
+        oc.commentPosition: ''
+        span: auto
+        cssClass: oc-icon-newspaper-o
+        type: text
+    url:
+        label: 'netsti.frontend::lang.fields.url'
+        oc.commentPosition: ''
+        span: auto
+        placeholder: 'http://'
+        cssClass: oc-icon-globe
+        type: text
+secondaryTabs:
+    fields:
+        image:
+            label: 'netsti.frontend::lang.fields.image'
+            oc.commentPosition: ''
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            cssClass: oc-icon-camera
+            type: fileupload
+        date:
+            label: 'netsti.frontend::lang.fields.date'
+            oc.commentPosition: ''
+            mode: date
+            span: full
+            cssClass: oc-icon-calendar-o
+            type: datepicker
+        published:
+            label: 'netsti.frontend::lang.fields.published'
+            span: auto
+            cssClass: ''
+            type: switch

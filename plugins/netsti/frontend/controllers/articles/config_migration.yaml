@@ -1,0 +1,19 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: 'netsti.connections::lang.import'
+    list: $/netsti/frontend/models/articleimport/columns.yaml
+    form: $/netsti/frontend/models/articleimport/fields.yaml
+    modelClass: NetSTI\Frontend\Models\ArticleImport
+    redirect: rainlab/blog/posts
+    permissions: netsti.frontend.access_import_export
+
+export:
+    title: 'netsti.connections::lang.export'
+    fileName: articles.csv
+    list: $/netsti/frontend/models/articleexport/columns.yaml
+    modelClass: NetSTI\Frontend\Models\ArticleExport
+    redirect: netsti/frontend/articles
+    permissions: netsti.frontend.access_import_export

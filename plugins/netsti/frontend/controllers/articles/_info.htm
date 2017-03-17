@@ -1,0 +1,52 @@
+<?php
+	$visits = @NetSTI\Frontend\Models\Visit::listing($model->id, 'article')->count();
+	$cities = @Db::table('netsti_frontend_visits')
+		->select('city', 'country_code', Db::raw('COUNT(*) as total'))
+		->where('record_id', $model->id)
+		->where('type', 'article')
+		->groupBy('city')
+		->take(10)
+		->get();
+?>
+<div class="padded-container">
+	<div class="row">
+		<div class="col-md-7">
+			<h3><?= trans('netsti.frontend::lang.words_list') ?></h3>
+			<hr>
+			<div class="control-status-list">
+				<ul>
+					<?php foreach ($model->words as $word => $data): ?>
+						<li>
+							<?php if($data['type'] == 'tag'): ?>
+								<span class="status-icon success"><i class="icon-tag"></i></span>
+							<?php elseif($data['count'] >= 3): ?>
+								<span class="status-icon success"><i class="icon-check"></i></span>
+							<?php elseif($data['count'] > 1): ?>
+								<span class="status-icon"><i class="icon-info"></i></span>
+							<?php else: ?>
+								<span class="status-icon danger"><i class="icon-times"></i></span>
+							<?php endif ?>
+							<span class="status-text"><?= $word ?></span>
+							<span class="status-label primary"><?= $data['count'] ?></span>
+						</li>
+	            	<?php endforeach ?>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<h3><?= trans('netsti.frontend::lang.top_cities_visit') ?></h3>
+			<hr>
+			<div
+				class="control-chart"
+				data-control="chart-pie"
+				data-size="120"
+				data-center-text="<?= $visits ?>">
+				<ul>
+					<?php foreach ($cities as $item): ?>
+						<li><?= $item->city ?> <span><?= $item->total ?></span></li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

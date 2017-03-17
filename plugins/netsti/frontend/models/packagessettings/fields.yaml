@@ -1,0 +1,18 @@
+fields:
+    php:
+        label: 'PHP Alternate bin'
+        oc.commentPosition: ''
+        span: full
+        placeholder: /usr/bin/php
+        default: ''
+        type: text
+    path_variable:
+        label: 'netsti.frontend::lang.fields.path_variable'
+        span: full
+        type: text
+        comment: 'netsti.frontend::lang.fields.path_variable_desc'
+    local:
+        label: 'netsti.frontend::lang.fields.local'
+        span: auto
+        type: switch
+        comment: 'netsti.frontend::lang.fields.local_desc'

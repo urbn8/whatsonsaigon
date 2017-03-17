@@ -1,0 +1,13 @@
+title: 'netsti.frontend::lang.menu.testimonials'
+modelClass: NetSTI\Frontend\Models\Testimonial
+list: ~/plugins/netsti/frontend/models/testimonial/columns.yaml
+recordUrl: 'netsti/frontend/testimonials/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: '10'
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

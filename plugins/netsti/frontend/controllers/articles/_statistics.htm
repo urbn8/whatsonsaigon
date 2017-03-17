@@ -1,0 +1,148 @@
+<div class="control-breadcrumb">
+	<ul>
+		<li>
+			<a href="<?= Backend::url('netsti/frontend/categories') ?>">
+				<?= trans('netsti.frontend::lang.manage') ?> <?= trans('netsti.frontend::lang.menu.articles') ?>
+			</a>
+		</li>
+		<li><?= e($this->pageTitle) ?></li>
+		<li>
+			<span class="text-info">
+				<strong><?= $articles ?></strong> 
+				<?= e(trans_choice('netsti.frontend::lang.menu.articles', $articles)) ?>
+			</span>
+			&nbsp; | &nbsp;
+			<span class="text-warning">
+				<strong><?= $categories ?></strong> 
+				<?= e(trans_choice('netsti.frontend::lang.menu.categories', $categories)) ?>
+			</span>
+		</li>
+	</ul>
+</div>
+
+<div class="scoreboard">
+	<div class="row">
+		<div class="col-md-6">
+			<h1><?= $year -1 ?></h1>
+			<div id="lastYear"></div>
+		</div>
+		<div class="col-md-6">
+			<h1><?= $year ?></h1>
+			<div id="thisYear"></div>
+		</div>
+	</div>
+</div>
+<br>
+
+<br>
+<div class="scoreboard">
+	<div class="row">
+		<div class="col-md-6">
+			<legend><?= trans('netsti.frontend::lang.most_viewed') ?></legend>
+			<ol>
+				<?php foreach($mostViews as $item): ?>
+				<li class="article">
+					<div class="pull-right">
+						<span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> <?= number_format($item->views) ?></span>
+					</div>
+					<a href="<?= Backend::url('netsti/frontend/articles/update', $item->id) ?>">
+						<h4 class="media-heading"><?= $item->title ?></h4>
+						<p>
+							<?php if(count($item->categories)): ?>
+								<?= implode(', ', $item->categories->lists('name')) ?>
+							<?php else: ?>
+								- - - - -
+							<?php endif; ?>	
+						</p>
+					</a>
+				</li>
+				<?php endforeach ?>
+			</ol>
+		</div>
+		<div class="col-md-6">
+			<legend><?= trans('netsti.frontend::lang.less_viewed') ?></legend>
+			<ol>
+				<?php foreach($lessViews as $item): ?>
+				<li class="article">
+					<div class="pull-right">
+						<span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> <?= number_format($item->views) ?></span>
+					</div>
+					<a href="<?= Backend::url('netsti/frontend/articles/update', $item->id) ?>">
+						<h4 class="media-heading"><?= $item->title ?></h4>
+						<p>
+							<?php if(count($item->categories)): ?>
+								<?= implode(', ', $item->categories->lists('name')) ?>
+							<?php else: ?>
+								- - - - -
+							<?php endif; ?>	
+						</p>
+					</a>
+				</li>
+				<?php endforeach ?>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<script>
+	var trans = {
+		jan: 'January',
+		feb: 'February',
+		mar: 'March',
+		apr: 'April',
+		may: 'May',
+		jun: 'June',
+		jul: 'July',
+		aug: 'August',
+		sep: 'September',
+		oct: 'October',
+		nov: 'November',
+		dec: 'December'
+	};
+
+	Morris.Line({
+		element: 'thisYear',
+		data: [
+		<?php foreach($thisYear as $item): ?>
+			{ month: '<?= $item['month'] ?>', total: <?= $item['total'] ?>, views: <?= $item['views'] ?> },
+		<?php endforeach ?>
+		],
+		xkey: 'month',
+		ykeys: ['views'],
+		labels: ['<?= trans('netsti.frontend::lang.menu.articles') ?>', 'Views'],
+		xLabelFormat: function(x) {
+			var IndexToMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+			return IndexToMonth[x.getMonth()];
+		},
+		dateFormat: function(d) {
+			var IndexToMonth = [trans.jan, trans.feb, trans.mar, trans.apr, trans.may, trans.jun, trans.jul, trans.aug, trans.sep, trans.oct, trans.nov, trans.dec];
+			return month = IndexToMonth[new Date(d).getMonth()];
+		},
+		resize: true,
+		gridIntegers: true,
+		ymin: 0
+	});
+
+	Morris.Line({
+		element: 'lastYear',
+		data: [
+		<?php foreach($lastYear as $item): ?>
+			{ month: '<?= $item['month'] ?>', total: <?= $item['total'] ?>, views: <?= $item['views'] ?> },
+		<?php endforeach ?>
+		],
+		xkey: 'month',
+		ykeys: ['views'],
+		labels: ['<?= trans('netsti.frontend::lang.menu.articles') ?>', 'Views'],
+		xLabelFormat: function(x) {
+			var IndexToMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+			return IndexToMonth[x.getMonth()];
+		},
+		dateFormat: function(d) {
+			var IndexToMonth = [trans.jan, trans.feb, trans.mar, trans.apr, trans.may, trans.jun, trans.jul, trans.aug, trans.sep, trans.oct, trans.nov, trans.dec];
+			return month = IndexToMonth[new Date(d).getMonth()];
+		},
+		resize: true,
+		gridIntegers: true,
+		ymin: 0
+	});
+</script>

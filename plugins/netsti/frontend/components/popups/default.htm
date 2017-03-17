@@ -1,0 +1,23 @@
+{% if __SELF__.popup and __SELF__.popup.type != "none" %}
+<div class="popup" 
+	data-open="{{ __SELF__.popup.open_timeout }}" 
+	data-close="{{ __SELF__.popup.close_timeout }}" 
+	data-color="{{ __SELF__.popup.color_bg|default('#000000') }}" 
+	id="popup-{{ __SELF__.slug }}">
+
+	<a class="close-btn" data-request-success="closePopup('#popup-{{ __SELF__.slug }}')" data-request="{{ __SELF__ }}::onSetCount" data-request-data="id: {{ __SELF__.popup.id }}">
+		<img src="{{ 'plugins/netsti/frontend/assets/img/close.png'|app }}" alt="">
+	</a>
+	<div class="popup-container">
+		{% if __SELF__.popup.type == "image" %}
+			<a data-request="{{ __SELF__ }}::onSetCount" data-request-data="mode: 'clicks', id: {{ __SELF__.popup.id }}, url: '{{ __SELF__.popup.url }}'">
+				<img src="{{ __SELF__.popup.image.getPath() }}" alt="" class="img-responsive popup-image">
+			</a>
+		{% else %}
+			<div class="popup-code">
+				{{ __SELF__.popup.code|raw }}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endif %}

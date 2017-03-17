@@ -1,0 +1,12 @@
+<?php if ($this->user->hasAccess($this->config->permission)): ?>
+	<a href="javascript:;"
+		data-control="popup"
+		data-handler="onCreateForm"
+		data-request-data="comment_mode: 1, refresh: '<?= $this->getEventHandler('onCreateFinish') ?>'"
+		style="<?= $field->label ? '' : 'margin: 3px' ?>"
+		class="btn btn-primary btn-xs pull-right oc-icon-plus">Create</a>
+<?php endif; ?>
+
+<div class="relation-widget" id="<?= $this->getId() ?>">
+	<?= $this->makePartial('field_'.$field->type, ['field' => $field]) ?>
+</div>

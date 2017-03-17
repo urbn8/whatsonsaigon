@@ -1,0 +1,72 @@
+<?php
+
+return [
+    'plugin' => [
+        'name' => 'Fejlesztői eszközök',
+        'description' => 'Hasznos szolgáltatások fejlesztőknek.',
+        'author' => 'Szabó Gergő'
+    ],
+    'editor' => [
+        'menu_label' => 'Kódszerkesztő',
+        'plugins' => 'Bővítmények',
+        'permission' => 'Szerkesztő használata'
+    ],
+    'help' => [
+        'menu_label' => 'Fejlesztőknek',
+        'menu_description' => 'Szolgáltatások és lehetőségek beállítása.',
+        'tab' => 'Súgó',
+        'cms' => 'Testreszabás',
+        'pages' => 'Lapok',
+        'partials' => 'Részlapok',
+        'layouts' => 'Elrendezések',
+        'content' => 'Tartalom',
+        'ajax' => 'AJAX',
+        'functions' => 'Függvények',
+        'tags' => 'Tag-ek',
+        'filters' => 'Filterek',
+        'database' => 'Adatbázis',
+        'basic' => 'Alapok',
+        'queries' => 'Lekérdezések',
+        'plugins' => 'Bővítmények',
+        'registration' => 'Regisztrálás',
+        'version_history' => 'Verzió előzmények',
+        'building_components' => 'Komponensek',
+        'settings_config' => 'Beállítások',
+        'localization' => 'Többnyelvűsítés',
+        'task_scheduling' => 'Időzítés',
+        'extending_plugins' => 'Kiegészítés',
+        'backend' => 'Admin',
+        'controllers_ajax' => 'Kontroller és AJAX',
+        'views_partials' => 'Részlapok',
+        'widgets' => 'Widgetek',
+        'forms' => 'Űrlapok',
+        'lists' => 'Listák',
+        'relations' => 'Kapcsolatok',
+        'sorting_records' => 'Elemek rendezése',
+        'importing_exporting' => 'Import és export',
+        'users_permissions' => 'Jogosultságok',
+        'user_interface_guide' => 'Felhasználói felület',
+        'services' => 'Szolgáltatások',
+        'application' => 'Alkalmazás',
+        'behaviors' => 'Viselkedések',
+        'events' => 'Események',
+        'forms_html' => 'Űrlapok és HTML',
+        'mail' => 'Levelezés',
+        'request_input' => 'Űrlap értékek',
+        'response_view' => 'Válasz megjelenítés',
+        'router' => 'Router kezelés',
+        'session' => 'Munkamenet',
+        'validation' => 'Ellenőrzés',
+        'permission' => 'Beállítások kezelése'
+    ],
+    'form' => [
+        'wysiwyg_label' => 'Szövegszerkesztő',
+        'wysiwyg_enabled' => 'Engedélyezés a Tartalom oldalon',
+        'help_label' => 'Súgó',
+        'help_enabled' => 'Engedélyezés a Testreszabás aloldalakon',
+        'select_none' => '-- nincs --',
+        'select_superuser' => 'Szuperadminok láthatják',
+        'select_admingroup' => 'A következő admin csoport tagjai láthatják',
+        'select_adminid' => 'A következő admin felhasználó láthatja'
+    ]
+];

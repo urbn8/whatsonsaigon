@@ -1,0 +1,7 @@
+<ul class="list-unstyled">
+	{% for article in articles if article.published %}
+		{% partial __SELF__ ~ '::post' post=article %}
+	{% endfor %}
+
+	{{ articles.appends({ search: input('search') }).render|raw }}
+</ul>

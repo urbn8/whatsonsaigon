@@ -1,0 +1,14 @@
+name: 'netsti.frontend::lang.menu.popup'
+modelClass: NetSTI\Frontend\Models\Popup
+form: ~/plugins/netsti/frontend/models/popup/fields.yaml
+defaultRedirect: netsti/frontend/popups
+create:
+    title: 'netsti.frontend::lang.create'
+    redirect: 'netsti/frontend/popups/update/:id'
+    redirectClose: netsti/frontend/popups
+update:
+    title: 'netsti.frontend::lang.update'
+    redirect: netsti/frontend/popups
+    redirectClose: netsti/frontend/popups
+preview:
+    title: 'netsti.frontend::lang.preview'

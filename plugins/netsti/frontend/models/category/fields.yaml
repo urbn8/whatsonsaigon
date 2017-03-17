@@ -1,0 +1,14 @@
+fields:
+    name:
+        label: 'netsti.frontend::lang.fields.name'
+        oc.commentPosition: ''
+        span: left
+        cssClass: oc-icon-font
+        type: text
+    slug:
+        label: 'netsti.frontend::lang.fields.slug'
+        oc.commentPosition: ''
+        span: right
+        cssClass: oc-icon-code
+        preset: name
+        type: text

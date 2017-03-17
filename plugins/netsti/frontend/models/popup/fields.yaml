@@ -1,0 +1,78 @@
+fields:
+    title:
+        label: 'netsti.frontend::lang.fields.title'
+        span: auto
+        type: text
+        cssClass: oc-icon-font
+    slug:
+        label: 'netsti.frontend::lang.fields.slug'
+        span: auto
+        required: 1
+        cssClass: oc-icon-code
+        preset:
+            field: title
+            type: slug
+        type: text
+    open_timeout:
+        label: 'netsti.frontend::lang.fields.open_timeout'
+        span: auto
+        type: number
+        placeholder: 3000
+        cssClass: oc-icon-clock-o
+    close_timeout:
+        label: 'netsti.frontend::lang.fields.close_timeout'
+        span: auto
+        type: number
+        cssClass: oc-icon-clock-o
+        placeholder: 'netsti.frontend::lang.fields.never_close'
+    color_bg:
+        label: 'netsti.frontend::lang.fields.color'
+        span: full
+        default: '#000000'
+        type: colorpicker
+        cssClass: oc-icon-eyedropper
+    type:
+        label: 'netsti.frontend::lang.fields.type'
+        options:
+            none: 'None (Disable)'
+            image: Image
+            code: Code
+        span: full
+        type: dropdown
+        cssClass: oc-icon-sort
+    image:
+        label: 'netsti.frontend::lang.fields.images'
+        mode: image
+        useCaption: true
+        cssClass: oc-icon-picture-o
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        trigger:
+            action: show
+            field: type
+            condition: 'value[image]'
+        type: fileupload
+    url:
+        label: 'netsti.frontend::lang.fields.url'
+        span: auto
+        cssClass: oc-icon-globe
+        trigger:
+            action: show
+            field: type
+            condition: 'value[image]'
+        type: text
+        placeholder: 'http://'
+    code:
+        label: 'netsti.frontend::lang.fields.code'
+        span: full
+        size: large
+        language: twig
+        cssClass: oc-icon-code
+        showGutter: true
+        type: codeeditor
+        trigger:
+            action: show
+            field: type
+            condition: 'value[code]'
