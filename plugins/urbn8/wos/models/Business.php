@@ -25,7 +25,7 @@ class Business extends Model
      */
     protected $slugs = ['slug' => 'name'];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'desc', 'status'];
 
     /*
      * Validation

@@ -33,7 +33,7 @@ class BusinessForm extends ComponentBase
       $business = $user->businesses()->first(); 
       if (!$business) {
         $business = new BusinessModel([
-          'name' => $user->getLoginName(),
+          'name' => '',
         ]);
 
         $business->slugAttributes();
