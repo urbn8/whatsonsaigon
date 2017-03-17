@@ -2,17 +2,22 @@
    model: business,
    update: {
      '@flashmessage': '#flashmessage'
-   }
+   },
+   validate: true,
+   flash: true,
 }) }}
+
     <div id="flashmessage"></div>
     <div class="form-group">
         <label for="name">Name</label>
         <input name="name" type="text" class="form-control" id="name" value="{{ form_value('name') }}">
+        <span data-validate-for="name"></span>
     </div>
 
     <div class="form-group">
         <label for="desc">Description</label>
         <input name="desc" type="text" class="form-control" id="desc" value="{{ form_value('desc') }}">
+        <span data-validate-for="desc"></span>
     </div>
 
     <div class="form-group">
@@ -24,6 +29,6 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-default" data-request-loading="disabled">Save</button>
+    <button type="submit" class="btn btn-default" data-attach-loading>Save</button>
 
 {{ form_close() }}

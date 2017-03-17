@@ -83,7 +83,9 @@ class BusinessForm extends ComponentBase
           $business = $this->getUserBusiness();
           $this->getUserDefaultBusinessBranch();
 
-          $business->update(post());
+          $business->fill(post());
+
+          $business->save();
 
           Flash::success('flash from ajax handler');
           return $business;
