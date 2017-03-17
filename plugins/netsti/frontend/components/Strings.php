@@ -1,6 +1,6 @@
 <?php namespace NetSTI\Frontend\Components;
 
-use NetSTI\Frontend\Models\String;
+use NetSTI\Frontend\Models\MString;
 use Illuminate\Support\Facades\Schema;
 
 class Strings extends \Cms\Classes\ComponentBase{
