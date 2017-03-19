@@ -2,6 +2,7 @@
 
 use Auth;
 use Flash;
+use Response;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Business as BusinessModel;
 use Urbn8\Wos\Models\BusinessBranch as BusinessBranchModel;
@@ -35,6 +36,23 @@ class BusinessForm extends ComponentBase
 
     public function getUserBusiness()
     {
+      $user = Auth::getUser();
+      if (!$user) {
+          throw new ApplicationException('You should be logged in.');
+      }
+
+      $business = $user->businesses()->first(); 
+      if (!$business) {
+        $business = new BusinessModel([
+          'name' => '',
+        ]);
+      }
+
+      return $business;
+    }
+
+    public function getOrCreateUserBusiness()
+    {
       if ($this->userBusiness !== null) {
           return $this->userBusiness;
       }
@@ -60,7 +78,7 @@ class BusinessForm extends ComponentBase
 
     public function getUserDefaultBusinessBranch()
     {
-      $business = $this->getUserBusiness();
+      $business = $this->getOrCreateUserBusiness();
       $branch = $business->branches()->first();
 
       if (!$branch) {
@@ -80,12 +98,24 @@ class BusinessForm extends ComponentBase
               throw new ApplicationException('You should be logged in.');
           }
 
-          $business = $this->getUserBusiness();
-          $this->getUserDefaultBusinessBranch();
+          $business = $user->businesses()->first(); 
+          if (!$business) {
+            $business = new BusinessModel(post());
+            $user->businesses()->save($business);
+          } else {
+            $business->fill(post());
+            $business->slugAttributes();
+            $business->save();
+          }
 
-          $business->fill(post());
-
-          $business->save();
+          $branch = $business->branches()->first();
+          if (!$branch) {
+            $data = $business->toArray();
+            unset($data['id']);
+            $branch = new BusinessBranchModel($data);
+            $branch->slugAttributes();
+            $business->branches()->save($branch);
+          }
 
           Flash::success('flash from ajax handler');
           return $business;

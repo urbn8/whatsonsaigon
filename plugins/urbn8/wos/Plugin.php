@@ -18,7 +18,6 @@ class Plugin extends PluginBase
     public function boot()
     {
         User::extend(function($model) {
-            // $model->belongsToMany('Urbn8\Wos\Models\Business', 'urbn8_wos_business_user', 'businesses');
             $model->belongsToMany['businesses'] = [
                 'Urbn8\Wos\Models\Business',
                 'table' => 'urbn8_wos_business_user',
