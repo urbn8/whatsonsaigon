@@ -30,7 +30,7 @@ class OrganiserList extends ComponentBase
             'categoryFilter' => [
                 'title'       => 'urbn8.wos::lang.components.organiser_list.category_filter',
                 'description' => 'urbn8.wos::lang.components.organiser_list.category_filter_description',
-                'default'     => '',
+                'default'     => 'category',
                 'type'        => 'string'
             ],
             'noDataMessage' => [
@@ -79,7 +79,17 @@ class OrganiserList extends ComponentBase
 
     public function loadOrganisers()
     {
+      dd($this->user);
+      $categoryFilter = $this->property('categoryFilter');
+      // dd($categoryFilter);
+      $categoryFilterValue = input($categoryFilter);
+      // dd($categoryFilterValue);
+
       $items = OrganiserModel::all()->sortByDesc('created_at');
+
+      if ($categoryFilterValue) {
+        $items = $items::with(['']);
+      }
 
       /*
         * Add a "url" helper attribute for linking to each post and category
