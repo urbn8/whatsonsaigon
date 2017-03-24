@@ -56,7 +56,13 @@ class OrganiserForm extends ComponentBase
           throw new ApplicationException('You should be logged in.');
       }
 
-      $organiser = $user->organisers()->where('slug', $slug)->first();
+      $organiser = new OrganiserModel;
+      $organiser = $organiser->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
+        ? $user->organisers()->transWhere('slug', $slug)
+        : $user->organisers()->where('slug', $slug);
+
+      $organiser = $organiser->first();
+
       if (!$organiser) {
         // https://octobercms.com/forum/post/returning-404-from-a-component
         return \Response::make($this->controller->run('404'), 404);
@@ -67,25 +73,34 @@ class OrganiserForm extends ComponentBase
 
     public function onSave() {
       try {
-          if (!$user = Auth::getUser()) {
-              throw new ApplicationException('You should be logged in.');
-          }
+        if (!$user = Auth::getUser()) {
+          throw new ApplicationException('You should be logged in.');
+        }
 
-          $organiser = $user->organisers()->first(); 
-          if (!$organiser) {
-            $organiser = new OrganiserModel(post());
-            $user->organisers()->save($organiser);
-          } else {
-            $organiser->fill(post());
-            $organiser->slugAttributes();
-            $organiser->save();
-          }
+        $slug = $this->property('slug');
+        if ($slug) {
+          $organiser = $this->loadOrganiser($slug);
+          $organiser->fill(post());
+          $organiser->slug = null;
+          $organiser->slugAttributes();
+          $organiser->save();
 
-          Flash::success('organiser created successfully!');
+          Flash::success('organiser updated successfully!');
           return [
               '#flashmessage' => $this->renderPartial('@flashmessage'),
               'data' => $organiser,
           ];
+        }
+
+        $organiser = new OrganiserModel(post());
+        $organiser->slugAttributes();
+        $user->organisers()->save($organiser);
+
+        Flash::success('organiser created successfully!');
+        return [
+            '#flashmessage' => $this->renderPartial('@flashmessage'),
+            'data' => $organiser,
+        ];
       }
       catch (Exception $ex) {
           Flash::error($ex->getMessage());

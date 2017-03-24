@@ -8,6 +8,7 @@ use Model;
 class Organiser extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Sluggable;
 
     /**
      * Hard implement the TranslatableModel behavior.
@@ -17,7 +18,10 @@ class Organiser extends Model
     /**
      * @var array Attributes that support translation, if available.
      */
-    public $translatable = ['name', 'desc'];
+    public $translatable = [
+      'name', 'desc',
+      ['slug', 'index' => true],
+    ];
 
     /**
      * @var array Generate slugs for these attributes.
