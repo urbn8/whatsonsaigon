@@ -47,6 +47,7 @@ class Plugin extends PluginBase
             'Urbn8\Wos\Components\EventForm' => 'EventForm',
             'Urbn8\Wos\Components\BusinessForm' => 'BusinessForm',
             'Urbn8\Wos\Components\OrganiserForm' => 'OrganiserForm',
+            'Urbn8\Wos\Components\OrganiserList' => 'OrganiserList',
         ];
     }
 

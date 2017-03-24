@@ -1,0 +1,10 @@
+{% set items = organisers %}
+<ul class="post-list">
+    {% for item in items %}
+        <li>
+          {{ item | json_encode }}
+        </li>
+    {% else %}
+        <li class="no-data">{{ noDataMessage }}</li>
+    {% endfor %}
+</ul>
