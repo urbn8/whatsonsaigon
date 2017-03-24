@@ -27,3 +27,6 @@
 1.0.10:
     - 'Created table urbn8_wos_organisers'
     - builder_table_create_urbn8_wos_organisers.php
+1.0.11:
+    - 'Created table urbn8_wos_organiser_user'
+    - builder_table_create_urbn8_wos_organiser_user.php

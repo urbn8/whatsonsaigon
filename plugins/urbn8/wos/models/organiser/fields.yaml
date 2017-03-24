@@ -31,3 +31,7 @@ fields:
             - Active
         span: auto
         type: dropdown
+    users:
+        label: 'urbn8.wos::lang.organiser.modeldataform.users'
+        span: full
+        type: partial
