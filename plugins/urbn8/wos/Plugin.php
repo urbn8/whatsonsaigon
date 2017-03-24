@@ -13,7 +13,7 @@ class Plugin extends PluginBase
     /**
      * @var array Plugin dependencies
      */
-    public $require = ['Rainlab.User'];
+    public $require = ['Rainlab.User', 'Vdomah.JWTAuth'];
 
     public function boot()
     {
