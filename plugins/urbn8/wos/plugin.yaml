@@ -26,6 +26,12 @@ navigation:
                 label: 'urbn8.wos::lang.event.menu.name'
                 url: urbn8/wos/events
                 icon: icon-glass
+            organisers:
+                label: 'urbn8.wos::lang.organiser.menu.title'
+                url: urbn8/wos/organisers
+                icon: icon-skyatlas
+                permissions:
+                    - urbn8.wos.access_organisers
 permissions:
     event.category.access:
         tab: 'urbn8.wos::lang.event.category.permissions.access'
@@ -42,3 +48,6 @@ permissions:
     urbn8.wos.events:
         tab: 'urbn8.wos::lang.event.permissions.access'
         label: 'urbn8.wos::lang.event.permissions.access'
+    urbn8.wos.access_organisers:
+        tab: 'urbn8.wos::lang.plugin.title'
+        label: 'urbn8.wos::lang.organiser.permissions.access'

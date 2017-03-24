@@ -1,0 +1,10 @@
+name: Organisers
+form: $/urbn8/wos/models/orgraniser/fields.yaml
+modelClass: Urbn8\Wos\Models\Orgraniser
+defaultRedirect: urbn8/wos/organisers
+create:
+    redirect: 'urbn8/wos/organisers/update/:id'
+    redirectClose: urbn8/wos/organisers
+update:
+    redirect: urbn8/wos/organisers
+    redirectClose: urbn8/wos/organisers
