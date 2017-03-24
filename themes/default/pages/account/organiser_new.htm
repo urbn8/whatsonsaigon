@@ -4,5 +4,8 @@ layout = "minimal"
 is_hidden = 0
 
 [OrganiserForm]
+slug = "{{ :slug }}"
 ==
+Page id: <a href="{{ page.id | page }}">{{ this.page.id }}</a>
+
 {% component 'OrganiserForm' %}
