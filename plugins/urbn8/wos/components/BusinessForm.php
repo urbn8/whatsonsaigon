@@ -42,11 +42,6 @@ class BusinessForm extends ComponentBase
       }
 
       $business = $user->businesses()->first(); 
-      if (!$business) {
-        $business = new BusinessModel([
-          'name' => '',
-        ]);
-      }
 
       return $business;
     }

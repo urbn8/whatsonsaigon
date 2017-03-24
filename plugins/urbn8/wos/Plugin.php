@@ -29,6 +29,11 @@ class Plugin extends PluginBase
                         ->whereRaw('urbn8_wos_business_user.user_id = users.id');
                 });
             });
+
+            $model->belongsToMany['organisers'] = [
+                'Urbn8\Wos\Models\Organiser',
+                'table' => 'urbn8_wos_organiser_user',
+            ];
         });
 
         Event::listen('eloquent.created: RainLab\User\Models\User', function ($user) {
@@ -41,6 +46,7 @@ class Plugin extends PluginBase
         return [
             'Urbn8\Wos\Components\EventForm' => 'EventForm',
             'Urbn8\Wos\Components\BusinessForm' => 'BusinessForm',
+            'Urbn8\Wos\Components\OrganiserForm' => 'OrganiserForm',
         ];
     }
 
