@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class Orgraniser extends Model
+class Organiser extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
