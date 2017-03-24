@@ -117,8 +117,11 @@ class BusinessForm extends ComponentBase
             $business->branches()->save($branch);
           }
 
-          Flash::success('flash from ajax handler');
-          return $business;
+          Flash::success('business info created successfully!');
+          return [
+              '#flashmessage' => $this->renderPartial('@flashmessage'),
+              'data' => $business,
+          ];
       }
       catch (Exception $ex) {
           Flash::error($ex->getMessage());
