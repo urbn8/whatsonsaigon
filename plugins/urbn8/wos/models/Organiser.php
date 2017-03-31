@@ -56,6 +56,10 @@ class Organiser extends Model
         ],
     ];
 
+    public $hasMany = [
+      'events' => 'Urbn8\Wos\Models\Event'
+    ];
+
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName

@@ -68,7 +68,7 @@ tabs:
             span: full
             type: richeditor
             tab: 'urbn8.wos::lang.event.modeldataform.tabs.contents'
-        description:
+        desc:
             label: 'urbn8.wos::lang.common.modeldataform.desc'
             size: huge
             oc.commentPosition: ''
