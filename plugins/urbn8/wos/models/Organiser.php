@@ -48,6 +48,12 @@ class Organiser extends Model
             'RainLab\User\Models\User',
             'table' => 'urbn8_wos_organiser_user',
         ],
+        'categories' => [
+            'Urbn8\Wos\Models\EventCategory',
+            'table' => 'urbn8_wos_organiser_o_category',
+            'key'      => 'organiser_id',
+            'otherKey' => 'o_category_id',
+        ],
     ];
 
     /**

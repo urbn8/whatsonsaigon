@@ -36,3 +36,6 @@
 1.0.13:
     - 'Seed data for table urbn8_wos_o_categories'
     - seed_urbn8_wos_o_categories.php
+1.0.12:
+    - 'Created table urbn8_wos_organiser_o_category'
+    - builder_table_create_urbn8_wos_organiser_o_category.php
