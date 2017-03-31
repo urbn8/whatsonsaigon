@@ -4,6 +4,7 @@ use Auth;
 use Flash;
 use Response;
 use View;
+use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Organiser as OrganiserModel;
 
@@ -26,7 +27,19 @@ class OrganiserForm extends ComponentBase
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
             ],
+            'organiserListPage' => [
+                'title'       => 'urbn8.wos::lang.components.organiser_list.edit_page',
+                'description' => 'urbn8.wos::lang.components.organiser_list.edit_page_description',
+                'type'        => 'dropdown',
+                'default'     => 'organiser',
+                'group'       => 'Links',
+            ],
         ];
+    }
+
+    public function getOrganiserListPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -39,6 +52,8 @@ class OrganiserForm extends ComponentBase
         if ($slug) {
           $this->organiser = $this->page['organiser'] = $this->loadOrganiser($slug);
         }
+
+        $this->organiserListPage = $this->page['organiserListPage'] = $this->property('organiserListPage');
     }
 
     public function getStatusOptions()

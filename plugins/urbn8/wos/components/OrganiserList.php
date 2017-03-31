@@ -24,12 +24,6 @@ class OrganiserList extends ComponentBase
             'categoryFilter' => [
                 'title'       => 'urbn8.wos::lang.components.organiser_list.category_filter',
                 'description' => 'urbn8.wos::lang.components.organiser_list.category_filter_description',
-                'default'     => '',
-                'type'        => 'string'
-            ],
-            'categoryFilter' => [
-                'title'       => 'urbn8.wos::lang.components.organiser_list.category_filter',
-                'description' => 'urbn8.wos::lang.components.organiser_list.category_filter_description',
                 'default'     => 'category',
                 'type'        => 'string'
             ],
