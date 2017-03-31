@@ -1,38 +1,38 @@
 <?php namespace Urbn8\Wos\Updates;
 
-use Schema;
 use Db;
+use Schema;
 use October\Rain\Database\Updates\Migration;
 
-use Urbn8\Wos\Models\EventCategory;
+use Urbn8\Wos\Models\OCategory;
 
-class SeedEventCategories extends Migration
+class SeedOCategories extends Migration
 {
     public function up()
     {
-        $c = new EventCategory;
+        $c = new OCategory;
         $c->name = 'Happy hour';
         $c->slugAttributes();
         $c->save();
 
-        $party = new EventCategory;
+        $party = new OCategory;
         $party->name = 'Party';
         $party->slugAttributes();
         $party->save();
 
-        $c = new EventCategory;
+        $c = new OCategory;
         $c->name = 'Bar';
         $c->parent = $party;
         $c->slugAttributes();
         $c->save();
 
-        $c = new EventCategory;
+        $c = new OCategory;
         $c->name = 'Restaurant';
         $c->parent = $party;
         $c->slugAttributes();
         $c->save();
 
-        $c = new EventCategory;
+        $c = new OCategory;
         $c->name = 'Pool party';
         $c->parent = $party;
         $c->slugAttributes();
@@ -41,6 +41,6 @@ class SeedEventCategories extends Migration
     
     public function down()
     {
-      Db::table('urbn8_wos_event_categories')->truncate();
+      Db::table('urbn8_wos_o_categories')->truncate();
     }
 }

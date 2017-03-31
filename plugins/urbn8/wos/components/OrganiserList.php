@@ -57,7 +57,7 @@ class OrganiserList extends ComponentBase
     }
 
     public function onRun()
-    {
+    { 
         if (!$this->user = Auth::getUser()) {
           return Response::make('Access denied!', 403);
         }
@@ -79,17 +79,23 @@ class OrganiserList extends ComponentBase
 
     public function loadOrganisers()
     {
-      dd($this->user);
-      $categoryFilter = $this->property('categoryFilter');
-      // dd($categoryFilter);
-      $categoryFilterValue = input($categoryFilter);
-      // dd($categoryFilterValue);
+      $user = Auth::getUser();
 
-      $items = OrganiserModel::all()->sortByDesc('created_at');
+      $categoryFilter = $this->property('categoryFilter');
+      $categoryFilterValue = input($categoryFilter);
+
+      $items = OrganiserModel::whereHas('users', function ($query) use ($user) {
+        $query->where('id', '=', $user->id);
+      })->orderBy('created_at', 'desc');
 
       if ($categoryFilterValue) {
-        $items = $items::with(['']);
+        $items = $items->whereHas('category', function ($query) use ($categoryFilterValue) {
+          $query->where('id', $categoryFilterValue);
+        });
+        
       }
+
+      $items = $items->get();
 
       /*
         * Add a "url" helper attribute for linking to each post and category
