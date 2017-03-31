@@ -24,7 +24,7 @@ class BuilderTableCreateUrbn8WosEvents extends Migration
             $table->string('lat_long', 255)->nullable();
             $table->smallInteger('status');
             $table->string('pattern', 255)->nullable();
-            $table->text('description')->nullable();
+            $table->text('desc')->nullable();
             $table->text('excerpt')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

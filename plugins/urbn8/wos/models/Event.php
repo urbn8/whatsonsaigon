@@ -8,12 +8,19 @@ use Model;
 class Event extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Sluggable;
     
     /*
      * Validation
      */
     public $rules = [
+        'name' => 'required|between:2,16',
+        'slug' => 'required|unique:urbn8_wos_events',
     ];
+
+    protected $slugs = ['slug' => 'name'];
+
+    protected $fillable = ['name', 'desc', 'status'];
 
     /**
      * @var string The database table used by the model.
