@@ -42,10 +42,22 @@ class OrganiserList extends ComponentBase
                 'default'     => 'organiser',
                 'group'       => 'Links',
             ],
+            'eventListPage' => [
+                'title'       => 'urbn8.wos::lang.components.organiser_list.event_list_page',
+                'description' => 'urbn8.wos::lang.components.organiser_list.event_list_description',
+                'type'        => 'dropdown',
+                'default'     => 'events',
+                'group'       => 'Links',
+            ],
         ];
     }
 
     public function getEditPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    public function getEventListPageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
@@ -97,6 +109,7 @@ class OrganiserList extends ComponentBase
         */
       $items->each(function($item) {
         $item->setUrl($this->property('editPage'), $this->controller);
+        $item->setEventUrl($this->property('eventListPage'), $this->controller);
       });
 
       return $items;
