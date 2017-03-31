@@ -6,15 +6,15 @@ use Response;
 use View;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use Urbn8\Wos\Models\Organiser as OrganiserModel;
+use Urbn8\Wos\Models\Event as EventModel;
 
-class OrganiserList extends ComponentBase
+class OrganiserEventList extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name' => 'Organisers List',
-            'description' => 'Display organisers list.'
+            'name' => 'Events List',
+            'description' => 'Display events list.'
         ];
     }
 
@@ -22,8 +22,8 @@ class OrganiserList extends ComponentBase
     {
         return [
             'categoryFilter' => [
-                'title'       => 'urbn8.wos::lang.components.organiser_list.category_filter',
-                'description' => 'urbn8.wos::lang.components.organiser_list.category_filter_description',
+                'title'       => 'urbn8.wos::lang.components.organiser_event_list.category_filter',
+                'description' => 'urbn8.wos::lang.components.organiser_event_list.category_filter_description',
                 'default'     => 'category',
                 'type'        => 'string'
             ],
@@ -36,8 +36,8 @@ class OrganiserList extends ComponentBase
                 'group'       => 'Messages',
             ],
             'editPage' => [
-                'title'       => 'urbn8.wos::lang.components.organiser_list.edit_page',
-                'description' => 'urbn8.wos::lang.components.organiser_list.edit_page_description',
+                'title'       => 'urbn8.wos::lang.components.organiser_event_list.edit_page',
+                'description' => 'urbn8.wos::lang.components.organiser_event_list.edit_page_description',
                 'type'        => 'dropdown',
                 'default'     => 'organiser',
                 'group'       => 'Links',
@@ -58,7 +58,7 @@ class OrganiserList extends ComponentBase
 
         $this->prepareVars();
 
-        $this->organisers = $this->page['organisers'] = $this->loadOrganisers();
+        $this->events = $this->page['events'] = $this->loadEvents();
     }
 
     protected function prepareVars()
@@ -71,22 +71,20 @@ class OrganiserList extends ComponentBase
         $this->editPage = $this->page['editPage'] = $this->property('editPage');
     }
 
-    public function loadOrganisers()
+    public function loadEvents()
     {
       $user = Auth::getUser();
 
       $categoryFilter = $this->property('categoryFilter');
       $categoryFilterValue = input($categoryFilter);
 
-      $items = OrganiserModel::join('urbn8_wos_organiser_user', function ($join) use ($user) {
-        $join->on('organiser_id', '=', 'id')
-          ->where('user_id', '=', $user->id);
+      $items = EventModel::whereHas('users', function ($query) use ($user) {
+        $query->where('id', $user->id);
       })->orderBy('created_at', 'desc');
 
       if ($categoryFilterValue) {
-        $items = $items->join('urbn8_wos_organiser_o_category', function ($join) use ($categoryFilterValue) {
-          $join->on('urbn8_wos_organiser_o_category.organiser_id', '=', 'id')
-            ->where('o_category_id', '=', $categoryFilterValue);
+        $items = $items->whereHas('categories', function ($query) use ($categoryFilterValue) {
+          $query->where('id', $categoryFilterValue);
         });
       }
 
@@ -96,6 +94,7 @@ class OrganiserList extends ComponentBase
         * Add a "url" helper attribute for linking to each post and category
         */
       $items->each(function($item) {
+        // dd($this->editPage);
         $item->setUrl($this->property('editPage'), $this->controller);
       });
 
