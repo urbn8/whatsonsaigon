@@ -70,4 +70,13 @@ class Organiser extends Model
 
         return $this->url = $controller->pageUrl($pageName, $params);
     }
+
+    public function setEventUrl($pageName, $controller)
+    {
+        $params = [
+            'organiser_id' => $this->id,
+        ];
+
+        return $this->eventUrl = $controller->pageUrl($pageName, $params);
+    }
 }

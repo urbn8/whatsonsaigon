@@ -13,7 +13,7 @@ class BuilderTableCreateUrbn8WosEvents extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->string('slug', 255);
-            $table->integer('business_id')->nullable();
+            $table->integer('organiser_id')->nullable();
             $table->integer('year')->nullable();
             $table->integer('month')->nullable();
             $table->integer('day')->nullable();

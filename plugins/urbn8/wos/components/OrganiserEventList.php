@@ -7,20 +7,27 @@ use View;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Event as EventModel;
+use Urbn8\Wos\Models\Organiser as OrganiserModel;
 
 class OrganiserEventList extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name' => 'Events List',
-            'description' => 'Display events list.'
+            'name' => 'Organiser\'s Events List',
+            'description' => 'Display organiser\'s events list.'
         ];
     }
 
     public function defineProperties()
     {
         return [
+            'organiserId' => [
+                'title'       => 'urbn8.wos::lang.components.organiser_event_list.organiser_id',
+                'description' => 'urbn8.wos::lang.components.organiser_event_list.organiser_id_description',
+                'required' => true,
+                'type'        => 'string'
+            ],
             'categoryFilter' => [
                 'title'       => 'urbn8.wos::lang.components.organiser_event_list.category_filter',
                 'description' => 'urbn8.wos::lang.components.organiser_event_list.category_filter_description',
@@ -75,16 +82,22 @@ class OrganiserEventList extends ComponentBase
     {
       $user = Auth::getUser();
 
+      $organiserId = $this->property('organiserId');
+
+      $organiser = OrganiserModel::join('urbn8_wos_organiser_user', function ($join) use ($user) {
+        $join->on('organiser_id', '=', 'id')
+          ->where('user_id', '=', $user->id);
+      })->findOrFail($organiserId);
+
       $categoryFilter = $this->property('categoryFilter');
       $categoryFilterValue = input($categoryFilter);
 
-      $items = EventModel::whereHas('users', function ($query) use ($user) {
-        $query->where('id', $user->id);
-      })->orderBy('created_at', 'desc');
+      $items = EventModel::where('organiser_id', $organiserId)->orderBy('created_at', 'desc');
 
       if ($categoryFilterValue) {
-        $items = $items->whereHas('categories', function ($query) use ($categoryFilterValue) {
-          $query->where('id', $categoryFilterValue);
+        $items = $items->join('urbn8_wos_business_events_categories', function ($join) use ($categoryFilterValue) {
+          $join->on('urbn8_wos_business_events_categories.even_id', '=', 'id')
+            ->where('category_id', '=', $categoryFilterValue);
         });
       }
 
@@ -94,7 +107,6 @@ class OrganiserEventList extends ComponentBase
         * Add a "url" helper attribute for linking to each post and category
         */
       $items->each(function($item) {
-        // dd($this->editPage);
         $item->setUrl($this->property('editPage'), $this->controller);
       });
 
