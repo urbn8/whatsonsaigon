@@ -51,11 +51,13 @@ class Event extends Model
      * @param string $pageName
      * @param Cms\Classes\Controller $controller
      */
-    public function setUrl($pageName, $controller)
+    public function setEditUrl($pageName, $controller)
     {
         $params = [
             'id' => $this->id,
+            'event_id' => $this->id,
             'slug' => $this->slug,
+            'business_id' => $this->business_id,
         ];
 
         return $this->url = $controller->pageUrl($pageName, $params);
