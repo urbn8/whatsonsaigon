@@ -96,4 +96,12 @@
         'name' => 'Business Branches',
         'categories' => 'Categories',
     ],
+    'organiser' => [
+        'permissions' => [
+            'access' => 'Manage Organisers',
+        ],
+        'menu' => [
+            'title' => 'Organisers',
+        ],
+    ],
 ];

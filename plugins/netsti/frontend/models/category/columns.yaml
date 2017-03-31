@@ -1,0 +1,9 @@
+columns:
+    name:
+        label: 'netsti.frontend::lang.fields.name'
+        type: text
+        searchable: true
+    post_count:
+        label: 'netsti.frontend::lang.fields.post_count'
+        type: number
+        width: 200px

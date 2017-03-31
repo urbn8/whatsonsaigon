@@ -1,0 +1,112 @@
+.post .title{
+	font-size: 42px;
+	font-weight: lighter;
+	margin-bottom: 20px;
+}
+
+.post .avatar{
+	border-radius: 3px;
+}
+
+.post .tags span{
+	font-size: 13px;
+	font-weight: normal;
+	border: none;
+	padding: 6px 14px;
+	margin-right: 4px;
+	border-radius: 14px;
+	background-color: #405F74;
+}
+
+.post .featured_image{
+	border-radius: 3px;
+	margin: 10px auto;
+	max-width: 100%;
+}
+
+.post .info{
+	font-size: 18px;
+	clear: both;
+	border-bottom: 1px solid #ddd;
+}
+
+.post .info .date{
+	display: inline-block;
+	float: left;
+}
+
+.post .info .categories{
+	display: inline-block;
+	float: right;
+}
+
+.post .share-buttons{
+	float: right;
+	margin-top: 6px;
+}
+
+.post .content{
+	font-size: 1.2em;
+	line-height: 1.6em;
+}
+
+.post-list{
+	list-style: none;
+	padding-left: 0;
+}
+
+.post-list li{
+	margin-bottom: 50px;
+}
+
+.post-list li .featured_image{
+	border-radius: 3px; 
+	box-shadow: 0 0 3px #aaa;
+	float: left;
+	margin-right: 14px;
+}
+
+.sidebar .widget h3{
+	padding: 8px 4px;
+	border-bottom: 1px solid #ddd;
+}
+
+.sidebar .widget .widget-content{
+	padding: 12px 4px;
+}
+
+.sidebar .category-list{
+	list-style: none;
+	padding-left: 8px;
+}
+
+.sidebar .category-list li{
+	margin-bottom: 8px;
+}
+
+.sidebar .category-list li a{
+	font-size: 16px;
+	color: #333;
+}
+
+.sidebar .category-list li .badge{
+	border-radius: 3px;
+	background-color: #337ab7;
+	float: left;
+	padding: 4px 8px;
+	margin-right: 8px;
+	min-width: 32px;
+}
+
+.sidebar .most-view li{
+	margin-bottom: 24px;
+}
+
+.sidebar .most-view li h4{
+	margin-bottom: 2px;
+}
+
+.sidebar .most-view li .info{
+	margin-bottom: 0;
+	font-size: 14px;
+}

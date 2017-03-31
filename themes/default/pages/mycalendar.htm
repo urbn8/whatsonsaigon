@@ -31,12 +31,49 @@ daysfuture = 60
 relations[] = "event"
 raw_data = 0
 ==
-{% component 'Events' %}
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" id="EventDetail">
+  </div>
+</div>
 
 <br>
 
-{% component 'EvList' %}
+{% set MyM = EvList %}
+{% set devents = MyM.events %}
+<table class="mycal">
+    <tbody>
+{% for y,eYear in devents %}
+{% for m,eMonth in eYear %}
+{% for d,eDay in eMonth %}
+        <tr data-request-data="year:{{ y }},month:{{ m }},day:{{ d }}">
+            <td class="list-icon">
+                <div class="holder">
+                    <div class="month {{ MyM.color }}">
+                        <p>{{ (m~'/1/'~y)|date('M') }}</p> 
+                    </div>
+                    <div class="day">
+                        <p>{{ d }}</p>
+                    </div>
+                </div>
+            </td>
+            <td class="list-event">
+                <ul class="eventList">
+{% for eEvent in eDay %}
+    {% partial '@event' ev = eEvent %}
+{% endfor %}
+                </ul>
+            </td>
+        </tr>
+{% endfor %}<!-- eDay -->
+{% endfor %}<!-- eMonth -->
+{% endfor %}<!-- eYear -->
+    </tbody>
+</table>
 
 <br>
 
-{% component 'ListEvents' %}
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" id="EventDetail">
+  </div>
+</div>
+{% partial "@list" %}

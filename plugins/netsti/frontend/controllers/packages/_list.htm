@@ -1,0 +1,41 @@
+<form id="list-installed-packages">
+	<div class="control-list list-unresponsive">
+		<table class="table data">
+			<thead>
+				<tr>
+					<th><span><i class="icon icon-minus"></i></span></th>
+					<th><span><?= e(trans('netsti.frontend::lang.menu.package')) ?></span></th>
+					<th width="200px"><span><?= e(trans('netsti.frontend::lang.fields.version')) ?></span></th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($data as $pack): ?>
+					<tr style="cursor: pointer">
+						<td class="list-checkbox nolink">
+							<div class="checkbox custom-checkbox nolabel">
+								<input name="checked" value="<?= $pack[0] ?>" id="installed_<?= $pack[0] ?>" type="checkbox" />
+								<label for="installed_<?= $pack[0] ?>">Check</label>
+							</div>
+						</td>
+						<td onclick="$.popup({ handler: 'onPackageForm', extraData: { package: '<?= $pack[0] ?>', version: '<?= $pack[1] ?>'} })"><span class="label label-info"><?= $pack[0] ?></span></td>
+						<td onclick="$.popup({ handler: 'onPackageForm', extraData: { package: '<?= $pack[0] ?>', version: '<?= $pack[1] ?>'} })"><span class="label"><?= $pack[1] ?></span></td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6" class="list-pagination nolink" style="padding: 0">
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</form>
+
+<?php if (isset($output)): ?>
+<div class="callout fade in callout-info">
+	<div class="content" >
+		<pre class="oc-icon-terminal"><?= $output ?></pre>
+	</div>
+</div>
+<?php endif ?>

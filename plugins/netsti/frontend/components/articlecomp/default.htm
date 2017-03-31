@@ -1,0 +1,11 @@
+{% put meta %}
+	<title>{{ post.title }}</title>
+	<meta name="description" content="{{ post.seo_summary }}">
+	<meta name="keywords" content="{{ post.keywords }}">
+	<meta property="og:title" content="{{ post.title }}" />
+	<meta property="og:url" content="{{ url_current()|url_encode }}" />
+	<meta property="og:description" content="{{ post.seo_summary }}" />
+	<meta property="og:image" content="{{ post.featured_images.thumb(600, 315, 'crop')|app }}" />
+{% endput %}
+
+{% partial __SELF__ ~ "::post" %}

@@ -1,0 +1,13 @@
+title: 'netsti.frontend::lang.menu.galleries'
+modelClass: NetSTI\Frontend\Models\Gallery
+list: ~/plugins/netsti/frontend/models/gallery/columns.yaml
+recordUrl: 'netsti/frontend/galleries/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: '10'
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

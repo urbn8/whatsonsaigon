@@ -1,0 +1,35 @@
+<div class="modal-body package">
+	<h3 style="text-transform: uppercase"><?= $slug ?> 
+		<?php if (isset($version)): ?>
+			<span class="label pull-right"><?= $version ?></span>
+		<?php endif ?>
+	</h3>
+	<hr>
+	<h4><?= e(trans('netsti.frontend::lang.fields.files')) ?> : </h4>
+	<ul>
+		<?php if (count($package->main)>1): ?>
+			<?php foreach ($package->main as $value): ?>
+				<li class="oc-icon-file"> <?= str_replace('./', '/', $value) ?></li>
+			<?php endforeach ?>
+		<?php else: ?>
+			<li class="oc-icon-file"> <?= str_replace('./', '/', $package->main) ?></li>
+		<?php endif ?>
+	</ul>
+	<?php if (isset($package->dependencies)): ?>
+	<h4><?= e(trans('netsti.frontend::lang.menu.packages')) ?> : </h4>
+	<ul>
+		<?php foreach ($package->dependencies as $key => $value): ?>
+		<li><span class="label label-info"><?= $key ?></span> <span class="label"><?= $value ?></span></li>
+		<?php endforeach ?>
+	</ul>
+	<?php endif ?>
+</div>
+
+<div class="modal-footer">
+	<button
+		type="button"
+		class="btn btn-default"
+		data-dismiss="popup">
+		<?= e(trans('backend::lang.form.close')) ?>
+	</button>
+</div>

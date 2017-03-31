@@ -1,0 +1,23 @@
+columns:
+    title:
+        label: 'netsti.frontend::lang.fields.title'
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: 'netsti.frontend::lang.fields.slug'
+        type: text
+        searchable: true
+        sortable: true
+    type:
+        label: 'netsti.frontend::lang.fields.type'
+        type: text
+        searchable: true
+    clicks:
+        label: 'netsti.frontend::lang.fields.clicks'
+        type: number
+        width: 150px
+    bounces:
+        label: 'netsti.frontend::lang.fields.bounces'
+        type: number
+        width: 150px

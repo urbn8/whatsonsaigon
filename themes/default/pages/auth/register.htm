@@ -1,0 +1,25 @@
+title = "Register"
+url = "/auth/register"
+layout = "minimal"
+is_hidden = 0
+
+[sociallogin]
+
+[account]
+redirect = "account/profile"
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "account/profile"
+==
+{% component 'session' %}
+
+<div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <h3>Register</h3>
+        {% partial account ~ '::register' %}
+    </div>
+    {% component 'sociallogin' %}
+</div>

@@ -1,0 +1,14 @@
+name: 'netsti.frontend::lang.menu.article'
+modelClass: NetSTI\Frontend\Models\Article
+form: $/netsti/frontend/models/article/fields.yaml
+defaultRedirect: netsti/frontend/articles
+create:
+    title: 'netsti.frontend::lang.create'
+    redirect: 'netsti/frontend/articles/update/:id'
+    redirectClose: netsti/frontend/articles
+update:
+    title: 'netsti.frontend::lang.update'
+    redirect: netsti/frontend/articles
+    redirectClose: netsti/frontend/articles
+preview:
+    title: 'netsti.frontend::lang.preview'

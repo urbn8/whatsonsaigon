@@ -1,0 +1,14 @@
+title: 'netsti.frontend::lang.menu.strings'
+modelClass: NetSTI\Frontend\Models\String
+list: ~/plugins/netsti/frontend/models/string/columns.yaml
+recordUrl: 'netsti/frontend/strings/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: '10'
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordOnClick: '$.popup({ handler: ''onUpdateForm'', size: ''large'', extraData: { comment_mode: 1, record_id: '':id'' } })'

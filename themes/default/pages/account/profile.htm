@@ -1,0 +1,21 @@
+title = "profile"
+url = "/account/profile"
+layout = "minimal"
+is_hidden = 0
+
+[account]
+redirect = "account/profile"
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "user"
+redirect = "auth/login"
+==
+{% component 'session' %}
+
+{% partial account ~ '::activation_check' %}
+
+{% partial account ~ '::update' %}
+
+{% partial account ~ '::deactivate_link' %}

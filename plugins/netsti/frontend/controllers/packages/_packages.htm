@@ -1,0 +1,38 @@
+<form id="list-packages">
+	<div class="control-list list-unresponsive">
+		<table class="table data">
+			<thead>
+				<tr>
+					<th><a href="#"><i class="icon icon-download"></i></a></th>
+					<th><span><?= e(trans('netsti.frontend::lang.menu.package')) ?></span></th>
+					<th><span>Git URL</span></th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($result as $pack): ?>
+					<tr>
+						<td class="list-checkbox nolink">
+							<div class="checkbox custom-checkbox nolabel">
+								<input name="checked" value="<?= $pack[0] ?>" id="<?= $pack[0] ?>" type="checkbox" />
+								<label for="<?= $pack[0] ?>">Check</label>
+							</div>
+						</td>
+						<td><span class="label label-info"><?= $pack[0] ?></span></td>
+						<td>
+							<a href="<?= str_replace('git://', 'http://',$pack[1]) ?>" target="_blank">
+								<?= $pack[1] ?>
+							</a>
+						</td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6" class="list-pagination nolink" style="padding: 0">
+						
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</form>

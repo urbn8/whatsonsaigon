@@ -8,6 +8,7 @@ use Exception;
 use ValidationException;
 use Backend\Classes\ControllerBehavior;
 use October\Rain\Database\ModelException;
+use Tymon\JWTAuth\JWTAuth;
 
 /**
  * Rest Controller Behavior
@@ -89,6 +90,7 @@ class RestController extends ControllerBehavior
      */
     public function index()
     {
+        $user = app(JWTAuth::class)->parseToken()->toUser();
         $options = $this->config->allowedActions['index'];
         $relations =  isset($this->config->allowedActions['index']['relations']) ? $this->config->allowedActions['index']['relations'] : [];
         $page = Request::input('page', 1);

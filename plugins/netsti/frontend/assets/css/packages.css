@@ -1,0 +1,49 @@
+.check-bower ul {
+  list-style: none;
+  padding-left: 0;
+}
+.check-bower ul li {
+  font-size: 16px;
+  margin-bottom: 18px;
+  padding: 4px 10px;
+}
+.check-bower ul li .label {
+  float: right;
+  padding: 4px 14px;
+  background-color: #e74c3c;
+  color: #fff;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.check-bower ul li .label.ok {
+  background-color: #2ecc71;
+}
+.check-bower ul li .label.update {
+  background-color: #2E72B4;
+}
+#list-packages tr td a {
+  padding-bottom: 3px;
+  border-bottom: 1px dashed #ddd;
+  text-decoration: none;
+}
+.callout pre {
+  margin-top: 0;
+}
+.package ul {
+  list-style: none;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.package ul li {
+  margin-bottom: 6px;
+}
+.label {
+  padding: 4px 14px;
+  background-color: #2ecc71;
+  color: #fff;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.label.label-info {
+  background-color: #9b59b6;
+}

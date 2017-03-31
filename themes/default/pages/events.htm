@@ -1,5 +1,5 @@
 title = "jorgeandrade  events"
-url = "/events"
+url = "/jorgeandrade/events"
 layout = "minimal"
 is_hidden = 0
 
@@ -8,9 +8,13 @@ eventsPerPage = 10
 noEventMessage = "No events."
 calendar = 1
 eventPage = "events/event"
-
-[event]
 ==
-{% component 'eventList' %}
-
-{% component 'event' %}
+{% for event in events %}
+    {% partial '@event.htm' event=event %}
+{% else %}
+    <div class="event-item">
+        <div class="details">
+            <h2 class="title">{{ noEventMessage }}</h2>
+        </div><!--//details-->
+    </div><!--event-item-->
+{% endfor %}

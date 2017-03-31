@@ -1,0 +1,14 @@
+name: 'netsti.frontend::lang.menu.category'
+modelClass: NetSTI\Frontend\Models\Category
+form: ~/plugins/netsti/frontend/models/category/fields.yaml
+defaultRedirect: netsti/frontend/categories
+create:
+    title: 'netsti.frontend::lang.create'
+    redirect: 'netsti/frontend/categories/update/:id'
+    redirectClose: netsti/frontend/categories
+update:
+    title: 'netsti.frontend::lang.update'
+    redirect: netsti/frontend/categories
+    redirectClose: netsti/frontend/categories
+preview:
+    title: 'netsti.frontend::lang.preview'

@@ -1,0 +1,31 @@
+.title-header{
+	padding: 20px;
+	background-color: #2B343D;
+	margin-top: -20px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.title-header h3{
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height: 16px;
+	color: #9da3a7;
+	margin: 0;
+}
+
+.title-header h2{
+	margin: 0;
+	margin-top: 4px;
+	text-transform: uppercase;
+}
+
+.title-header .scoreboard-item{
+	float: left;
+	margin-left: 30px;
+}
+
+.title-header .scoreboard-item.title-value{
+	margin-top: -8px;
+}
