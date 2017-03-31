@@ -107,7 +107,7 @@ class OrganiserEventList extends ComponentBase
         * Add a "url" helper attribute for linking to each post and category
         */
       $items->each(function($item) {
-        $item->setUrl($this->property('editPage'), $this->controller);
+        $item->setEditUrl($this->property('editPage'), $this->controller);
       });
 
       return $items;
