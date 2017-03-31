@@ -89,10 +89,9 @@ class OrganiserList extends ComponentBase
       })->orderBy('created_at', 'desc');
 
       if ($categoryFilterValue) {
-        $items = $items->whereHas('category', function ($query) use ($categoryFilterValue) {
+        $items = $items->whereHas('categories', function ($query) use ($categoryFilterValue) {
           $query->where('id', $categoryFilterValue);
         });
-        
       }
 
       $items = $items->get();
