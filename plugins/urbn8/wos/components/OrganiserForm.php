@@ -7,6 +7,7 @@ use View;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Organiser as OrganiserModel;
+use Urbn8\Wos\Models\OCategory as CategoryModel;
 
 class OrganiserForm extends ComponentBase
 {
@@ -62,6 +63,24 @@ class OrganiserForm extends ComponentBase
         0 => 'Inactive',
         1 => 'Active',
       ];
+    }
+
+    public function getCategoryOptions()
+    {
+      $items = CategoryModel::all()->toArray();
+      return $items;
+
+      // $arr = array_reduce(
+      //   $items,
+      //   function(&$result, $item) {
+      //     $result[$item->id] = $item->name;
+      //     return $result;
+      //   },
+      //   array()
+      // );
+
+      // dd($arr);
+      // return [];
     }
 
     public function loadOrganiser($slug)
