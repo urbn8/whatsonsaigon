@@ -67,20 +67,7 @@ class OrganiserForm extends ComponentBase
 
     public function getCategoryOptions()
     {
-      $items = CategoryModel::all()->toArray();
-      return $items;
-
-      // $arr = array_reduce(
-      //   $items,
-      //   function(&$result, $item) {
-      //     $result[$item->id] = $item->name;
-      //     return $result;
-      //   },
-      //   array()
-      // );
-
-      // dd($arr);
-      // return [];
+      return CategoryModel::all()->toArray();
     }
 
     public function loadOrganiser($slug)
@@ -95,7 +82,7 @@ class OrganiserForm extends ComponentBase
         ? $user->organisers()->transWhere('slug', $slug)
         : $user->organisers()->where('slug', $slug);
 
-      $organiser = $organiser->first();
+      $organiser = $organiser->with('categories')->first();
 
       if (!$organiser) {
         // https://octobercms.com/forum/post/returning-404-from-a-component
@@ -119,6 +106,11 @@ class OrganiserForm extends ComponentBase
           $organiser->slugAttributes();
           $organiser->save();
 
+          $organiser->categories()->detach();
+          if (post('category_id')) {
+            $organiser->categories()->attach(post('category_id'));
+          }
+
           Flash::success('organiser updated successfully!');
           return [
               '#flashmessage' => $this->renderPartial('@flashmessage'),
@@ -129,6 +121,10 @@ class OrganiserForm extends ComponentBase
         $organiser = new OrganiserModel(post());
         $organiser->slugAttributes();
         $user->organisers()->save($organiser);
+
+        if (post('category_id')) {
+          $organiser->categories()->attach(post('category_id'));
+        }
 
         Flash::success('organiser created successfully!');
         return [

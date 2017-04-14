@@ -83,4 +83,10 @@ class Organiser extends Model
 
         return $this->eventUrl = $controller->pageUrl($pageName, $params);
     }
+
+
+    public function hasCategory($categoryId) {
+      $result = array_search(intval($categoryId), array_column($this->categories->toArray(), 'id'));
+      return $result !== false;
+    }
 }
