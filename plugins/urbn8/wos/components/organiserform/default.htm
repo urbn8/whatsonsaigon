@@ -3,7 +3,8 @@
 {{ form_ajax('onSave', {
    model: organiser,
    validate: true,
-   flash: true
+   flash: true,
+   files: true,
 }) }}
     <div id="flashmessage">{% partial '@flashmessage' %}</div>
     <div class="form-group">
