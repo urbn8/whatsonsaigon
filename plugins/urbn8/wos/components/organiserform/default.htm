@@ -1,6 +1,7 @@
 <a href="{{ organiserListPage | page }}">Organisers list</a>
 
-{{ form_ajax('onSave', {
+{{ form_open({
+   request: 'onSave',
    model: organiser,
    validate: true,
    flash: true,
@@ -21,6 +22,13 @@
             <option value="{{ item.id }}" {% if organiser.hasCategory(item.id) %}selected="selected"{% endif %}>{{ item.name }}</option>
           {% endfor %}
         </select>
+    </div>
+
+    <div class="form-group">
+        <label for="desc">Logo</label>
+        <img src="{{ form_value('logo') }}" alt="">
+        <input name="logo" type="file" class="form-control" id="desc">
+        <span data-validate-for="logo"></span>
     </div>
 
     <div class="form-group">

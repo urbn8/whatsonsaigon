@@ -60,6 +60,10 @@ class Organiser extends Model
       'events' => 'Urbn8\Wos\Models\Event'
     ];
 
+    public $attachOne = [
+      'logo' => 'System\Models\File'
+    ];
+
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName

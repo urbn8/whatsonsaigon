@@ -3,7 +3,9 @@
 use Auth;
 use Flash;
 use Response;
+use Request;
 use View;
+use Input;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Organiser as OrganiserModel;
@@ -26,6 +28,12 @@ class OrganiserForm extends ComponentBase
                 'title'       => 'urbn8.wos::lang.common.modeldataform.slug',
                 'description' => 'urbn8.wos::lang.common.modeldataform.slug_description',
                 'default'     => '{{ :slug }}',
+                'type'        => 'string'
+            ],
+            'id' => [
+                'title'       => 'urbn8.wos::lang.common.modeldataform.id',
+                'description' => 'urbn8.wos::lang.common.modeldataform.id_description',
+                'default'     => '{{ :id }}',
                 'type'        => 'string'
             ],
             'organiserListPage' => [
@@ -92,6 +100,64 @@ class OrganiserForm extends ComponentBase
       return $organiser;
     }
 
+    private function update() {
+
+    }
+
+    private function handleCreate() {
+
+      if (!$user = Auth::getUser()) {
+        throw new ApplicationException('You should be logged in.');
+      }
+
+      $organiser = new OrganiserModel(post());
+      $organiser->slugAttributes();
+      $user->organisers()->save($organiser);
+
+      if (post('category_id')) {
+        $organiser->categories()->attach(post('category_id'));
+      }
+
+      Flash::success('organiser created successfully!');
+      return [
+          '#flashmessage' => $this->renderPartial('@flashmessage'),
+          'data' => $organiser,
+      ];
+    }
+
+    private function handleUpdate() {
+      if (!$user = Auth::getUser()) {
+        throw new ApplicationException('You should be logged in.');
+      }
+
+      $slug = $this->property('slug');
+
+      $organiser = $this->loadOrganiser($slug);
+      $organiser->fill(post());
+      $organiser->slug = null;
+      $organiser->slugAttributes();
+      $organiser->save();
+
+      $organiser->categories()->detach();
+      if (post('category_id')) {
+        $organiser->categories()->attach(post('category_id'));
+      }
+
+      // dd(post('logo'));
+      // if (post('logo')) {
+      $organiser->logo = Input::file('logo');
+      // }
+
+      Flash::success('organiser updated successfully!');
+
+      if (Request::ajax()) {
+        return [
+            '#flashmessage' => $this->renderPartial('@flashmessage'),
+            'data' => $organiser,
+        ];
+      }
+    }
+
     public function onSave() {
       try {
         if (!$user = Auth::getUser()) {
@@ -100,37 +166,10 @@ class OrganiserForm extends ComponentBase
 
         $slug = $this->property('slug');
         if ($slug) {
-          $organiser = $this->loadOrganiser($slug);
-          $organiser->fill(post());
-          $organiser->slug = null;
-          $organiser->slugAttributes();
-          $organiser->save();
-
-          $organiser->categories()->detach();
-          if (post('category_id')) {
-            $organiser->categories()->attach(post('category_id'));
-          }
-
-          Flash::success('organiser updated successfully!');
-          return [
-              '#flashmessage' => $this->renderPartial('@flashmessage'),
-              'data' => $organiser,
-          ];
+          return $this->handleUpdate();
         }
 
-        $organiser = new OrganiserModel(post());
-        $organiser->slugAttributes();
-        $user->organisers()->save($organiser);
-
-        if (post('category_id')) {
-          $organiser->categories()->attach(post('category_id'));
-        }
-
-        Flash::success('organiser created successfully!');
-        return [
-            '#flashmessage' => $this->renderPartial('@flashmessage'),
-            'data' => $organiser,
-        ];
+        return $this->handleCreate();
       }
       catch (Exception $ex) {
           Flash::error($ex->getMessage());
