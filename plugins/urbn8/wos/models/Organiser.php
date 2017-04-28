@@ -28,7 +28,12 @@ class Organiser extends Model
      */
     protected $slugs = ['slug' => 'name'];
 
-    protected $fillable = ['name', 'desc', 'status'];
+    protected $fillable = [
+      'name',
+      'website', 'phone', 'email', 'facebook', 'twitter', 'address',
+      'open_at', 'close_at',
+      'desc',
+      'status'];
 
     /*
      * Validation

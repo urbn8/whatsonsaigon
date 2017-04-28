@@ -38,6 +38,24 @@
     </div>
 
     <div class="form-group">
+        <label for="desc">Address</label>
+        <input name="address" type="text" class="form-control" id="address" value="{{ form_value('address') }}">
+        <span data-validate-for="address"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="desc">Phone</label>
+        <input name="phone" type="text" class="form-control" id="phone" value="{{ form_value('phone') }}">
+        <span data-validate-for="phone"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="desc">Open time</label>
+        <input name="open_at" type="text" class="form-control" id="open_at" value="{{ form_value('open_at') }}">
+        <span data-validate-for="open_at"></span>
+    </div>
+
+    <div class="form-group">
         <label for="status">status</label>
         <select class="form-control" name="status">
           {% for key, label in __SELF__.getStatusOptions() %}
