@@ -116,7 +116,7 @@ class OrganiserForm extends ComponentBase
       $organiser = new OrganiserModel(post());
       $organiser->slugAttributes();
 
-      if (post('logo')) {
+      if (Input::file('logo')) {
         $organiser->logo = Input::file('logo');
       }
 
@@ -127,10 +127,13 @@ class OrganiserForm extends ComponentBase
       }
 
       Flash::success('organiser created successfully!');
-      return [
-          '#flashmessage' => $this->renderPartial('@flashmessage'),
-          'data' => $organiser,
-      ];
+
+      if (Request::ajax()) {
+        return [
+            '#flashmessage' => $this->renderPartial('@flashmessage'),
+            'data' => $organiser,
+        ];
+      }
     }
 
     private function handleUpdate() {
@@ -145,7 +148,7 @@ class OrganiserForm extends ComponentBase
       $organiser->slug = null;
       $organiser->slugAttributes();
 
-      if (post('logo')) {
+      if (Input::file('logo')) {
         $organiser->logo = Input::file('logo');
       }
 
