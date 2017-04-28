@@ -1,5 +1,6 @@
 <?php namespace Urbn8\Wos\Components;
 
+use Log;
 use Auth;
 use Flash;
 use Response;
@@ -90,7 +91,9 @@ class OrganiserForm extends ComponentBase
         ? $user->organisers()->transWhere('slug', $slug)
         : $user->organisers()->where('slug', $slug);
 
-      $organiser = $organiser->with('categories')->first();
+      $organiser = $organiser->with('categories')->with('logo');
+      
+      $organiser = $organiser->first();
 
       if (!$organiser) {
         // https://octobercms.com/forum/post/returning-404-from-a-component
@@ -112,6 +115,11 @@ class OrganiserForm extends ComponentBase
 
       $organiser = new OrganiserModel(post());
       $organiser->slugAttributes();
+
+      if (post('logo')) {
+        $organiser->logo = Input::file('logo');
+      }
+
       $user->organisers()->save($organiser);
 
       if (post('category_id')) {
@@ -136,6 +144,11 @@ class OrganiserForm extends ComponentBase
       $organiser->fill(post());
       $organiser->slug = null;
       $organiser->slugAttributes();
+
+      if (post('logo')) {
+        $organiser->logo = Input::file('logo');
+      }
+
       $organiser->save();
 
       $organiser->categories()->detach();
@@ -145,7 +158,8 @@ class OrganiserForm extends ComponentBase
 
       // dd(post('logo'));
       // if (post('logo')) {
-      $organiser->logo = Input::file('logo');
+      // Log::info(var_export(Input::all(), true));
+      
       // }
 
       Flash::success('organiser updated successfully!');

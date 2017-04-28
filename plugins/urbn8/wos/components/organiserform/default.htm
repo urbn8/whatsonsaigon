@@ -26,7 +26,7 @@
 
     <div class="form-group">
         <label for="desc">Logo</label>
-        <img src="{{ form_value('logo') }}" alt="">
+        <img src="{{ form_value('logo').thumb(200, 200) }}" alt="">
         <input name="logo" type="file" class="form-control" id="desc">
         <span data-validate-for="logo"></span>
     </div>
