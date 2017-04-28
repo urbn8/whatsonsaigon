@@ -4,6 +4,8 @@ use Auth;
 use Flash;
 use Response;
 use View;
+use Input;
+use Request;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Organiser as OrganiserModel;
@@ -80,7 +82,7 @@ class OrganiserEventForm extends ComponentBase
           throw new ApplicationException('You should be logged in.');
       }
 
-      $item = EventModel::findOrFail($slug);
+      $item = EventModel::with('thumbnail')->findOrFail($slug);
 
       if (!$item) {
         // https://octobercms.com/forum/post/returning-404-from-a-component
@@ -112,6 +114,51 @@ class OrganiserEventForm extends ComponentBase
       return $organiser;
     }
 
+    private function onUpdate() {
+      $slug = $this->property('slug');
+      $item = $this->loadEvent($slug);
+      $item->fill(post());
+      $item->slug = null;
+      $item->slugAttributes();
+
+      if (Input::file('thumbnail')) {
+        $item->thumbnail = Input::file('thumbnail');
+      }
+
+      $item->save();
+
+      Flash::success('event updated successfully!');
+
+      if (Request::ajax()) {
+        return [
+            '#flashmessage' => $this->renderPartial('@flashmessage'),
+            'data' => $item,
+        ];
+      }
+    }
+
+    private function onCreate() {
+      $organiser = $this->loadOrganiser();
+
+      $item = new EventModel(post());
+      $item->slugAttributes();
+
+      if (Input::file('thumbnail')) {
+        $item->thumbnail = Input::file('thumbnail');
+      }
+
+      $organiser->events()->save($item);
+
+      Flash::success('event created successfully!');
+
+      if (Request::ajax()) {
+        return [
+            '#flashmessage' => $this->renderPartial('@flashmessage'),
+            'data' => $item,
+        ];
+      }
+    }
+
     public function onSave() {
       try {
         if (!$user = Auth::getUser()) {
@@ -120,33 +167,13 @@ class OrganiserEventForm extends ComponentBase
 
         $slug = $this->property('slug');
         if ($slug) {
-          $item = $this->loadEvent($slug);
-          $item->fill(post());
-          $item->slug = null;
-          $item->slugAttributes();
-          $item->save();
-
-          Flash::success('event updated successfully!');
-          return [
-              '#flashmessage' => $this->renderPartial('@flashmessage'),
-              'data' => $item,
-          ];
+          return $this->onUpdate();
         }
 
-        $organiser = $this->loadOrganiser();
-
-        $item = new EventModel(post());
-        $item->slugAttributes();
-        $organiser->events()->save($item);
-
-        Flash::success('event created successfully!');
-        return [
-            '#flashmessage' => $this->renderPartial('@flashmessage'),
-            'data' => $item,
-        ];
+        return $this->onCreate();
       }
       catch (Exception $ex) {
-          Flash::error($ex->getMessage());
+        Flash::error($ex->getMessage());
       }
     }
 }

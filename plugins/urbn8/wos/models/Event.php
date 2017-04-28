@@ -20,7 +20,11 @@ class Event extends Model
 
     protected $slugs = ['slug' => 'name'];
 
-    protected $fillable = ['name', 'desc', 'status'];
+    protected $fillable = ['name',
+      'district', 'address', 'lat_lon',
+      'desc',
+      'status'
+    ];
 
     /**
      * @var string The database table used by the model.
