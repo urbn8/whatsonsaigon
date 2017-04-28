@@ -13,8 +13,23 @@ class BuilderTableCreateUrbn8WosOrganisers extends Migration
             $table->increments('id');
             $table->string('name', 128);
             $table->string('slug', 128)->unique();
+            
+
+            $table->string('website', 256)->nullable();
+            $table->string('phone', 32)->nullable();
+            $table->string('email', 62)->nullable();
+            $table->string('facebook', 62)->nullable();
+            $table->string('twitter', 62)->nullable();
+
+            $table->string('address', 256)->nullable();
+
             $table->text('desc')->nullable();
+
+            $table->dateTime('open_at')->nullable();
+            $table->dateTime('close_at')->nullable();
+
             $table->integer('status')->nullable();
+            
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
