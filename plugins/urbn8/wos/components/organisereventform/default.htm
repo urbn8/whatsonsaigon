@@ -1,9 +1,11 @@
 <a href="{{ organiserEventListPage | page }}">Events list</a>
 
-{{ form_ajax('onSave', {
+{{ form_open({
+   request: 'onSave',
    model: event,
    validate: true,
-   flash: true
+   flash: true,
+   files: true,
 }) }}
     
     <div id="flashmessage">{% partial '@flashmessage' %}</div>
@@ -11,6 +13,13 @@
         <label for="name">Name</label>
         <input name="name" type="text" class="form-control" id="name" value="{{ form_value('name') }}">
         <span data-validate-for="name"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="thumbnail">Thumbnail</label>
+        <img src="{{ form_value('thumbnail').thumb(200, 200) }}" alt="">
+        <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+        <span data-validate-for="thumbnail"></span>
     </div>
 
     <div class="form-group">

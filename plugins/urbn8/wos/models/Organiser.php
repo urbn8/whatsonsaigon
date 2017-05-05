@@ -28,7 +28,12 @@ class Organiser extends Model
      */
     protected $slugs = ['slug' => 'name'];
 
-    protected $fillable = ['name', 'desc', 'status'];
+    protected $fillable = [
+      'name',
+      'website', 'phone', 'email', 'facebook', 'twitter', 'address',
+      'open_at', 'close_at',
+      'desc',
+      'status'];
 
     /*
      * Validation
@@ -60,6 +65,10 @@ class Organiser extends Model
       'events' => 'Urbn8\Wos\Models\Event'
     ];
 
+    public $attachOne = [
+      'logo' => 'System\Models\File'
+    ];
+
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
@@ -82,5 +91,11 @@ class Organiser extends Model
         ];
 
         return $this->eventUrl = $controller->pageUrl($pageName, $params);
+    }
+
+
+    public function hasCategory($categoryId) {
+      $result = array_search(intval($categoryId), array_column($this->categories->toArray(), 'id'));
+      return $result !== false;
     }
 }
