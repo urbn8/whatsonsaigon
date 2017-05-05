@@ -116,7 +116,6 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
-        NilPortugues\Laravel5\JsonApiDingo\Laravel5JsonApiDingoServiceProvider::class,
     ]),
 
     /*

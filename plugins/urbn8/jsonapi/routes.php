@@ -1,10 +1,17 @@
 <?php
+$api = app('api.router');
+// $api = app('Dingo\Api\Routing\Router');
 
-Route::group(['prefix' => 'api/v2', 'middleware' => [
-  'jwt-auth' => '\Tymon\JWTAuth\Middleware\GetUserFromToken',
-  // 'jwt.refresh' => '\Tymon\JWTAuth\Middleware\RefreshToken'
-]], function () {
-    Route::resource('categories', 'Urbn8\Wos\Http\RestEventCategories');
-    Route::resource('organisers', 'Urbn8\Wos\Http\Organisers');
-    Route::resource('events', 'Urbn8\Wos\Http\RestEvents');
+$api->version('v2', function ($api) {
+    $api->resource('employees', 'EmployeesController');    
+
+    $api->get('/test', function() {
+      return ['a'];
+    });
+    
+    // $api->get('employees/{employee_id}/orders', [ 
+    //     'as' => 'employees.orders',
+    //     'uses' => 'EmployeesController@getOrdersByEmployee'
+    // ]);
 });
+
