@@ -6,4 +6,5 @@ Route::group(['prefix' => 'api/v1', 'middleware' => [
 ]], function () {
     Route::resource('categories', 'Urbn8\Wos\Http\RestEventCategories');
     Route::resource('organisers', 'Urbn8\Wos\Http\Organisers');
+    Route::resource('events', 'Urbn8\Wos\Http\RestEvents');
 });
