@@ -14,8 +14,10 @@ class Plugin extends PluginBase
     public function register()
     {
       \App::register(\Dingo\Api\Provider\LaravelServiceProvider::class);
+      \App::register(\NilPortugues\Laravel5\JsonApiDingo\Laravel5JsonApiDingoServiceProvider::class);
 
       $this->app['config']['api'] = require __DIR__ . '/config/api.php';
+      $this->app['config']['jsonapi'] = require __DIR__ . '/config/jsonapi.php';
     }
 
     public function boot()

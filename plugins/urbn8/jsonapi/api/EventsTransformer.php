@@ -12,7 +12,6 @@ class EventsTransformer implements JsonApiMapping
      */
     public function getClass()
     {
-      dd('trans');
         return Event::class;
     }
 
@@ -36,10 +35,7 @@ class EventsTransformer implements JsonApiMapping
      */
     public function getAliasedProperties()
     {
-        return [
-            'last_name' => 'surname',
-            
-        ];
+        return [];
     }
 
     /**
@@ -49,9 +45,7 @@ class EventsTransformer implements JsonApiMapping
      */
     public function getHideProperties()
     {
-        return [
-            'attachments'
-        ];
+        return [];
     }
 
     /**
