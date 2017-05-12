@@ -13,8 +13,8 @@ class Plugin extends PluginBase
 
     public function register()
     {
-      \App::register(\Dingo\Api\Provider\LaravelServiceProvider::class);
       \App::register(\NilPortugues\Laravel5\JsonApiDingo\Laravel5JsonApiDingoServiceProvider::class);
+      \App::register(\Dingo\Api\Provider\LaravelServiceProvider::class);
 
       $this->app['config']['api'] = require __DIR__ . '/config/api.php';
       $this->app['config']['jsonapi'] = require __DIR__ . '/config/jsonapi.php';
@@ -24,8 +24,8 @@ class Plugin extends PluginBase
     {
       // require realpath(__DIR__ . '/routes.php');
 
-      // $api = app('Dingo\Api\Routing\Router');
-      $api = app('api.router');
+      $api = app('Dingo\Api\Routing\Router');
+      // $api = app('api.router');
 
       $api->version('v1', function ($api) {
         $api->get('test', function() {

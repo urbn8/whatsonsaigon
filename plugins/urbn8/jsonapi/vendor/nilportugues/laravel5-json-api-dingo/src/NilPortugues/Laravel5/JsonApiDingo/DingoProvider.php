@@ -27,10 +27,16 @@ class DingoProvider extends Laravel52Provider
         $route = '';
 
         /** @var \Illuminate\Routing\Route $routerObject */
-        foreach ($this->getRouterCollection($router) as $routerObject) {
-            if ($routerObject->getName() === $value['name']) {
-                $route = $routerObject->getPath();
+        // foreach ($this->getRouterCollection($router) as $routerObject) {
+        //     if ($routerObject->getName() === $value['name']) {
+        //         $route = $routerObject->getPath();
 
+        //         return $this->calculateFullPath($value, $route);
+        //     }
+        // }
+        foreach ($this->getDingoRouterCollection($router) as $name => $routerObject) {
+            if ($name === 'api.'.$value['name']) {
+                $route = $routerObject->getUri();
                 return $this->calculateFullPath($value, $route);
             }
         }
@@ -38,6 +44,30 @@ class DingoProvider extends Laravel52Provider
         if (empty($route)) {
             throw new \Exception('Provided route name does not exist');
         }
+    }
+
+    /**
+     * @param UrlGenerator $router
+     *
+     * @return mixed
+     */
+    protected function getDingoRouterCollection($router)
+    {
+        if (!empty($this->routerCollection)) {
+            return $this->routerCollection;
+        }
+
+        $adapterRoutes = array_values($router->getAdapterRoutes())[0];
+        
+
+        $reflectionClass = new ReflectionClass($adapterRoutes);
+        $reflectionProperty = $reflectionClass->getProperty('nameList');
+        $reflectionProperty->setAccessible(true);
+        $routeCollection = $reflectionProperty->getValue($adapterRoutes);
+
+        $this->routerCollection = $routeCollection;
+
+        return $routeCollection;
     }
 
     /**
