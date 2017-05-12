@@ -52,6 +52,11 @@ trait JsonApiTrait
         return Container::getInstance()->make('url')->action($controllerAction, [], true);
     }
 
+    protected function currentUrl()
+    {
+        return app('Dingo\Api\Routing\UrlGenerator')->current();
+    }
+
     /**
      * Returns the total number of results available for the current resource.
      *

@@ -52,9 +52,9 @@ abstract class JsonApiController extends Controller
         $totalAmount = $this->totalAmountResourceCallable();
         $results = $this->listResourceCallable();
 
-        $controllerAction = '\\'.get_called_class().'@index';
+        // $controllerAction = '\\'.get_called_class().'@index';
         // $uri = $this->uriGenerator($controllerAction);
-        $uri = '/';
+        $uri = $this->currentUrl();
 
         return $this->addHeaders($resource->get($totalAmount, $results, $uri, get_class($this->getDataModel())));
     }
