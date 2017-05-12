@@ -7,6 +7,8 @@ use ReflectionFunction;
 use Illuminate\Http\Response;
 use Dingo\Api\Contract\Debug\ExceptionHandler;
 use Dingo\Api\Contract\Debug\MessageBagErrors;
+use NilPortugues\Api\JsonApi\Server\Data\DataException;
+use NilPortugues\Api\JsonApi\Server\Errors\ErrorBag;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Illuminate\Contracts\Debug\ExceptionHandler as IlluminateExceptionHandler;
@@ -214,14 +216,22 @@ class Handler implements ExceptionHandler, IlluminateExceptionHandler
             ':status_code' => $statusCode,
         ];
 
-        if (($exception instanceof MessageBagErrors || $exception instanceof ErrorBag)
-          && $exception->hasErrors()) {
-            $errors = $exception->getErrors();
+        $exceptionError = $exception;
+
+        if ($exception instanceof DataException) {
+          $exceptionError = $exception->getErrors();
+        }
+
+        if (($exceptionError instanceof MessageBagErrors)
+          && $exceptionError->hasErrors()) {
+            $errors = $exceptionError->getErrors();
             if (is_array($errors)) {
               $replacements[':errors'] = $errors;
             } else {
               $replacements[':errors'] = $errors->toArray();
             }
+        } else if ($exceptionError instanceof ErrorBag) {
+            $replacements[':errors'] = $exceptionError->toArray();
         }
 
         if ($code = $exception->getCode()) {
@@ -230,10 +240,10 @@ class Handler implements ExceptionHandler, IlluminateExceptionHandler
 
         if ($this->runningInDebugMode()) {
             $replacements[':debug'] = [
-                'line' => $exception->getLine(),
-                'file' => $exception->getFile(),
-                'class' => get_class($exception),
-                'trace' => explode("\n", $exception->getTraceAsString()),
+                'line' => $exceptionError->getLine(),
+                'file' => $exceptionError->getFile(),
+                'class' => get_class($exceptionError),
+                'trace' => explode("\n", $exceptionError->getTraceAsString()),
             ];
         }
         return array_merge($replacements, $this->replacements);
