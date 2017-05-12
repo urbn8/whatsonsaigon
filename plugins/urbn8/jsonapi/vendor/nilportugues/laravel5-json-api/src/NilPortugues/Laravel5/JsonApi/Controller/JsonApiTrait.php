@@ -85,10 +85,14 @@ trait JsonApiTrait
      * @return callable
      * @codeCoverageIgnore
      */
-    protected function listResourceCallable()
+    protected function listResourceCallable($page, $filters)
     {
-        return function () {
-            return EloquentHelper::paginate($this->serializer, $this->getDataModel()->query(), $this->pageSize)->get();
+        return function () use ($page, $filters) {
+            $offset = ($page->number() - 1) * ($page->size());
+            return $this->getDataModel()->query()->where($filters)->offset($offset)->limit($page->size())->get();
+            // return EloquentHelper::paginate($this->serializer,
+            //   $this->getDataModel()->query()->where($filters)->offset($offset),
+            //   $page->size())->get();
         };
     }
 

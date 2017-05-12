@@ -49,8 +49,8 @@ abstract class JsonApiController extends Controller
 
         $resource = new ListResource($this->serializer, $page, $fields, $sorting, $included, $filters);
 
-        $totalAmount = $this->totalAmountResourceCallable();
-        $results = $this->listResourceCallable();
+        $totalAmount = $this->totalAmountResourceCallable($page, $filters);
+        $results = $this->listResourceCallable($page, $filters);
 
         // $controllerAction = '\\'.get_called_class().'@index';
         // $uri = $this->uriGenerator($controllerAction);
