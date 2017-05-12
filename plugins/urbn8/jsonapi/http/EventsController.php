@@ -1,9 +1,9 @@
-<?php namespace App\Http\Controllers;
+<?php namespace Urbn8\JsonApi\Http;
 
 use Urbn8\Wos\Models\Event;
 use NilPortugues\Laravel5\JsonApi\Controller\JsonApiController;
 
-class EmployeesController extends JsonApiController
+class EventsController extends JsonApiController
 {
     /**
      * Return the Eloquent model that will be used 
@@ -15,4 +15,12 @@ class EmployeesController extends JsonApiController
     {
         return new Event();
     }
+
+    // public function listAction() {
+    //   return [];
+    // }
+
+    // public function index() {
+    //   return parent::index();
+    // }
 }

@@ -1,9 +1,9 @@
-<?php namespace App\Model\Api;
+<?php namespace Urbn8\JsonApi\Api;
 
 use Urbn8\Wos\Models\Event;
 use NilPortugues\Api\Mappings\JsonApiMapping;
 
-class EmployeesTransformer implements JsonApiMapping
+class EventsTransformer implements JsonApiMapping
 {
     /**
      * Returns a string with the full class name, including namespace.
@@ -12,6 +12,7 @@ class EmployeesTransformer implements JsonApiMapping
      */
     public function getClass()
     {
+      dd('trans');
         return Event::class;
     }
 
@@ -23,7 +24,7 @@ class EmployeesTransformer implements JsonApiMapping
      */
     public function getAlias()
     {
-        return 'employee';
+        return 'event';
     }
 
     /**
@@ -72,9 +73,7 @@ class EmployeesTransformer implements JsonApiMapping
     public function getUrls()
     {
         return [
-            'self' => ['name' => 'employees.show', 'as_id' => 'id'],
-            'employees' => ['name' => 'employees.index'],
-            'employee_orders' => ['name' => 'employees.orders', 'as_id' => 'id']
+            'self' => ['name' => 'events.show', 'as_id' => 'id'],
         ];
     }
 
