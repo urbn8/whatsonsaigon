@@ -15,12 +15,4 @@ class EventsController extends JsonApiController
     {
         return new Event();
     }
-
-    // public function listAction() {
-    //   return [];
-    // }
-
-    // public function index() {
-    //   return parent::index();
-    // }
 }
