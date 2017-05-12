@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3c6bf5929d3de7dc63753bbfd6476310",
-    "content-hash": "95715af8fdd851db7e85c9f72be11c9a",
+    "hash": "8737b11d215d527ce1d6a23d061c3494",
+    "content-hash": "53ff53b72d6e5d775efaacae6fdf92f6",
     "packages": [
         {
             "name": "dingo/api",
-            "version": "dev-master",
+            "version": "v1.0.0-beta8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dingo/api.git",
@@ -2288,7 +2288,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dingo/api": 20
+        "dingo/api": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
