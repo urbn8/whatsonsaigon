@@ -38,32 +38,7 @@
             'name' => 'Events',
         ],
     ],
-    'biz' => [
-        'type' => [
-            'title' => 'Business types',
-        ],
-        'category' => [
-            'title' => 'Business Categories',
-        ],
-    ],
     'lang' => [
-        'biz' => [
-            'type' => [
-                'permissions' => [
-                    'access' => 'Access business types',
-                ],
-            ],
-            'category' => [
-                'permissions' => [
-                    'access' => 'Access Business Categories',
-                ],
-            ],
-        ],
-        'businesses' => [
-            'permissions' => [
-                'access' => 'Access Businesses',
-            ],
-        ],
     ],
     'common' => [
         'modeldataform' => [
@@ -77,24 +52,6 @@
             ],
             'excerpt' => 'Excerpt',
         ],
-    ],
-    'businesses' => [
-        'menu' => [
-            'name' => 'Businesses',
-        ],
-        'tabs' => [
-            'users' => [
-                'name' => 'Users',
-            ],
-        ],
-    ],
-    'business_branches' => [
-        'modeldataform' => [
-            'business' => 'Business',
-            'business_comment' => 'This branch belongs to the selected business above',
-        ],
-        'name' => 'Business Branches',
-        'categories' => 'Categories',
     ],
     'organiser' => [
         'permissions' => [
