@@ -1,4 +1,0 @@
-title: BizTypes
-modelClass: Urbn8\Wos\Models\BizType
-toolbar:
-    buttons: reorder_toolbar
