@@ -50,7 +50,7 @@ class Business extends Model
     public $belongsToMany = [
         'users' => [
             'RainLab\User\Models\User',
-            'table' => 'urbn8_wos_business_user',
+            'table' => 'urbn8_wos_organiser_user_joins',
         ],
     ];
 }

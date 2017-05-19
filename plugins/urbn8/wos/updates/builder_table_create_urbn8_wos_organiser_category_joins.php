@@ -7,17 +7,17 @@ class BuilderTableCreateUrbn8WosOrganiserOCategory extends Migration
 {
   public function up()
   {
-      Schema::create('urbn8_wos_organiser_o_category', function($table)
+      Schema::create('urbn8_wos_organiser_category_joins', function($table)
       {
           $table->engine = 'InnoDB';
-          $table->integer('o_category_id');
+          $table->integer('category_id');
           $table->integer('organiser_id');
-          $table->primary(['o_category_id','organiser_id'], 'oc_o_key');
+          $table->primary(['category_id','organiser_id'], 'oc_o_key');
       });
   }
 
   public function down()
   {
-      Schema::dropIfExists('urbn8_wos_organiser_o_category');
+      Schema::dropIfExists('urbn8_wos_organiser_category_joins');
   }
 }

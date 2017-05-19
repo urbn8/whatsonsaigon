@@ -41,6 +41,6 @@ class SeedOCategories extends Migration
     
     public function down()
     {
-      Db::table('urbn8_wos_o_categories')->truncate();
+      Db::table('urbn8_wos_organiser_categories')->truncate();
     }
 }

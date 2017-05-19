@@ -1,41 +1,26 @@
 1.0.1:
     - 'Initialize plugin.'
 1.0.2:
-    - 'Created table urbn8_wos_businesses'
-    - builder_table_create_urbn8_wos_businesses.php
-1.0.3:
-    - 'Created table urbn8_wos_business_branches'
-    - builder_table_create_urbn8_wos_business_branches.php
-1.0.4:
-    - 'Created table urbn8_wos_business_user'
-    - builder_table_create_urbn8_wos_business_user.php
-1.0.5:
-    - 'Created table urbn8_wos_business_branch_biz_category'
-    - builder_table_create_urbn8_wos_business_branch_biz_category.php
-1.0.6:
     - 'Created table urbn8_wos_event_categories'
     - builder_table_create_urbn8_wos_event_categories.php
-1.0.7:
-    - 'Created table urbn8_wos_events'
-    - builder_table_create_urbn8_wos_events.php
-1.0.8:
-    - 'Created table urbn8_wos_business_events_categories'
-    - builder_table_create_urbn8_wos_business_events_categories.php
-1.0.9:
+1.0.3:
     - 'Seed data for table urbn8_wos_event_categories'
     - seed_event_categories.php
-1.0.10:
+1.0.4:
+    - 'Created table urbn8_wos_events'
+    - builder_table_create_urbn8_wos_events.php
+1.0.5:
     - 'Created table urbn8_wos_organisers'
     - builder_table_create_urbn8_wos_organisers.php
-1.0.11:
-    - 'Created table urbn8_wos_organiser_user'
-    - builder_table_create_urbn8_wos_organiser_user.php
-1.0.12:
-    - 'Created table urbn8_wos_o_categories'
-    - builder_table_create_urbn8_wos_o_categories.php
-1.0.13:
-    - 'Seed data for table urbn8_wos_o_categories'
-    - seed_urbn8_wos_o_categories.php
-1.0.12:
-    - 'Created table urbn8_wos_organiser_o_category'
-    - builder_table_create_urbn8_wos_organiser_o_category.php
+1.0.6:
+    - 'Created table urbn8_wos_organiser_user_joins'
+    - builder_table_create_urbn8_wos_organiser_user_joins.php
+1.0.7:
+    - 'Created table urbn8_wos_organiser_categories'
+    - builder_table_create_urbn8_wos_organiser_categories.php
+1.0.8:
+    - 'Seed data for table urbn8_wos_organiser_categories'
+    - seed_urbn8_wos_organiser_categories.php
+1.0.9:
+    - 'Created table urbn8_wos_organiser_category_joins'
+    - builder_table_create_urbn8_wos_organiser_category_joins.php
