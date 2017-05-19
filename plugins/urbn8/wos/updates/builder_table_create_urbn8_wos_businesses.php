@@ -11,10 +11,14 @@ class BuilderTableCreateUrbn8WosBusinesses extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
+
             $table->string('name', 128);
             $table->string('slug', 128)->unique();
+
             $table->text('desc')->nullable();
+
             $table->smallInteger('status')->default(1);
+            
             $table->string('updated_by');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

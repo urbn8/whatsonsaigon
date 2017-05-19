@@ -1,0 +1,49 @@
+{
+    "name": "nilportugues/serializer",
+    "type": "library",
+    "description": "Serialize PHP variables, including objects, in any format. Support to unserialize it too.",
+    "keywords": ["json", "serialize", "serializer"],
+    "homepage": "http://nilportugues.com",
+    "license": "MIT",
+    "authors": [
+
+        {
+            "name": "Nil Portugués Calderó",
+            "email": "contact@nilportugues.com",
+            "role": "Project Lead Developer"
+        },
+        {
+            "name": "Zumba Fitness, LLC",
+            "email": "engineering@zumba.com",
+            "role": "Author of the original idea: https://github.com/zumba/json-serializer"
+        },
+        {
+            "name": "Juan Basso",
+            "email": "juan.basso@zumba.com",
+            "role": "Author of the original idea: https://github.com/zumba/json-serializer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "symfony/yaml": "2.*|3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*",
+        "nilportugues/php_backslasher": "~0.2",
+        "fabpot/php-cs-fixer": "^1.9",
+        "doctrine/collections": "^1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NilPortugues\\Serializer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NilPortugues\\Test\\Serializer\\": "tests/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
