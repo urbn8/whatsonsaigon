@@ -13,9 +13,11 @@ class AppState implements AppStateProps {
   @observable timer = 0;
   @observable message = '';
 
+  intervalId: any;
+
   constructor() {
     if (hasWindow) {
-      setInterval(this.incrementTimer, 1000);
+      this.intervalId = setInterval(this.incrementTimer, 1000);
     }
   }
 
@@ -31,9 +33,16 @@ class AppState implements AppStateProps {
     this.timer = 0;
   }
 
-  reload(store: AppStateProps) {
+  reload(store?: AppStateProps) {
+    if (!store) {
+      return this
+    }
     Object.assign(this, store);
     return this;
+  }
+
+  unload() {
+    clearInterval(this.intervalId);
   }
 }
 
