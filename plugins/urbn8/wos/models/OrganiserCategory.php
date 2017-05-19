@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class OCategory extends Model
+class OrganiserCategory extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;

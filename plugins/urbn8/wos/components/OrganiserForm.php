@@ -10,7 +10,7 @@ use Input;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Urbn8\Wos\Models\Organiser as OrganiserModel;
-use Urbn8\Wos\Models\OCategory as CategoryModel;
+use Urbn8\Wos\Models\OrganiserCategory as CategoryModel;
 
 class OrganiserForm extends ComponentBase
 {

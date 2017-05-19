@@ -3,7 +3,7 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateUrbn8WosOrganiserOCategory extends Migration
+class BuilderTableCreateUrbn8WosOrganiserOrganiserCategory extends Migration
 {
   public function up()
   {
