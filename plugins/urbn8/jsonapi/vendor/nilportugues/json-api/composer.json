@@ -1,0 +1,35 @@
+{
+    "name": "nilportugues/json-api",
+    "type": "library",
+    "description": "Serializer transformers outputting valid API responses in JSON, JSON API and HAL+JSON API formats.",
+    "keywords": ["json", "api", "jsonapi", "serializer", "transformer", "psr7", "response"],
+    "homepage": "http://nilportugues.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nil Portugués Calderó",
+            "email": "contact@nilportugues.com",
+            "role": "Project Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "nilportugues/api-transformer": "<=3.0.0",
+        "symfony/psr-http-message-bridge" : "^0.2|^0.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "friendsofphp/php-cs-fixer": "^1.9",
+        "doctrine/orm": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "NilPortugues\\Api\\JsonApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NilPortugues\\Tests\\Api\\JsonApi\\": "tests/"
+        }
+    }
+}

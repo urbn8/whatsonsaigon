@@ -1,0 +1,11 @@
+<? switch ($record->status) {
+  case 0:
+    echo e(trans('urbn8.wos::lang.plugin.common.status_options.inactive'));
+    break;
+  case 1:
+    echo e(trans('urbn8.wos::lang.plugin.common.status_options.active'));
+    break;
+  default:
+    echo '';
+}
+?>

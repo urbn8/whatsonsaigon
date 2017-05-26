@@ -1,0 +1,32 @@
+fields:
+    name:
+        label: 'urbn8.wos::lang.common.modeldataform.name'
+        oc.commentPosition: ''
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 'urbn8.wos::lang.common.modeldataform.slug'
+        oc.commentPosition: ''
+        span: auto
+        required: 1
+        dependsOn:
+            - name
+        preset:
+            field: name
+            type: slug
+        type: text
+    desc:
+        label: 'urbn8.wos::lang.common.modeldataform.desc'
+        size: small
+        oc.commentPosition: ''
+        mode: tab
+        span: full
+        type: markdown
+    parent:
+        label: 'urbn8.wos::lang.event.category.modeldataform.parent'
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        type: relation

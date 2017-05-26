@@ -1,0 +1,29 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table urbn8_wos_event_categories'
+    - builder_table_create_urbn8_wos_event_categories.php
+1.0.3:
+    - 'Seed data for table urbn8_wos_event_categories'
+    - seed_event_categories.php
+1.0.4:
+    - 'Created table urbn8_wos_events'
+    - builder_table_create_urbn8_wos_events.php
+1.0.5:
+    - 'Created table urbn8_wos_event_category_joins'
+    - builder_table_create_urbn8_wos_event_category_joins.php
+1.0.6:
+    - 'Created table urbn8_wos_organisers'
+    - builder_table_create_urbn8_wos_organisers.php
+1.0.7:
+    - 'Created table urbn8_wos_organiser_user_joins'
+    - builder_table_create_urbn8_wos_organiser_user_joins.php
+1.0.8:
+    - 'Created table urbn8_wos_organiser_categories'
+    - builder_table_create_urbn8_wos_organiser_categories.php
+1.0.9:
+    - 'Seed data for table urbn8_wos_organiser_categories'
+    - seed_urbn8_wos_organiser_categories.php
+1.0.10:
+    - 'Created table urbn8_wos_organiser_category_joins'
+    - builder_table_create_urbn8_wos_organiser_category_joins.php

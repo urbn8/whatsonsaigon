@@ -1,0 +1,47 @@
+plugin:
+    name: 'urbn8.wos::lang.plugin.name'
+    description: 'urbn8.wos::lang.plugin.description'
+    author: urbn8
+    icon: oc-icon-glass
+    homepage: ''
+navigation:
+    wos-main:
+        label: 'urbn8.wos::lang.plugin.title'
+        url: urbn8/wos/eventcategories
+        icon: icon-glass
+        sideMenu:
+            wos-event-category-list:
+                label: 'urbn8.wos::lang.event.category.title'
+                url: urbn8/wos/eventcategories
+                icon: icon-list-ul
+                permissions:
+                    - event.category.access
+            events:
+                label: 'urbn8.wos::lang.event.menu.name'
+                url: urbn8/wos/events
+                icon: icon-glass
+            organisers:
+                label: 'urbn8.wos::lang.organiser.menu.title'
+                url: urbn8/wos/organisers
+                icon: icon-skyatlas
+                permissions:
+                    - urbn8.wos.access_organisers
+permissions:
+    event.category.access:
+        tab: 'urbn8.wos::lang.event.category.permissions.access'
+        label: 'urbn8.wos::lang.event.category.permissions.access'
+    biz.type.access:
+        tab: 'urbn8.wos::lang.lang.biz.type.permissions.access'
+        label: 'urbn8.wos::lang.lang.biz.type.permissions.access'
+    biz.category.access:
+        tab: 'urbn8.wos::lang.lang.biz.category.permissions.access'
+        label: 'urbn8.wos::lang.lang.biz.category.permissions.access'
+    urbn8.wos.access_businesses:
+        tab: 'urbn8.wos::lang.lang.businesses.permissions.access'
+        label: 'urbn8.wos::lang.lang.businesses.permissions.access'
+    urbn8.wos.events:
+        tab: 'urbn8.wos::lang.event.permissions.access'
+        label: 'urbn8.wos::lang.event.permissions.access'
+    urbn8.wos.access_organisers:
+        tab: 'urbn8.wos::lang.plugin.title'
+        label: 'urbn8.wos::lang.organiser.permissions.access'

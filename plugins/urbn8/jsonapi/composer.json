@@ -1,0 +1,7 @@
+{
+    "require": {
+        "nilportugues/laravel5-json-api": "^2.4",
+        "nilportugues/laravel5-json-api-dingo": "^1.0",
+        "dingo/api": "1.0.0-beta8"
+    }
+}

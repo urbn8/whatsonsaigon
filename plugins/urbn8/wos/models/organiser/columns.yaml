@@ -1,0 +1,25 @@
+columns:
+    name:
+        label: 'urbn8.wos::lang.common.modeldataform.name'
+        type: text
+        searchable: true
+        sortable: true
+        width: 50%
+    status:
+        label: 'urbn8.wos::lang.common.modeldataform.status'
+        type: number
+        searchable: true
+        invisible: false
+        sortable: true
+    updated_at:
+        label: 'urbn8.wos::lang.plugin.updated_at'
+        type: datetime
+        searchable: true
+        invisible: false
+        sortable: true
+    created_at:
+        label: 'urbn8.wos::lang.plugin.created_at'
+        type: datetime
+        searchable: true
+        invisible: false
+        sortable: true

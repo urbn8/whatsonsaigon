@@ -1,0 +1,42 @@
+<a href="{{ organiserEventListPage | page }}">Events list</a>
+
+{{ form_open({
+   request: 'onSave',
+   model: event,
+   validate: true,
+   flash: true,
+   files: true,
+}) }}
+    
+    <div id="flashmessage">{% partial '@flashmessage' %}</div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" type="text" class="form-control" id="name" value="{{ form_value('name') }}">
+        <span data-validate-for="name"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="thumbnail">Thumbnail</label>
+        <img src="{{ form_value('thumbnail').thumb(200, 200) }}" alt="">
+        <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+        <span data-validate-for="thumbnail"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <input name="desc" type="text" class="form-control" id="desc" value="{{ form_value('desc') }}">
+        <span data-validate-for="desc"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="status">status</label>
+        <select class="form-control" name="status">
+          {% for key, label in __SELF__.getStatusOptions() %}
+            <option value="{{ key }}" {% if form_value('status') == key %}selected="selected"{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-default" data-attach-loading>Save</button>
+
+{{ form_close() }}

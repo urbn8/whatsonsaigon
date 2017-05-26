@@ -1,0 +1,6 @@
+plugin:
+    name: 'urbn8.jsonapi::lang.plugin.name'
+    description: 'urbn8.jsonapi::lang.plugin.description'
+    author: Urbn8
+    icon: oc-icon-bullseye
+    homepage: ''
