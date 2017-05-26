@@ -1,0 +1,12 @@
+title = "Edit organiser"
+url = "/account/organisers/:slug/edit"
+layout = "minimal"
+is_hidden = 0
+
+[OrganiserForm]
+slug = "{{ :slug }}"
+organiserListPage = "account/organisers"
+==
+{{ page.id }}
+
+{% component 'OrganiserForm' %}

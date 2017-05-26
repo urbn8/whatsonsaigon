@@ -1,0 +1,14 @@
+title = "Organiser's Events"
+url = "/account/organisers/:organiser_id/events"
+layout = "minimal"
+is_hidden = 0
+
+[OrganiserEventList]
+organiserId = "{{ :organiser_id }}"
+categoryFilter = "category"
+noDataMessage = "No data"
+editPage = "account/event_edit"
+==
+<a href="{{ 'account/event_new' | page }}">New</a>
+
+{% component 'OrganiserEventList' %}

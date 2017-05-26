@@ -1,0 +1,10 @@
+title = "New event"
+url = "/account/organisers/:organiser_id/events/new"
+layout = "minimal"
+is_hidden = 0
+
+[OrganiserEventForm]
+slug = "{{ :category_id }}"
+organiserEventListPage = "account/event_list"
+==
+{% component 'OrganiserEventForm' %}

@@ -1,0 +1,15 @@
+title = "Organisers"
+url = "/account/organisers"
+layout = "minimal"
+is_hidden = 0
+
+[OrganiserList]
+categoryFilter = "category"
+noDataMessage = "No data"
+editPage = "account/organiser_edit"
+eventListPage = "account/event_list"
+==
+{{ page.id }}
+
+<a href="{{ 'account/organiser_new' | page }}">New</a>
+{% component 'OrganiserList' %}

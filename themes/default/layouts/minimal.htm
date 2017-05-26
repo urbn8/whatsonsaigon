@@ -1,0 +1,64 @@
+[session]
+security = "all"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>October CMS - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="OctoberCMS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        <!--<link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">-->
+        <link href="{{ 'assets/css/vendor.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/css/theme.css'|theme }}" rel="stylesheet">
+        {% styles %}
+    </head>
+    <body>
+        {% component 'session' %}
+        <nav id="layout-nav" class="navbar navbar-inverse navbar-fixed-top navbar-autohide" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ 'home'|page }}">October Demo</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="separator hidden-xs"></li>
+                        <li class="{% if this.page.id == 'account' %}active{% endif %}"><a href="{{ 'account'|page }}">account</a></li>
+                        <li class="{% if this.page.id == 'blog' %}active{% endif %}"><a href="{{ 'blog'|page }}">blog</a></li>
+                        <li class="{% if this.page.id == 'logout' %}active{% endif %}"><a href="/logout">forum</a></li>
+                        {% if user %}
+                            <li><a data-request="onLogout">logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <section id="layout-content">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>{{ this.page.title }}</h1>
+                    <p>{{ this.page.description }}</p>
+                </div>
+                {% page %}
+            </div>
+        </section>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/vendor/jquery.js'|theme }}"></script>
+        <script src="{{ 'assets/vendor/bootstrap.js'|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
+
+    </body>
+</html>
