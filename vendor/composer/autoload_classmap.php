@@ -9,6 +9,9 @@ return array(
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'JSMin' => $vendorDir . '/linkorb/jsmin-php/src/jsmin-1.1.1.php',
     'JSMinException' => $vendorDir . '/linkorb/jsmin-php/src/jsmin-1.1.1.php',
+    'PluginTestCase' => $baseDir . '/tests/PluginTestCase.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
+    'TestCase' => $baseDir . '/tests/TestCase.php',
+    'UiTestCase' => $baseDir . '/tests/UiTestCase.php',
     'lessc' => $vendorDir . '/oyejorge/less.php/lessc.inc.php',
 );
