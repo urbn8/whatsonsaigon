@@ -1,4 +1,4 @@
-import { useStrict, observable, action } from 'mobx';
+import { useStrict, observable, action, toJS } from 'mobx';
 import { Router } from 'routes';
 import { routes, defaultRoute, Route } from './routes';
 import AppState, { AppStateProps } from './stores/AppState';
@@ -11,7 +11,7 @@ const hasWindow = typeof window !== 'undefined';
 // need to edit this code yourself at all.
 class App {
     // the main element we're rendering, this reacts to route changes (MobX).
-    @observable route: React.ReactElement<any> = null;
+    @observable route: React.ReactElement<any>
     // our main app state, this is available in your router
     @observable appState: AppState;
     // our router
@@ -23,6 +23,8 @@ class App {
         // but also as an extension point for restoring the data from localStorage.
         this.appState = new AppState().reload(appState);
 
+        console.log(JSON.stringify(this.appState))
+
         // initialize our router, or optionally pass it to the constructor
         if (!router) {
             this.router = Router<Route>();
@@ -30,6 +32,7 @@ class App {
         } else {
             this.router = router;
         }
+        
 
         if (hasWindow) {
             this.hookHistory();
@@ -79,6 +82,7 @@ class App {
         window.onpopstate = this.onpopstate;
         history.pushState = this.pushState;
         history.replaceState = this.replaceState;
+        this.appState.unload();
     }
 }
 

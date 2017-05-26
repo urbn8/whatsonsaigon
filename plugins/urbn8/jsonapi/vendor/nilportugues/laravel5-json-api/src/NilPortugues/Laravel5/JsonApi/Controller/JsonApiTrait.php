@@ -10,6 +10,9 @@
 
 namespace NilPortugues\Laravel5\JsonApi\Controller;
 
+use ReflectionClass;
+use Log;
+use DB;
 use Carbon\Carbon;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +23,7 @@ use NilPortugues\Api\JsonApi\Server\Errors\Error;
 use NilPortugues\Api\JsonApi\Server\Errors\ErrorBag;
 use NilPortugues\Laravel5\JsonApi\Eloquent\EloquentHelper;
 use NilPortugues\Laravel5\JsonApi\JsonApiSerializer;
+use NilPortugues\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
 
 trait JsonApiTrait
@@ -79,6 +83,22 @@ trait JsonApiTrait
      */
     abstract public function getDataModel();
 
+    protected function parseFilters($filters)
+    {
+      $joinFilters = [];
+      $fieldFilters = [];
+      foreach ($filters as $key => $value) {
+        if (is_array($value)) {
+          $joinFilters[$key] = $value;
+          continue;
+        }
+
+        $fieldFilters[$key] = $value;
+      }
+
+      return [$joinFilters, $fieldFilters];
+    }
+
     /**
      * Returns a list of resources based on pagination criteria.
      *
@@ -87,9 +107,118 @@ trait JsonApiTrait
      */
     protected function listResourceCallable($page, $filters)
     {
-        return function () use ($page, $filters) {
+        $parsed = $this->parseFilters($filters);
+        $joinFilters = $parsed[0];
+        $fieldFilters = $parsed[1];
+        // dd($fieldFilters);
+        // dd($joinFilters);
+        // dd($this->getDataModel());
+
+        return function () use ($page, $fieldFilters, $joinFilters) {
+            // dd($this->getDataModel());\
+
+            $reflect = new ReflectionClass($this->getDataModel());
+            $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+            // dd($targetTable);
+            
+
+            // dd($filters);
             $offset = ($page->number() - 1) * ($page->size());
-            return $this->getDataModel()->query()->where($filters)->offset($offset)->limit($page->size())->get();
+            $query = $this->getDataModel()
+              // ->query()
+            // return DB::table($this->getDataModel()->table)
+              // ->with('organiser')
+              ->select($this->getDataModel()->table.'.*')
+              ->where($fieldFilters)
+              
+              ->limit($page->size())
+              // ->organiser()
+              // ->join('urbn8_wos_organisers', function($join) {
+              //   $join->on('urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id');
+              //   $join->where('urbn8_wos_organisers.name', '=', 'b2');
+              // })
+              ->offset($offset);
+              // ->join('urbn8_wos_organisers', function ($join) use ($filters) {
+              //   $join->on('urbn8_wos_organisers.id', '=', 'organiser_id');
+              //     // ->where('category_id', '=', $categoryFilterValue);
+              // })
+            
+            foreach ($joinFilters as $relationName => $filters) {
+              foreach ($this->getDataModel()->belongsToOne as $modelRelationName => $config) {
+                if ($relationName === $modelRelationName) {
+                  $relationClassName = $config[0];
+                  $obj = new $relationClassName;
+
+                  $reflect = new ReflectionClass($obj);
+                  Log::info($reflect->getShortName());
+                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+                  $foreignKey = $className.'_id';
+
+                  $query->join($obj->table, function($join) use ($obj, $foreignKey, $filters) {
+                    $join->on($obj->table.'.id', '=', $this->getDataModel()->table.'.'.$foreignKey);
+                    
+                    $filters = array_combine(
+                        array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filters)),
+                        $filters
+                    );
+                    // dd($filters);
+                    foreach ($filters as $field => $value) {
+                      $join->where($field, '=', $value);
+                    }
+
+                    // $join->where($filters);
+                    // $join->where('urbn8_wos_organisers.name', '=', 'biz');
+                  });
+                }
+              }
+
+              foreach ($this->getDataModel()->belongsToMany as $modelRelationName => $config) {
+                if ($relationName === $modelRelationName) {
+                  $relationClassName = $config[0];
+                  $obj = new $relationClassName;
+
+                  $reflect = new ReflectionClass($obj);
+                  Log::info($reflect->getShortName());
+
+                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+
+                  $primaryKey = 'id';
+                  $foreignKey = $config['key'];
+                  
+                  $pivotTable = $config['table'];
+
+                  $query->join($pivotTable, function($join) use ($obj, $primaryKey, $foreignKey, $filters, $pivotTable, $targetTable) {
+                    $join->on($foreignKey, '=', $this->getDataModel()->table.'.'.$primaryKey);
+                    
+                    $filters = array_combine(
+                        array_map(function($k) use ($obj, $pivotTable, $targetTable) {
+                          if ($k == 'id') {
+                            return $pivotTable.'.'.$targetTable.'_id';
+                          }
+                          return $pivotTable.'.'.$k;
+                        }, array_keys($filters)),
+                        $filters
+                    );
+                    
+                    foreach ($filters as $field => $value) {
+                      $join->where($field, '=', $value);
+                    }
+                  });
+                }
+              }
+            }
+
+            return $query->get();
+
+            // $result = DB::table($this->getDataModel()->table)
+            //   ->where($filters)
+            //   ->offset($offset)
+            //   ->limit($page->size())
+            //   ->join('urbn8_wos_organisers', 'urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id')
+            //   ->get();
+            // $result[Serializer::CLASS_IDENTIFIER_KEY] = $this->getDataModel();
+
+            // return $result;
             // return EloquentHelper::paginate($this->serializer,
             //   $this->getDataModel()->query()->where($filters)->offset($offset),
             //   $page->size())->get();

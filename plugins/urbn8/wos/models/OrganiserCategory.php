@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class OCategory extends Model
+class OrganiserCategory extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;
@@ -31,11 +31,11 @@ class OCategory extends Model
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique:urbn8_wos_o_categories',
+        'slug' => 'required|unique:urbn8_wos_organiser_categories',
     ];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'urbn8_wos_o_categories';
+    public $table = 'urbn8_wos_organiser_categories';
 }

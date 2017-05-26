@@ -10,6 +10,7 @@
 
 namespace NilPortugues\Laravel5\JsonApi\Controller;
 
+use Log;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -46,6 +47,8 @@ abstract class JsonApiController extends Controller
         $sorting = $apiRequest->getSort();
         $included = $apiRequest->getIncludedRelationships();
         $filters = $apiRequest->getFilters();
+
+        Log::info($filters);
 
         $resource = new ListResource($this->serializer, $page, $fields, $sorting, $included, $filters);
 

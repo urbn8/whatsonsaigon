@@ -40,7 +40,7 @@ class Organiser extends Model
      */
     public $rules = [
         'name' => 'required|between:2,16',
-        'slug' => 'required|unique:urbn8_wos_businesses',
+        'slug' => 'required|unique:urbn8_wos_organisers',
     ];
 
     /**
@@ -51,13 +51,13 @@ class Organiser extends Model
     public $belongsToMany = [
         'users' => [
             'RainLab\User\Models\User',
-            'table' => 'urbn8_wos_organiser_user',
+            'table' => 'urbn8_wos_organiser_user_joins',
         ],
         'categories' => [
             'Urbn8\Wos\Models\EventCategory',
-            'table' => 'urbn8_wos_organiser_o_category',
+            'table' => 'urbn8_wos_organiser_category_joins',
             'key'      => 'organiser_id',
-            'otherKey' => 'o_category_id',
+            'otherKey' => 'category_id',
         ],
     ];
 

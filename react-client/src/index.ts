@@ -8,35 +8,36 @@ const app = new App();
 
 import './styles/index.css';
 
-let props = {
-    app
-};
-
-const render = (Root, newProps?, container = document.getElementById('App')) => {
-    props = { ...props, ...newProps };
+const render = (Root, props: { app: App }, container = document.getElementById('App')) => {
     ReactDOM.render(
         React.createElement(AppContainer, {}, React.createElement(Root, props)),
         container,
     );
 }
 
-if (typeof window !== 'undefined') {
-    render(Root);
+// reference to current app instance
+let props = {
+  app: new App()
 }
 
-if (__DEVELOPMENT__ && module.hot) {
-    const reload = (newProps?: Partial<typeof props>) => () => {
-        // global listeners etc.    
-        if (newProps) props.app.unload();
+render(Root, props)
 
-        render(require('./root').default, newProps);
+if (__DEVELOPMENT__ && module.hot) {
+    const reload = (reloadStore = false) => () => {
+        if (reloadStore) {
+          // unload current App instance
+          props.app.unload();
+
+          // create a new App instance, hot reloading current App instance appState
+          props.app = new App(props.app.appState);
+        }
+
+        render(require('./root').default, props);
     };
 
+    // if only react components updated, don't create a new store
     module.hot.accept(['./root'], reload());
 
-    /* 
-    * reloading the app store allows hot reload to work through chunking and lazy loading,
-    * while passing the previous appState allows to hot reload the store
-    */
-    module.hot.accept(['./App'], reload({ app: new App(props.app.appState) }));
+    // if store changed, reload the app store allowing hot reload to work through chunking and lazy loading,
+    module.hot.accept(['./App'], reload(true));
 }

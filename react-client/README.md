@@ -37,7 +37,6 @@ yarn run build-node
 > require('build/app.node.js').default('/users')
 ```
 
-
 ## Structure
 
 During app development, you should care about these files:

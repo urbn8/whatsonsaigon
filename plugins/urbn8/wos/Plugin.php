@@ -18,21 +18,17 @@ class Plugin extends PluginBase
     public function boot()
     {
         User::extend(function($model) {
-            $model->belongsToMany['businesses'] = [
-                'Urbn8\Wos\Models\Business',
-                'table' => 'urbn8_wos_business_user',
-            ];
             $model->addDynamicMethod('scopeOrphan', function($query) {
                 return $query->whereNotExists(function($query) {
                     $query->select(DB::raw(1))
-                        ->from('urbn8_wos_business_user')
-                        ->whereRaw('urbn8_wos_business_user.user_id = users.id');
+                        ->from('urbn8_wos_organiser_user_joins')
+                        ->whereRaw('urbn8_wos_organiser_user_joins.user_id = users.id');
                 });
             });
 
             $model->belongsToMany['organisers'] = [
                 'Urbn8\Wos\Models\Organiser',
-                'table' => 'urbn8_wos_organiser_user',
+                'table' => 'urbn8_wos_organiser_user_joins',
             ];
         });
 
@@ -45,7 +41,6 @@ class Plugin extends PluginBase
     {
         return [
             'Urbn8\Wos\Components\EventForm' => 'EventForm',
-            'Urbn8\Wos\Components\BusinessForm' => 'BusinessForm',
             'Urbn8\Wos\Components\OrganiserForm' => 'OrganiserForm',
             'Urbn8\Wos\Components\OrganiserList' => 'OrganiserList',
             'Urbn8\Wos\Components\OrganiserEventList' => 'OrganiserEventList',

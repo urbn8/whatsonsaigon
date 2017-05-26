@@ -7,7 +7,7 @@ class BuilderTableCreateUrbn8WosOCategories extends Migration
 {
     public function up()
     {
-        Schema::create('urbn8_wos_o_categories', function($table)
+        Schema::create('urbn8_wos_organiser_categories', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -25,6 +25,6 @@ class BuilderTableCreateUrbn8WosOCategories extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('urbn8_wos_o_categories');
+        Schema::dropIfExists('urbn8_wos_organiser_categories');
     }
 }
