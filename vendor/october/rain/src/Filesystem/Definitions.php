@@ -38,6 +38,31 @@ class Definitions
     }
 
     /**
+     * Determines if a path should be ignored, sourced from the ignoreFiles 
+     * and ignorePatterns definitions.
+     * @todo Efficiency of this method can be improved.
+     * @param string $path Specifies a path to check.
+     * @return boolean Returns TRUE if the path is visible.
+     */
+    public static function isPathIgnored($path)
+    {
+        $ignoreNames = self::get('ignoreFiles');
+        $ignorePatterns = self::get('ignorePatterns');
+
+        if (in_array($path, $ignoreNames)) {
+            return true;
+        }
+
+        foreach ($ignorePatterns as $pattern) {
+            if (preg_match('/'.$pattern.'/', $path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Files that can be safely ignored.
      * This list can be customized with config:
      * - cms.fileDefinitions.ignoreFiles
@@ -49,6 +74,18 @@ class Definitions
             '.git',
             '.DS_Store',
             '.AppleDouble'
+        ];
+    }
+
+    /**
+     * File patterns that can be safely ignored.
+     * This list can be customized with config:
+     * - cms.fileDefinitions.ignorePatterns
+     */
+    protected function ignorePatterns()
+    {
+        return [
+            '^\..*'
         ];
     }
 
@@ -72,11 +109,15 @@ class Definitions
             'css',
             'less',
             'scss',
+            'ics',
+            'doc',
+            'docx',
             'pdf',
             'swf',
             'txt',
             'xml',
             'xls',
+            'xlsx',
             'eot',
             'woff',
             'woff2',
@@ -98,53 +139,6 @@ class Definitions
     }
 
     /**
-     * Extensions that may execute as scripts. Sourced from:
-     * https://en.wikipedia.org/wiki/Server-side_scripting
-     *
-     * This list can be customized with config:
-     * - cms.fileDefinitions.blockedExtensions
-     */
-    protected function blockedExtensions()
-    {
-        return [
-            'asp',
-            'avfp',
-            'aspx',
-            'cshtml',
-            'cfm',
-            'go',
-            'gsp',
-            'hs',
-            'jsp',
-            'ssjs',
-            'js',
-            'lasso',
-            'lp',
-            'op',
-            'lua',
-            'p',
-            'cgi',
-            'ipl',
-            'pl',
-            'php',
-            'php3',
-            'php4',
-            'phtml',
-            'py',
-            'rhtml',
-            'rb',
-            'rbw',
-            'smx',
-            'tcl',
-            'dna',
-            'tpl',
-            'r',
-            'w',
-            'wig'
-        ];
-    }
-
-    /**
      * Extensions seen as public assets.
      * This list can be customized with config:
      * - cms.fileDefinitions.assetExtensions
@@ -157,9 +151,11 @@ class Definitions
             'bmp',
             'png',
             'gif',
+            'ico',
             'css',
             'js',
             'woff',
+            'woff2',
             'svg',
             'ttf',
             'eot',
@@ -221,5 +217,4 @@ class Definitions
             'ogg'
         ];
     }
-
 }

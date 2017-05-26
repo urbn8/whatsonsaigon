@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost/whatsonsaigon/',
+    'url' => 'http://wos.vn/',
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => 'xAODO54RSDvImw5Cdu5lanxCOHv7AUmA',
+    'key' => 'z7bZbdp4sWnon5awI7hNedzrPqm3fk7d',
 
     'cipher' => 'AES-256-CBC',
 

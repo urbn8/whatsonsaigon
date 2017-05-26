@@ -1,4 +1,0 @@
-title: EventCategories
-modelClass: Urbn8\Wos\Models\EventCategory
-toolbar:
-    buttons: reorder_toolbar

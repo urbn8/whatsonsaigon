@@ -150,9 +150,11 @@ class Preference extends Model
             'id' => [Lang::get('system::lang.locale.id'), 'flag-id'],
             'it' => [Lang::get('system::lang.locale.it'), 'flag-it'],
             'ja' => [Lang::get('system::lang.locale.ja'), 'flag-jp'],
+            'lt' => [Lang::get('system::lang.locale.lt'), 'flag-lt'],
             'lv' => [Lang::get('system::lang.locale.lv'), 'flag-lv'],
             'nl' => [Lang::get('system::lang.locale.nl'), 'flag-nl'],
             'pt-br' => [Lang::get('system::lang.locale.pt-br'), 'flag-br'],
+            'pt-pt' => [Lang::get('system::lang.locale.pt-pt'), 'flag-pt'],
             'ro' => [Lang::get('system::lang.locale.ro'), 'flag-ro'],
             'ru' => [Lang::get('system::lang.locale.ru'), 'flag-ru'],
             'sv' => [Lang::get('system::lang.locale.sv'), 'flag-se'],
@@ -189,7 +191,7 @@ class Preference extends Model
         }
 
         // Sort the array by offset, identifier ascending
-        usort($tempTimezones, function($a, $b) {
+        usort($tempTimezones, function ($a, $b) {
             return $a['offset'] === $b['offset']
                 ? strcmp($a['identifier'], $b['identifier'])
                 : $a['offset'] - $b['offset'];
