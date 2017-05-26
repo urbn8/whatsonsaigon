@@ -71,7 +71,7 @@ abstract class PluginTestCase extends Illuminate\Foundation\Testing\TestCase
         $pluginCode = $this->guessPluginCodeFromTest();
 
         if ($pluginCode !== false) {
-            $this->runPluginRefreshCommand($pluginCode, false);
+            // $this->runPluginRefreshCommand($pluginCode, false);
         }
 
         /*

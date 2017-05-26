@@ -114,7 +114,7 @@ trait JsonApiTrait
         return function () use ($page, $fieldFilters, $joinFilters) {
             $reflect = new ReflectionClass($this->getDataModel());
             $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-
+            dd($page);
             $offset = ($page->number() - 1) * ($page->size());
             $query = $this->getDataModel()
               ->select($this->getDataModel()->table.'.*')
