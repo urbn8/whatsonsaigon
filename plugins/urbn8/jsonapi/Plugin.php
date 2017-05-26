@@ -22,28 +22,15 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-      // require realpath(__DIR__ . '/routes.php');
-
-      $api = app('Dingo\Api\Routing\Router');
-      // $api = app('api.router');
+      $api = app('api.router');
 
       $api->version('v1', function ($api) {
         $api->get('test', function() {
           return ['a'];
         });
 
-          $api->resource('events', EventsController::class);    
-          
-          // $api->get('employees/{employee_id}/orders', [ 
-          //     'as' => 'employees.orders',
-          //     'uses' => 'EmployeesController@getOrdersByEmployee'
-          // ]);
-      });
-
-      // Route::group(['prefix' => 'api/v3'], function () {
-      //     Route::resource('eventsaaa', 'Urbn8\Wos\Http\RestEvents');
-      // });
-      
+          $api->resource('events', EventsController::class);
+      });      
     }
 
     public function registerComponents()

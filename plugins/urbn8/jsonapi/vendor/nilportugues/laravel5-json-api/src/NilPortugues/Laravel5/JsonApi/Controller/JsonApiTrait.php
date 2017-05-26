@@ -110,38 +110,17 @@ trait JsonApiTrait
         $parsed = $this->parseFilters($filters);
         $joinFilters = $parsed[0];
         $fieldFilters = $parsed[1];
-        // dd($fieldFilters);
-        // dd($joinFilters);
-        // dd($this->getDataModel());
 
         return function () use ($page, $fieldFilters, $joinFilters) {
-            // dd($this->getDataModel());\
-
             $reflect = new ReflectionClass($this->getDataModel());
             $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-            // dd($targetTable);
-            
 
-            // dd($filters);
             $offset = ($page->number() - 1) * ($page->size());
             $query = $this->getDataModel()
-              // ->query()
-            // return DB::table($this->getDataModel()->table)
-              // ->with('organiser')
               ->select($this->getDataModel()->table.'.*')
               ->where($fieldFilters)
-              
               ->limit($page->size())
-              // ->organiser()
-              // ->join('urbn8_wos_organisers', function($join) {
-              //   $join->on('urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id');
-              //   $join->where('urbn8_wos_organisers.name', '=', 'b2');
-              // })
               ->offset($offset);
-              // ->join('urbn8_wos_organisers', function ($join) use ($filters) {
-              //   $join->on('urbn8_wos_organisers.id', '=', 'organiser_id');
-              //     // ->where('category_id', '=', $categoryFilterValue);
-              // })
             
             foreach ($joinFilters as $relationName => $filters) {
               foreach ($this->getDataModel()->belongsToOne as $modelRelationName => $config) {
@@ -161,13 +140,10 @@ trait JsonApiTrait
                         array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filters)),
                         $filters
                     );
-                    // dd($filters);
+
                     foreach ($filters as $field => $value) {
                       $join->where($field, '=', $value);
                     }
-
-                    // $join->where($filters);
-                    // $join->where('urbn8_wos_organisers.name', '=', 'biz');
                   });
                 }
               }
@@ -209,19 +185,6 @@ trait JsonApiTrait
             }
 
             return $query->get();
-
-            // $result = DB::table($this->getDataModel()->table)
-            //   ->where($filters)
-            //   ->offset($offset)
-            //   ->limit($page->size())
-            //   ->join('urbn8_wos_organisers', 'urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id')
-            //   ->get();
-            // $result[Serializer::CLASS_IDENTIFIER_KEY] = $this->getDataModel();
-
-            // return $result;
-            // return EloquentHelper::paginate($this->serializer,
-            //   $this->getDataModel()->query()->where($filters)->offset($offset),
-            //   $page->size())->get();
         };
     }
 
