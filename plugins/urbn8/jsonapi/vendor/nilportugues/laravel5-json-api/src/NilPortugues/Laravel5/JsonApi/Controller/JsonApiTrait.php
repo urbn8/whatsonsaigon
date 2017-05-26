@@ -112,10 +112,14 @@ trait JsonApiTrait
         $fieldFilters = $parsed[1];
         // dd($fieldFilters);
         // dd($joinFilters);
-        dd($this->getDataModel());
+        // dd($this->getDataModel());
 
         return function () use ($page, $fieldFilters, $joinFilters) {
             // dd($this->getDataModel());\
+
+            $reflect = new ReflectionClass($this->getDataModel());
+            $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+            // dd($targetTable);
             
 
             // dd($filters);
@@ -175,22 +179,30 @@ trait JsonApiTrait
 
                   $reflect = new ReflectionClass($obj);
                   Log::info($reflect->getShortName());
-                  $foreignKey = strtolower($reflect->getShortName()).'_id';
 
-                  $query->join($obj->table, function($join) use ($obj, $foreignKey, $filters) {
-                    $join->on($obj->table.'.id', '=', $this->getDataModel()->table.'.'.$foreignKey);
+                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+
+                  $primaryKey = 'id';
+                  $foreignKey = $config['key'];
+                  
+                  $pivotTable = $config['table'];
+
+                  $query->join($pivotTable, function($join) use ($obj, $primaryKey, $foreignKey, $filters, $pivotTable, $targetTable) {
+                    $join->on($foreignKey, '=', $this->getDataModel()->table.'.'.$primaryKey);
                     
                     $filters = array_combine(
-                        array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filters)),
+                        array_map(function($k) use ($obj, $pivotTable, $targetTable) {
+                          if ($k == 'id') {
+                            return $pivotTable.'.'.$targetTable.'_id';
+                          }
+                          return $pivotTable.'.'.$k;
+                        }, array_keys($filters)),
                         $filters
                     );
-                    // dd($filters);
+                    
                     foreach ($filters as $field => $value) {
                       $join->where($field, '=', $value);
                     }
-
-                    // $join->where($filters);
-                    // $join->where('urbn8_wos_organisers.name', '=', 'biz');
                   });
                 }
               }
