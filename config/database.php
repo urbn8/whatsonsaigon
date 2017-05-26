@@ -56,7 +56,7 @@ return [
             'driver'    => 'mysql',
             'host'      => 'localhost',
             'port'      => 3306,
-            'database'  => 'whatsonsaigon_tmp',
+            'database'  => 'whatsonsaigon',
             'username'  => 'root',
             'password'  => '',
             'charset'   => 'utf8',
