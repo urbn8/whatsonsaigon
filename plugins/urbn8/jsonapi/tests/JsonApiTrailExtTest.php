@@ -191,4 +191,36 @@ class JsonApiTrailExtTest extends PluginTestCase
           ], $result, 'case where on multi relations');
         }
     }
+
+    public function testBelongsToManyWhereClause()
+    {
+      {
+        $result = JsonApiTrailExt::belongsToManyWhereClause('urbn8_wos_events',
+        new \Urbn8\Wos\Models\Event,
+        [
+            'categories' => [
+                'Urbn8\Wos\Models\EventCategory',
+                'table' => 'urbn8_wos_event_category_joins',
+                'key'      => 'event_id',
+                'otherKey' => 'category_id',
+            ],
+        ], [
+          "categories" => [
+            "id" => "1"
+          ]
+        ]);
+
+        $this->assertEquals([
+          "joins" => [
+            [
+              'table' => 'urbn8_wos_event_category_joins',
+              'on' => ['urbn8_wos_event_category_joins.event_id', '=', 'urbn8_wos_event_category_joins.category_id'],
+              'where' => [
+                ['urbn8_wos_event_category_joins.category_id', '=', '1']
+              ]
+            ]
+          ],
+        ], $result, 'case where on relation id');
+      }
+    }
 }

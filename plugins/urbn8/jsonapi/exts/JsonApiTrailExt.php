@@ -83,4 +83,59 @@ class JsonApiTrailExt {
       'joins' => $joins,
     ];
   }
+
+  static function belongsToManyWhereClause(
+    $modelTable, $modelClass, $belongsToManySetting, $relationFilterObj
+  ) {
+    $joins = [];
+
+    $reflect = new ReflectionClass($modelClass);
+    $modelLowerName = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+
+    foreach ($relationFilterObj as $relationDatabaseEntityName => $filterObj) {
+      foreach ($belongsToManySetting as $modelRelationName => $config) {
+        if ($relationDatabaseEntityName !== $modelRelationName) {
+          continue;
+        }
+
+        $relationClassName = $config[0];
+        $obj = new $relationClassName;
+
+        $reflect = new ReflectionClass($obj);
+        $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+
+        $primaryKey = 'id';
+        $foreignKey = $config['key'];
+        
+        $pivotTable = $config['table'];
+
+        $where = [];
+
+        $filterObj = array_combine(
+          array_map(function($k) use ($obj, $pivotTable, $modelLowerName) {
+            if ($k == 'id') {
+              return $pivotTable.'.'.$modelLowerName.'_id';
+            }
+            return $pivotTable.'.'.$k;
+          }, array_keys($filterObj)),
+          $filterObj
+        );
+        
+        foreach ($filterObj as $field => $value) {
+          $where[] = [$field, '=', $value];
+        }
+
+        $joins[] = [
+          'table' => $pivotTable,
+          'on' => [$foreignKey, '=', $modelTable.'.'.$primaryKey],
+          'where' => $where,
+        ];
+      }
+    }
+
+    return [
+      'joins' => $joins,
+    ];
+  }
+
 }
