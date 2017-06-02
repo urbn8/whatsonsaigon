@@ -3,11 +3,14 @@
 use PluginTestCase;
 use Urbn8\JsonApi\Exts\JsonApiTrailExt;
 
-// use NilPortugues\Api\JsonApi\Http\Request\Parameters\Page as Page;
-
 class EventMock
 {
+  
+}
 
+class Country
+{
+  public $table = 'urbn8_wos_countries';
 }
 
 class JsonApiTrailExtTest extends PluginTestCase
@@ -96,7 +99,7 @@ class JsonApiTrailExtTest extends PluginTestCase
                 ]
               ]
             ],
-          ], $result);
+          ], $result, 'case where on relation id');
         }
         
         {
@@ -120,7 +123,72 @@ class JsonApiTrailExtTest extends PluginTestCase
                 ]
               ]
             ],
-          ], $result);
+          ], $result, 'case where on a relation standard property (name in this case)');
+        }
+
+        {
+          $result = JsonApiTrailExt::belongsToOneWhereClause('urbn8_wos_events', [
+            'organiser' => [
+                'Urbn8\Wos\Models\Organiser',
+            ],
+          ], [
+            "organiser" => [
+              "name" => "ABC",
+              "status" => 1
+            ]
+          ]);
+
+          $this->assertEquals([
+            "joins" => [
+              [
+                'table' => 'urbn8_wos_organisers',
+                'on' => ['urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id'],
+                'where' => [
+                  ['urbn8_wos_organisers.name', '=', 'ABC'],
+                  ['urbn8_wos_organisers.status', '=', 1],
+                ]
+              ]
+            ],
+          ], $result, 'case where on multi relation standard properties');
+        }
+
+        {
+          $result = JsonApiTrailExt::belongsToOneWhereClause('urbn8_wos_events', [
+            'organiser' => [
+                'Urbn8\Wos\Models\Organiser',
+            ],
+            'country' => [
+                'Urbn8\JsonApi\Tests\Country'
+            ],
+          ], [
+            "organiser" => [
+              "name" => "ABC",
+              "status" => 1
+            ],
+            "country" => [
+              "code" => "VN",
+            ]
+          ]);
+
+          $this->assertEquals([
+            "joins" => [
+              [
+                'table' => 'urbn8_wos_organisers',
+                'on' => ['urbn8_wos_organisers.id', '=', 'urbn8_wos_events.organiser_id'],
+                'where' => [
+                  ['urbn8_wos_organisers.name', '=', 'ABC'],
+                  ['urbn8_wos_organisers.status', '=', 1],
+                ]
+              ],
+              [
+                'table' => 'urbn8_wos_countries',
+                'on' => ['urbn8_wos_countries.id', '=', 'urbn8_wos_events.country_id'],
+                'where' => [
+                  ['urbn8_wos_countries.code', '=', 'VN'],
+                ]
+              ]
+            ],
+          ], $result, 'case where on multi relations');
         }
     }
 }

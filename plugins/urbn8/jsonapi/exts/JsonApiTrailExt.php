@@ -82,31 +82,5 @@ class JsonApiTrailExt {
     return [
       'joins' => $joins,
     ];
-    // foreach ($relationFilterObj as $relationDatabaseEntityName => $filterObj) {
-    //   foreach ($belongsToOneSetting as $modelRelationName => $config) {
-    //     if ($relationName === $modelRelationName) {
-    //       $relationClassName = $config[0];
-    //       $obj = new $relationClassName;
-
-    //       $reflect = new ReflectionClass($obj);
-    //       Log::info($reflect->getShortName());
-    //       $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-    //       $foreignKey = $className.'_id';
-
-    //       $query->join($obj->table, function($join) use ($obj, $foreignKey, $filterObj) {
-    //         $join->on($obj->table.'.id', '=', $modelTableZ.'.'.$foreignKey);
-            
-    //         $filterObj = array_combine(
-    //             array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filterObj)),
-    //             $filterObj
-    //         );
-
-    //         foreach ($filters as $field => $value) {
-    //           $join->where($field, '=', $value);
-    //         }
-    //       });
-    //     }
-    //   }
-    // }
   }
 }
