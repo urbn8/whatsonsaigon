@@ -41,33 +41,72 @@ class JsonApiTrailExt {
   }
 
   static function belongsToOneWhereClause(
-    $modelTable, $belongsToOneSetting, $relationFilterObj, &$join
+    $modelTable, $belongsToOneSetting, $relationFilterObj
   ) {
+    $joins = [];
+
     foreach ($relationFilterObj as $relationDatabaseEntityName => $filterObj) {
-      foreach ($this->getDataModel()->belongsToOne as $modelRelationName => $config) {
-        if ($relationName === $modelRelationName) {
-          $relationClassName = $config[0];
-          $obj = new $relationClassName;
-
-          $reflect = new ReflectionClass($obj);
-          Log::info($reflect->getShortName());
-          $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-          $foreignKey = $className.'_id';
-
-          $query->join($obj->table, function($join) use ($obj, $foreignKey, $filterObj) {
-            $join->on($obj->table.'.id', '=', $modelTableZ.'.'.$foreignKey);
-            
-            $filterObj = array_combine(
-                array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filterObj)),
-                $filterObj
-            );
-
-            foreach ($filters as $field => $value) {
-              $join->where($field, '=', $value);
-            }
-          });
+      foreach ($belongsToOneSetting as $modelRelationName => $config) {
+        if ($relationDatabaseEntityName !== $modelRelationName) {
+          continue;
         }
+
+        $relationClassName = $config[0];
+        $obj = new $relationClassName;
+        $reflect = new ReflectionClass($obj);
+        $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+
+        $foreignKey = $className.'_id';
+
+        $where = [];
+
+        $filterObj = array_combine(
+          array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filterObj)),
+          $filterObj
+        );
+
+        foreach ($filterObj as $field => $value) {
+          $where[] = [$field, '=', $value];
+        }
+
+        // dd($obj->table);
+
+        $joins[] = [
+          'table' => $obj->table,
+          'on' => [$obj->table.'.id', '=', $modelTable.'.'.$foreignKey],
+          'where' => $where,
+        ];
       }
     }
+
+    return [
+      'joins' => $joins,
+    ];
+    // foreach ($relationFilterObj as $relationDatabaseEntityName => $filterObj) {
+    //   foreach ($belongsToOneSetting as $modelRelationName => $config) {
+    //     if ($relationName === $modelRelationName) {
+    //       $relationClassName = $config[0];
+    //       $obj = new $relationClassName;
+
+    //       $reflect = new ReflectionClass($obj);
+    //       Log::info($reflect->getShortName());
+    //       $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+    //       $foreignKey = $className.'_id';
+
+    //       $query->join($obj->table, function($join) use ($obj, $foreignKey, $filterObj) {
+    //         $join->on($obj->table.'.id', '=', $modelTableZ.'.'.$foreignKey);
+            
+    //         $filterObj = array_combine(
+    //             array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filterObj)),
+    //             $filterObj
+    //         );
+
+    //         foreach ($filters as $field => $value) {
+    //           $join->where($field, '=', $value);
+    //         }
+    //       });
+    //     }
+    //   }
+    // }
   }
 }
