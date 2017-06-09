@@ -124,13 +124,22 @@ trait JsonApiTrait
               ->limit($page->size())
               ->offset($offset);
             
-            $clause = JsonApiTrailExt::belongsToOneWhereClause(
+            $clauseOne = JsonApiTrailExt::belongsToOneWhereClause(
               $this->getDataModel()->table,
               $this->getDataModel()->belongsToOne,
               $relationFilters
             );
 
-            foreach ($clause['joins'] as $join) {
+            $clauseMany = JsonApiTrailExt::belongsToManyWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel(),
+              $this->getDataModel()->belongsToMany,
+              $relationFilters
+            );
+
+            $joins = array_merge($clauseOne['joins'], $clauseMany['joins']);
+
+            foreach ($joins as $join) {
               $query->join($join['table'], function($joiner) use ($join) {
                 $joiner->on(...$join['on']);
 
@@ -138,44 +147,6 @@ trait JsonApiTrait
                   $joiner->where(...$where);
                 }
               });
-            }
-            
-            foreach ($fieldFilters as $relationName => $filters) {
-
-              foreach ($this->getDataModel()->belongsToMany as $modelRelationName => $config) {
-                if ($relationName === $modelRelationName) {
-                  $relationClassName = $config[0];
-                  $obj = new $relationClassName;
-
-                  $reflect = new ReflectionClass($obj);
-                  Log::info($reflect->getShortName());
-
-                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-
-                  $primaryKey = 'id';
-                  $foreignKey = $config['key'];
-                  
-                  $pivotTable = $config['table'];
-
-                  $query->join($pivotTable, function($join) use ($obj, $primaryKey, $foreignKey, $filters, $pivotTable, $targetTable) {
-                    $join->on($foreignKey, '=', $this->getDataModel()->table.'.'.$primaryKey);
-                    
-                    $filters = array_combine(
-                        array_map(function($k) use ($obj, $pivotTable, $targetTable) {
-                          if ($k == 'id') {
-                            return $pivotTable.'.'.$targetTable.'_id';
-                          }
-                          return $pivotTable.'.'.$k;
-                        }, array_keys($filters)),
-                        $filters
-                    );
-                    
-                    foreach ($filters as $field => $value) {
-                      $join->where($field, '=', $value);
-                    }
-                  });
-                }
-              }
             }
 
             return $query->get();
