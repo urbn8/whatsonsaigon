@@ -26,6 +26,10 @@ class Event extends Model
       'status'
     ];
 
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['name', 'address', 'desc'];
+
     /**
      * @var string The database table used by the model.
      */
