@@ -26,6 +26,8 @@ use NilPortugues\Laravel5\JsonApi\JsonApiSerializer;
 use NilPortugues\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
 
+use Urbn8\JsonApi\Exts\JsonApiTrailExt;
+
 trait JsonApiTrait
 {
     /**
@@ -107,14 +109,14 @@ trait JsonApiTrait
      */
     protected function listResourceCallable($page, $filters)
     {
-        $parsed = $this->parseFilters($filters);
-        $joinFilters = $parsed[0];
-        $fieldFilters = $parsed[1];
 
-        return function () use ($page, $fieldFilters, $joinFilters) {
+        return function () use ($page, $filters) {
+            $relationFilters = JsonApiTrailExt::relationFilters($filters);
+            $fieldFilters = JsonApiTrailExt::fieldFilters($filters);
+
             $reflect = new ReflectionClass($this->getDataModel());
             $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-            // dd($page);
+            
             $offset = ($page->number() - 1) * ($page->size());
             $query = $this->getDataModel()
               ->select($this->getDataModel()->table.'.*')
@@ -122,31 +124,23 @@ trait JsonApiTrait
               ->limit($page->size())
               ->offset($offset);
             
-            foreach ($joinFilters as $relationName => $filters) {
-              foreach ($this->getDataModel()->belongsToOne as $modelRelationName => $config) {
-                if ($relationName === $modelRelationName) {
-                  $relationClassName = $config[0];
-                  $obj = new $relationClassName;
+            $clause = JsonApiTrailExt::belongsToOneWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel()->belongsToOne,
+              $relationFilters
+            );
 
-                  $reflect = new ReflectionClass($obj);
-                  Log::info($reflect->getShortName());
-                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-                  $foreignKey = $className.'_id';
+            foreach ($clause['joins'] as $join) {
+              $query->join($join['table'], function($joiner) use ($join) {
+                $joiner->on(...$join['on']);
 
-                  $query->join($obj->table, function($join) use ($obj, $foreignKey, $filters) {
-                    $join->on($obj->table.'.id', '=', $this->getDataModel()->table.'.'.$foreignKey);
-                    
-                    $filters = array_combine(
-                        array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filters)),
-                        $filters
-                    );
-
-                    foreach ($filters as $field => $value) {
-                      $join->where($field, '=', $value);
-                    }
-                  });
+                foreach ($join['where'] as $where) {
+                  $joiner->where(...$where);
                 }
-              }
+              });
+            }
+            
+            foreach ($fieldFilters as $relationName => $filters) {
 
               foreach ($this->getDataModel()->belongsToMany as $modelRelationName => $config) {
                 if ($relationName === $modelRelationName) {
