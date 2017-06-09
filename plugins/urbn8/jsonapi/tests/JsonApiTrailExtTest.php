@@ -214,7 +214,7 @@ class JsonApiTrailExtTest extends PluginTestCase
           "joins" => [
             [
               'table' => 'urbn8_wos_event_category_joins',
-              'on' => ['urbn8_wos_event_category_joins.event_id', '=', 'urbn8_wos_event_category_joins.category_id'],
+              'on' => ['urbn8_wos_event_category_joins.event_id', '=', 'urbn8_wos_events.id'],
               'where' => [
                 ['urbn8_wos_event_category_joins.category_id', '=', '1']
               ]

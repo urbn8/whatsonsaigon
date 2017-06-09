@@ -105,16 +105,17 @@ class JsonApiTrailExt {
         $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
 
         $primaryKey = 'id';
-        $foreignKey = $config['key'];
-        
         $pivotTable = $config['table'];
+        $foreignKey = $pivotTable.'.'.$config['key'];
+
+        $otherKey = $config['otherKey'];
 
         $where = [];
 
         $filterObj = array_combine(
-          array_map(function($k) use ($obj, $pivotTable, $modelLowerName) {
+          array_map(function($k) use ($obj, $pivotTable, $otherKey) {
             if ($k == 'id') {
-              return $pivotTable.'.'.$modelLowerName.'_id';
+              return $pivotTable.'.'.$otherKey;
             }
             return $pivotTable.'.'.$k;
           }, array_keys($filterObj)),
