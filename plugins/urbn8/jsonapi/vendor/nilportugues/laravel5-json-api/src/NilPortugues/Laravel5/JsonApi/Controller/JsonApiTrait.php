@@ -69,12 +69,45 @@ trait JsonApiTrait
      * @return callable
      * @codeCoverageIgnore
      */
-    protected function totalAmountResourceCallable()
+    protected function totalAmountResourceCallable($filters)
     {
-        return function () {
-            $idKey = $this->getDataModel()->getKeyName();
+        return function () use ($filters) {
+            $dataModel = $this->getDataModel();
+            $idKey = $dataModel->table.'.'.$dataModel->getKeyName();
 
-            return $this->getDataModel()->query()->count([$idKey]);
+            $relationFilters = JsonApiTrailExt::relationFilters($filters);
+            $fieldFilters = JsonApiTrailExt::fieldFilters($filters);
+            
+            $query = $this->getDataModel()
+              ->where($fieldFilters);
+            
+            $clauseOne = JsonApiTrailExt::belongsToOneWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel()->belongsToOne,
+              $relationFilters
+            );
+
+            $clauseMany = JsonApiTrailExt::belongsToManyWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel(),
+              $this->getDataModel()->belongsToMany,
+              $relationFilters
+            );
+
+            $joins = array_merge($clauseOne['joins'], $clauseMany['joins']);
+
+            foreach ($joins as $join) {
+              $query->join($join['table'], function($joiner) use ($join) {
+                $joiner->on(...$join['on']);
+
+                foreach ($join['where'] as $where) {
+                  $joiner->where(...$where);
+                }
+              });
+            }
+
+            $count = $query->count([$idKey]);
+            return $count;
         };
     }
 
@@ -84,22 +117,6 @@ trait JsonApiTrait
      * @return Model
      */
     abstract public function getDataModel();
-
-    protected function parseFilters($filters)
-    {
-      $joinFilters = [];
-      $fieldFilters = [];
-      foreach ($filters as $key => $value) {
-        if (is_array($value)) {
-          $joinFilters[$key] = $value;
-          continue;
-        }
-
-        $fieldFilters[$key] = $value;
-      }
-
-      return [$joinFilters, $fieldFilters];
-    }
 
     /**
      * Returns a list of resources based on pagination criteria.
@@ -114,9 +131,6 @@ trait JsonApiTrait
             $relationFilters = JsonApiTrailExt::relationFilters($filters);
             $fieldFilters = JsonApiTrailExt::fieldFilters($filters);
 
-            $reflect = new ReflectionClass($this->getDataModel());
-            $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-            
             $offset = ($page->number() - 1) * ($page->size());
             $query = $this->getDataModel()
               ->select($this->getDataModel()->table.'.*')
