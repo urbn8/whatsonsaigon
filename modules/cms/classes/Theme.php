@@ -141,7 +141,7 @@ class Theme
     /**
      * Returns the active theme code.
      * By default the active theme is loaded from the cms.activeTheme parameter,
-     * but this behavior can be overridden by the cms.theme.getActiveTheme event listeners.
+     * but this behavior can be overridden by the cms.theme.getActiveTheme event listener.
      * @return string
      * If the theme doesn't exist, returns null.
      */
@@ -152,7 +152,7 @@ class Theme
         if (App::hasDatabase()) {
             try {
                 try {
-                    $dbResult = Cache::remember(self::ACTIVE_KEY, 1440, function() {
+                    $dbResult = Cache::remember(self::ACTIVE_KEY, 1440, function () {
                         return Parameter::applyKey(self::ACTIVE_KEY)->pluck('value');
                     });
                 }
@@ -171,6 +171,16 @@ class Theme
             }
         }
 
+        /**
+         * @event cms.theme.getActiveTheme
+         * Overrides the active theme code.
+         *
+         * If a value is returned from this halting event, it will be used as the active
+         * theme code. Example usage:
+         *
+         *     Event::listen('cms.theme.getActiveTheme', function() { return 'mytheme'; });
+         *
+         */
         $apiResult = Event::fire('cms.theme.getActiveTheme', [], true);
         if ($apiResult !== null) {
             $activeTheme = $apiResult;
@@ -206,7 +216,7 @@ class Theme
 
     /**
      * Sets the active theme.
-     * The active theme code is stored in the database and overrides the configuration cms.activeTheme parameter. 
+     * The active theme code is stored in the database and overrides the configuration cms.activeTheme parameter.
      * @param string $code Specifies the  active theme code.
      */
     public static function setActiveTheme($code)

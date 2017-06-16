@@ -12,7 +12,9 @@ use System\Classes\SettingsManager;
 use System\Classes\CombineAssets;
 use Cms\Classes\ComponentManager;
 use Cms\Classes\Page as CmsPage;
+use Cms\Classes\CmsObject;
 use Cms\Models\ThemeData;
+use Cms\Models\ThemeLog;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -26,6 +28,7 @@ class ServiceProvider extends ModuleServiceProvider
         parent::register('cms');
 
         $this->registerComponents();
+        $this->registerThemeLogging();
         $this->registerAssetBundles();
         $this->registerCombinerEvents();
 
@@ -55,24 +58,35 @@ class ServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Register components
+     * Register components.
      */
     protected function registerComponents()
     {
         ComponentManager::instance()->registerComponents(function ($manager) {
-            $manager->registerComponent('Cms\Classes\ViewBag', 'viewBag');
+            $manager->registerComponent('Cms\Components\ViewBag', 'viewBag');
+            $manager->registerComponent('Cms\Components\Resources', 'resources');
         });
     }
 
     /**
-     * Register asset bundles
+     * Registers theme logging on templates.
+     */
+    protected function registerThemeLogging()
+    {
+        CmsObject::extend(function ($model) {
+            ThemeLog::bindEventsToModel($model);
+        });
+    }
+
+    /**
+     * Register asset bundles.
      */
     protected function registerAssetBundles()
     {
         /*
          * Register asset bundles
          */
-        CombineAssets::registerCallback(function($combiner) {
+        CombineAssets::registerCallback(function ($combiner) {
             $combiner->registerBundle('~/modules/cms/widgets/mediamanager/assets/js/mediamanager-browser.js');
             $combiner->registerBundle('~/modules/cms/widgets/mediamanager/assets/less/mediamanager.less');
         });
@@ -116,7 +130,7 @@ class ServiceProvider extends ModuleServiceProvider
                         'cms.manage_layouts',
                         'cms.manage_partials'
                     ],
-                    'order'       => 10,
+                    'order'       => 100,
                     'sideMenu' => [
                         'pages' => [
                             'label'        => 'cms::lang.page.menu_label',
@@ -173,7 +187,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'iconSvg'     => 'modules/cms/assets/images/media-icon.svg',
                     'url'         => Backend::url('cms/media'),
                     'permissions' => ['media.*'],
-                    'order'       => 20
+                    'order'       => 200
                 ]
             ]);
         });
@@ -261,7 +275,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'cms::lang.theme.settings_menu_description',
                     'category'    => SettingsManager::CATEGORY_CMS,
                     'icon'        => 'icon-picture-o',
-                    'url'         => Backend::URL('cms/themes'),
+                    'url'         => Backend::url('cms/themes'),
                     'permissions' => ['cms.manage_themes'],
                     'order'       => 200
                 ],
@@ -274,6 +288,16 @@ class ServiceProvider extends ModuleServiceProvider
                     'permissions' => ['cms.manage_themes'],
                     'order'       => 300
                 ],
+                'theme_logs' => [
+                    'label'       => 'cms::lang.theme_log.menu_label',
+                    'description' => 'cms::lang.theme_log.menu_description',
+                    'category'    => SettingsManager::CATEGORY_LOGS,
+                    'icon'        => 'icon-magic',
+                    'url'         => Backend::url('cms/themelogs'),
+                    'permissions' => ['system.access_logs'],
+                    'order'       => 910,
+                    'keywords'    => 'theme change log'
+                ]
             ]);
         });
     }

@@ -107,7 +107,7 @@ class PluginBase extends ServiceProviderBase
             $navigation = $configuration['navigation'];
 
             if (is_array($navigation)) {
-                array_walk_recursive($navigation, function(&$item, $key){
+                array_walk_recursive($navigation, function (&$item, $key) {
                     if ($key === 'url') {
                         $item = Backend::url($item);
                     }
@@ -138,7 +138,10 @@ class PluginBase extends ServiceProviderBase
      */
     public function registerSettings()
     {
-        return [];
+        $configuration = $this->getConfigurationFromYaml();
+        if (array_key_exists('settings', $configuration)) {
+            return $configuration['settings'];
+        }
     }
 
     /**

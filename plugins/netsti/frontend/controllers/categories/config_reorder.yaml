@@ -1,5 +1,0 @@
-title: Categories
-modelClass: NetSTI\Frontend\Models\Category
-nameFrom: name
-toolbar:
-    buttons: reorder_toolbar

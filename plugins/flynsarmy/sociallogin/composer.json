@@ -1,7 +1,9 @@
 {
     "name": "flynsarmy/sociallogin",
     "require": {
-        "hybridauth/hybridauth": "2.6.*",
-        "google/apiclient": "^2.0.0@RC"
+        "laravel/socialite": "2.0.*"
+    },
+    "replace": {
+        "illuminate/contracts": "5.2.*"
     }
 }

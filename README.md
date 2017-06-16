@@ -4,6 +4,8 @@
 
 ### prerequisites
 
+PHPUnit 4.8.x
+
 * NodeJs 6.x.x
 
 * Have `Yarn` installed. See (https://yarnpkg.com/en/docs/install)

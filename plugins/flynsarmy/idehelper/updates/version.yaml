@@ -9,3 +9,5 @@
     - Support ide-helper:models artisan command
 1.0.5:
     - Now using OctoberCMS query builder classes and bump ide helper version
+1.0.6:
+    - Updating to laravel-ide-helper v2.3.*

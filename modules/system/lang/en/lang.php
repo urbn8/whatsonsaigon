@@ -14,7 +14,7 @@ return [
         'en-au' => 'English (Australia)',
         'en-ca' => 'English (Canada)',
         'en-gb' => 'English (United Kingdom)',
-        'de' => 'Deutsche',
+        'de' => 'Deutsch',
         'el' => 'Ελληνικά',
         'es' => 'Español',
         'es-ar' => 'Español (Argentina)',
@@ -25,7 +25,8 @@ return [
         'id' => 'Bahasa Indonesia',
         'it' => 'Italiano',
         'ja' => '日本語',
-        'lv' => 'Latvijas',
+        'lt' => 'Lietuvių',
+        'lv' => 'Latviešu',
         'nb-no' => 'Norsk (Bokmål)',
         'nl' => 'Nederlands',
         'pl' => 'Polskie',
@@ -34,7 +35,7 @@ return [
         'ru' => 'Русский',
         'sv' => 'Svenska',
         'sk' => 'Slovenský',
-        'tr' => 'Türk',
+        'tr' => 'Türkçe',
         'zh-cn' => '简体中文',
         'zh-tw' => '繁體中文'
     ],
@@ -269,11 +270,12 @@ return [
         'important_action' => [
             'empty' => 'Select action',
             'confirm' => 'Confirm update',
-            'skip' => 'Skip this plugin (once only)',
-            'ignore' => 'Skip this plugin (always)'
+            'skip' => 'Skip this update (once only)',
+            'ignore' => 'Skip this update (always)'
         ],
         'important_action_required' => 'Action required',
         'important_view_guide' => 'View upgrade guide',
+        'important_view_release_notes' => 'View release notes',
         'important_alert_text' => 'Some updates need your attention.',
         'details_title' => 'Plugin details',
         'details_view_homepage' => 'View homepage',
@@ -312,7 +314,7 @@ return [
         'menu_description' => 'View system log messages with their recorded time and details.',
         'empty_link' => 'Empty event log',
         'empty_loading' => 'Emptying event log...',
-        'empty_success' => 'Successfully emptied the event log.',
+        'empty_success' => 'Event log emptied',
         'return_link' => 'Return to event log',
         'id' => 'ID',
         'id_label' => 'Event ID',
@@ -327,7 +329,7 @@ return [
         'menu_description' => 'View bad or redirected requests, such as Page not found (404).',
         'empty_link' => 'Empty request log',
         'empty_loading' => 'Emptying request log...',
-        'empty_success' => 'Successfully emptied the request log.',
+        'empty_success' => 'Request log emptied',
         'return_link' => 'Return to request log',
         'id' => 'ID',
         'id_label' => 'Log ID',
@@ -349,5 +351,16 @@ return [
         'manage_editor' => 'Manage code editor preferences',
         'view_the_dashboard' => 'View the dashboard',
         'manage_branding' => 'Customize the back-end'
+    ],
+    'log' => [
+        'menu_label' => 'Log settings',
+        'menu_description' => 'Specify which areas should use logging.',
+        'default_tab' => 'Logging',
+        'log_events' => 'Log system events',
+        'log_events_comment' => 'Store system events in the database in addition to the file-based log.',
+        'log_requests' => 'Log bad requests',
+        'log_requests_comment' => 'Browser requests that may require attention, such as 404 errors.',
+        'log_theme' => 'Log theme changes',
+        'log_theme_comment' => 'When a change is made to the theme using the back-end.',
     ]
 ];

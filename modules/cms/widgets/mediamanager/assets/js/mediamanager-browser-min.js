@@ -313,7 +313,8 @@ this.hideUploadUi()}
 MediaManager.prototype.updateUploadBar=function(templateName,classNames){var fileNumberLabel=this.$el.get(0).querySelector('[data-label="file-number-and-progress"]'),successTemplate=fileNumberLabel.getAttribute('data-'+templateName+'-template'),progressBar=this.$el.get(0).querySelector('[data-control="upload-progress-bar"]')
 fileNumberLabel.innerHTML=successTemplate;progressBar.setAttribute('class',classNames)}
 MediaManager.prototype.uploadSuccess=function(){this.updateUploadBar('success','progress-bar progress-bar-success');}
-MediaManager.prototype.uploadError=function(file,message){this.updateUploadBar('error','progress-bar progress-bar-danger');$.oc.alert('Error uploading file')}
+MediaManager.prototype.uploadError=function(file,message){this.updateUploadBar('error','progress-bar progress-bar-danger');if(!message){message='Error uploading file'}
+$.oc.alert(message)}
 MediaManager.prototype.cropSelectedImage=function(callback){var selectedItems=this.getSelectedItems(true)
 if(selectedItems.length!=1){alert(this.options.selectSingleImage)
 return}
@@ -342,7 +343,8 @@ $.oc.confirm(this.options.deleteConfirm,this.proxy(this.deleteConfirmation))}
 MediaManager.prototype.deleteConfirmation=function(confirmed){if(!confirmed)
 return
 var items=this.$el.get(0).querySelectorAll('[data-type="media-item"].selected'),paths=[]
-for(var i=0,len=items.length;i<len;i++){paths.push({'path':items[i].getAttribute('data-path'),'type':items[i].getAttribute('data-item-type')})}
+for(var i=0,len=items.length;i<len;i++){if(items[i].hasAttribute('data-root')){continue;}
+paths.push({'path':items[i].getAttribute('data-path'),'type':items[i].getAttribute('data-item-type')})}
 var data={paths:paths}
 $.oc.stripeLoadIndicator.show()
 this.$form.request(this.options.alias+'::onDeleteItem',{data:data}).always(function(){$.oc.stripeLoadIndicator.hide()}).done(this.proxy(this.afterNavigate))}

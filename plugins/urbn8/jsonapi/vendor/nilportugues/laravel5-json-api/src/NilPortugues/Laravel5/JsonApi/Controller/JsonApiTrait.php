@@ -26,6 +26,8 @@ use NilPortugues\Laravel5\JsonApi\JsonApiSerializer;
 use NilPortugues\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Response;
 
+use Urbn8\JsonApi\Exts\JsonApiTrailExt;
+
 trait JsonApiTrait
 {
     /**
@@ -67,12 +69,45 @@ trait JsonApiTrait
      * @return callable
      * @codeCoverageIgnore
      */
-    protected function totalAmountResourceCallable()
+    protected function totalAmountResourceCallable($filters)
     {
-        return function () {
-            $idKey = $this->getDataModel()->getKeyName();
+        return function () use ($filters) {
+            $dataModel = $this->getDataModel();
+            $idKey = $dataModel->table.'.'.$dataModel->getKeyName();
 
-            return $this->getDataModel()->query()->count([$idKey]);
+            $relationFilters = JsonApiTrailExt::relationFilters($filters);
+            $fieldFilters = JsonApiTrailExt::fieldFilters($filters);
+            
+            $query = $this->getDataModel()
+              ->where($fieldFilters);
+            
+            $clauseOne = JsonApiTrailExt::belongsToOneWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel()->belongsToOne,
+              $relationFilters
+            );
+
+            $clauseMany = JsonApiTrailExt::belongsToManyWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel(),
+              $this->getDataModel()->belongsToMany,
+              $relationFilters
+            );
+
+            $joins = array_merge($clauseOne['joins'], $clauseMany['joins']);
+
+            foreach ($joins as $join) {
+              $query->join($join['table'], function($joiner) use ($join) {
+                $joiner->on(...$join['on']);
+
+                foreach ($join['where'] as $where) {
+                  $joiner->where(...$where);
+                }
+              });
+            }
+
+            $count = $query->count([$idKey]);
+            return $count;
         };
     }
 
@@ -83,22 +118,6 @@ trait JsonApiTrait
      */
     abstract public function getDataModel();
 
-    protected function parseFilters($filters)
-    {
-      $joinFilters = [];
-      $fieldFilters = [];
-      foreach ($filters as $key => $value) {
-        if (is_array($value)) {
-          $joinFilters[$key] = $value;
-          continue;
-        }
-
-        $fieldFilters[$key] = $value;
-      }
-
-      return [$joinFilters, $fieldFilters];
-    }
-
     /**
      * Returns a list of resources based on pagination criteria.
      *
@@ -107,13 +126,10 @@ trait JsonApiTrait
      */
     protected function listResourceCallable($page, $filters)
     {
-        $parsed = $this->parseFilters($filters);
-        $joinFilters = $parsed[0];
-        $fieldFilters = $parsed[1];
 
-        return function () use ($page, $fieldFilters, $joinFilters) {
-            $reflect = new ReflectionClass($this->getDataModel());
-            $targetTable = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
+        return function () use ($page, $filters) {
+            $relationFilters = JsonApiTrailExt::relationFilters($filters);
+            $fieldFilters = JsonApiTrailExt::fieldFilters($filters);
 
             $offset = ($page->number() - 1) * ($page->size());
             $query = $this->getDataModel()
@@ -122,66 +138,29 @@ trait JsonApiTrait
               ->limit($page->size())
               ->offset($offset);
             
-            foreach ($joinFilters as $relationName => $filters) {
-              foreach ($this->getDataModel()->belongsToOne as $modelRelationName => $config) {
-                if ($relationName === $modelRelationName) {
-                  $relationClassName = $config[0];
-                  $obj = new $relationClassName;
+            $clauseOne = JsonApiTrailExt::belongsToOneWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel()->belongsToOne,
+              $relationFilters
+            );
 
-                  $reflect = new ReflectionClass($obj);
-                  Log::info($reflect->getShortName());
-                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-                  $foreignKey = $className.'_id';
+            $clauseMany = JsonApiTrailExt::belongsToManyWhereClause(
+              $this->getDataModel()->table,
+              $this->getDataModel(),
+              $this->getDataModel()->belongsToMany,
+              $relationFilters
+            );
 
-                  $query->join($obj->table, function($join) use ($obj, $foreignKey, $filters) {
-                    $join->on($obj->table.'.id', '=', $this->getDataModel()->table.'.'.$foreignKey);
-                    
-                    $filters = array_combine(
-                        array_map(function($k) use ($obj) { return $obj->table.'.'.$k; }, array_keys($filters)),
-                        $filters
-                    );
+            $joins = array_merge($clauseOne['joins'], $clauseMany['joins']);
 
-                    foreach ($filters as $field => $value) {
-                      $join->where($field, '=', $value);
-                    }
-                  });
+            foreach ($joins as $join) {
+              $query->join($join['table'], function($joiner) use ($join) {
+                $joiner->on(...$join['on']);
+
+                foreach ($join['where'] as $where) {
+                  $joiner->where(...$where);
                 }
-              }
-
-              foreach ($this->getDataModel()->belongsToMany as $modelRelationName => $config) {
-                if ($relationName === $modelRelationName) {
-                  $relationClassName = $config[0];
-                  $obj = new $relationClassName;
-
-                  $reflect = new ReflectionClass($obj);
-                  Log::info($reflect->getShortName());
-
-                  $className = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $reflect->getShortName()));
-
-                  $primaryKey = 'id';
-                  $foreignKey = $config['key'];
-                  
-                  $pivotTable = $config['table'];
-
-                  $query->join($pivotTable, function($join) use ($obj, $primaryKey, $foreignKey, $filters, $pivotTable, $targetTable) {
-                    $join->on($foreignKey, '=', $this->getDataModel()->table.'.'.$primaryKey);
-                    
-                    $filters = array_combine(
-                        array_map(function($k) use ($obj, $pivotTable, $targetTable) {
-                          if ($k == 'id') {
-                            return $pivotTable.'.'.$targetTable.'_id';
-                          }
-                          return $pivotTable.'.'.$k;
-                        }, array_keys($filters)),
-                        $filters
-                    );
-                    
-                    foreach ($filters as $field => $value) {
-                      $join->where($field, '=', $value);
-                    }
-                  });
-                }
-              }
+              });
             }
 
             return $query->get();
