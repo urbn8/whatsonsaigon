@@ -35,7 +35,17 @@ const BlogPost = new GraphQLObjectType({
     },
     title: {
       type: GraphQLString,
-      sqlColumn: 'title'
+      sqlColumn: 'title',
+      resolve: async (post, args, context, resolveInfo) => {
+        const result = await knex.from('rainlab_translate_attributes').where({
+          locale: 'en',
+          model_id: post.id,
+        })
+
+        const data = result[0].attribute_data
+        const translation = JSON.parse(data)
+        return translation.title
+      }
     },
     slug: {
       type: GraphQLString,
