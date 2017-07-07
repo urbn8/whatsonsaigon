@@ -1,0 +1,10 @@
+title = "blog detail"
+url = "/blog/:slug"
+layout = "minimal"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = 404
+==
+{% component 'blogPost' %}
