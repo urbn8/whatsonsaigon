@@ -19,15 +19,16 @@ const resolveFunctions = {
       return posts.toJSON()
     }
   },
-  // RootMutation: {
+  RootMutation: {
     // createAuthor: (root, args) => { return Author.create(args); },
-    // createPost: (root, { authorId, tags, title, text }) => {
-    //   return Author.findOne({ where: { id: authorId } }).then( (author) => {
-    //     console.log('found', author);
-    //     return author.createPost( { tags: tags.join(','), title, text });
-    //   });
-    // },
-  // },
+    createPost: async (root, { userId, title, slug }) => {
+      const post = await new Post({
+        user_id: userId, title, slug
+      }).save()
+      console.log('created post' , post, post.toJSON())
+      return post.toJSON()
+    },
+  },
   User: {
     async posts(user){
       user = await User.where('id', user.id).fetch({withRelated: ['posts']})
