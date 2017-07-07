@@ -14,7 +14,8 @@ const resolveFunctions = {
       console.log('users', users.toJSON())
       return users.toJSON()
     },
-    async posts() {
+    async posts(postsTable, { offset }) {
+      console.log('postsTable', postsTable)
       const posts = await Post.fetchAll()
       return posts.toJSON()
     }

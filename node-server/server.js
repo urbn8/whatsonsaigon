@@ -2,11 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import { makeExecutableSchema } from 'graphql-tools'
-import { graphqlExpress } from 'graphql-server-express';
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 
 const graphqlHTTP = require('express-graphql')
 
-import schema from './schema'
+import schema from './data/schema'
 
 const typeDefs = `
   type Query {
@@ -34,9 +34,12 @@ const app = express();
 // bodyParser is needed just for POST.
 // app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema, graphiql: true }));
 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  graphiql: true
-}))
+// app.use('/graphql', graphqlHTTP({
+//   schema: schema,
+//   graphiql: true
+// }))
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.listen(PORT)
