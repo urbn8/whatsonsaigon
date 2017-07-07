@@ -24,6 +24,13 @@ const BlogPost = new GraphQLObjectType({
   uniqueKey: 'id',
   // This implements the node interface
   interfaces: [ nodeInterface ],
+  // where: (blogPostsTable, args, context) => { // eslint-disable-line no-unused-vars
+  //   console.log('where from blogPost', blogPostsTable, args)
+  // },
+  // resolve: async (post, args, context, resolveInfo) => {
+  //   console.log('blogPost resolve', post, args)
+  //   return []
+  // },
   fields: () => ({
     id: {
       description: 'The global ID for the Relay spec',

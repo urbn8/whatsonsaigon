@@ -33,9 +33,9 @@ export default new GraphQLObjectType({
           type: GraphQLInt
         }
       },
-      where: (blogPostsTable, args, context) => { // eslint-disable-line no-unused-vars
-        console.log('user args.id', args.id)
-        if (args.id) return `${blogPostsTable}.id = ${args.id}`
+      where: (usersTable, args, context) => { // eslint-disable-line no-unused-vars
+        console.log('user args.id', args.id, usersTable)
+        if (args.id) return `${usersTable}.id = ${args.id}`
       },
       resolve: (parent, args, context, resolveInfo) => {
         console.log('====resolving')

@@ -16,6 +16,7 @@ import {
 import knex from './database'
 import { nodeInterface } from './Node'
 
+import BlogPost from './BlogPost'
 
 const User = new GraphQLObjectType({
   description: 'a stem contract account',
@@ -39,6 +40,12 @@ const User = new GraphQLObjectType({
       type: GraphQLString,
       sqlColumn: 'email'
     },
+    posts: {
+      type: new GraphQLList(BlogPost),
+      // this is a one-to-many relation
+      // this function tells join monster how to join these tables
+      sqlJoin: (userTable, postTable) => `${userTable}.id = ${postTable}.user_id`,
+    }
   })
 })
 
