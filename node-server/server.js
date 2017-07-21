@@ -8,24 +8,24 @@ const graphqlHTTP = require('express-graphql')
 
 import schema from './data/schema'
 
-const typeDefs = `
-  type Query {
-    hello: String
-  }
-`;
+// const typeDefs = `
+//   type Query {
+//     hello: String
+//   }
+// `;
 
-const resolvers = {
-  Query: {
-    hello: (root, args, context) => {
-      return 'Hello world!';
-    },
-  },
-};
+// const resolvers = {
+//   Query: {
+//     hello: (root, args, context) => {
+//       return 'Hello world!';
+//     },
+//   },
+// };
 
-const myGraphQLSchema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+// const myGraphQLSchema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers,
+// });
 
 const PORT = 3000;
 
@@ -42,4 +42,6 @@ const app = express();
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-app.listen(PORT)
+app.listen(PORT, () => {
+  console.log('started')
+})

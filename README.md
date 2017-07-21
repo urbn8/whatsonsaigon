@@ -62,20 +62,36 @@ When using Ubuntu, this can be done via ``apt-get install php5-json``.
 
 https://api.graph.cool/simple/v1/cj4jiyyppztzv0130z9strhq4
 
-Relay:
+## Relay:
 https://sourcegraph.com/github.com/stems/join-monster-demo@master/-/blob/schema-basic/Post.js
 
 https://dev-blog.apollodata.com/exploring-relay-modern-276f5965f827
 https://sourcegraph.com/github.com/apollographql/relay-modern-hello-world/-/blob/schema.graphql
 
-https://sourcegraph.com/github.com/soonlive/relay-cart@master/-/blob/data/mutations/addToCartMutation.js#L41:49
-
 https://sourcegraph.com/github.com/jscomplete/learning-graphql-and-relay/-/blob/schema/main.js#L34:4
 
-Apollo:
+### Mutations
+
+https://sourcegraph.com/github.com/soonlive/relay-cart@master/-/blob/data/mutations/addToCartMutation.js#L41:49
+https://sourcegraph.com/github.com/chrisbolin/understanding-relay-mutations@master/-/blob/examples/todo/server.js
+
+## Apollo:
 https://sourcegraph.com/github.com/Quadric/perfect-graphql-starter@master/-/blob/package.json#L37:6-37:18
 
 https://sourcegraph.com/github.com/apollographql/apollo-tutorial-kit/-/blob/server.js
 
 https://sourcegraph.com/github.com/apollographql/apollo-server-tutorial@master/-/blob/data/schema.js#L16:2
 https://github.com/apollographql/apollo-server-tutorial/pull/6/files
+
+# TODO
+sample graphsql mutation on organisers
+- create
+- update
+
+react consumes graphql server
+- create
+- update 
+
+intergate mobx-state-tree with relay
+
+routing and server rendering
