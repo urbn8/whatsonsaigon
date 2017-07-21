@@ -1,0 +1,91 @@
+input AddOrganiserInput {
+  name: String!
+  website: String!
+  desc: String!
+  clientMutationId: String
+}
+
+type AddOrganiserPayload {
+  organiserEdge: OrganiserEdge
+  organiser: Organiser
+  viewer: Organiser
+  clientMutationId: String
+}
+
+# a stem contract account
+type BlogPost implements Node {
+  # The ID of an object
+  id: ID!
+  title: String
+  slug: String
+}
+
+type Mutation {
+  addOrganiser(input: AddOrganiserInput!): AddOrganiserPayload
+  updateOrganiser(input: UpdateOrganiserInput!): UpdateOrganiserPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# a stem contract account
+type Organiser implements Node {
+  # The ID of an object
+  id: ID!
+  name: String
+  slug: String
+  website: String
+  phone: String
+  email: String
+  facebook: String
+  twitter: String
+  address: String
+  desc: String
+  status: Int
+}
+
+# An edge in a connection.
+type OrganiserEdge {
+  # The item at the end of the edge
+  node: Organiser
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# global query object
+type Query {
+  version: String
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+  user(id: Int): User
+  blogPost(id: Int): [BlogPost]
+  organisers(id: Int): [Organiser]
+}
+
+input UpdateOrganiserInput {
+  id: ID!
+  name: String!
+  clientMutationId: String
+}
+
+type UpdateOrganiserPayload {
+  organiser: Organiser
+  clientMutationId: String
+}
+
+# a stem contract account
+type User implements Node {
+  # The ID of an object
+  id: ID!
+  name: String
+  email: String
+  posts: [BlogPost]
+}

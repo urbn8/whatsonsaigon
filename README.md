@@ -63,6 +63,7 @@ When using Ubuntu, this can be done via ``apt-get install php5-json``.
 https://api.graph.cool/simple/v1/cj4jiyyppztzv0130z9strhq4
 
 ## Relay:
+https://github.com/lvarayut/relay-fullstack
 https://sourcegraph.com/github.com/stems/join-monster-demo@master/-/blob/schema-basic/Post.js
 
 https://dev-blog.apollodata.com/exploring-relay-modern-276f5965f827
@@ -95,3 +96,22 @@ react consumes graphql server
 intergate mobx-state-tree with relay
 
 routing and server rendering
+
+react login, register
+
+# How to Setup Watchman on Ubuntu 16.04
+
+```
+$ cd ~
+$ git clone https://github.com/facebook/watchman.git
+$ cd watchman/
+$ git checkout v4.7.0
+$ sudo apt-get install -y autoconf automake build-essential python-dev
+$ ./autogen.sh 
+$ ./configure 
+$ make
+$ sudo make install
+
+$ watchman --version
+$ echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches  && echo 999999 | sudo tee -a  /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee  -a /proc/sys/fs/inotify/max_user_instances && watchman  shutdown-server
+```

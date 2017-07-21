@@ -3,10 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "relay": "relay-compiler --src ./src --schema schema.graphql",
+    "get-schema": "node scripts/getSchema.js"
+  },
   "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-react-app": "^3.0.1",
+    "babel-runtime": "^6.23.0",
     "react-relay": "^1.1.0"
   },
   "devDependencies": {
-    "babel-plugin-relay": "^1.1.0"
+    "babel-plugin-relay": "^1.1.0",
+    "relay-compiler": "^1.1.0"
   }
 }
