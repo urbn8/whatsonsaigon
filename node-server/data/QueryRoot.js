@@ -10,6 +10,7 @@ import joinMonster from 'join-monster'
 import knex from './database'
 import BlogPost from './BlogPost'
 import User from './User'
+import Organiser from './types/Organiser'
 
 import { nodeField } from './Node'
 import dbCall from './dbCall'
@@ -33,9 +34,9 @@ export default new GraphQLObjectType({
           type: GraphQLInt
         }
       },
-      where: (blogPostsTable, args, context) => { // eslint-disable-line no-unused-vars
-        console.log('user args.id', args.id)
-        if (args.id) return `${blogPostsTable}.id = ${args.id}`
+      where: (usersTable, args, context) => { // eslint-disable-line no-unused-vars
+        console.log('user args.id', args.id, usersTable)
+        if (args.id) return `${usersTable}.id = ${args.id}`
       },
       resolve: (parent, args, context, resolveInfo) => {
         console.log('====resolving')
@@ -57,10 +58,20 @@ export default new GraphQLObjectType({
         if (args.id) return `${blogPostsTable}.id = ${args.id}`
       },
       resolve: (parent, args, context, resolveInfo) => {
-        console.log('====resolving')
         // if (knex.client.config.client !== 'mysql') {
         //   throw new Error('This schema requires PostgreSQL. A data dump is provided in /data.')
         // }
+        return joinMonster(resolveInfo, context, sql => dbCall(sql, knex, context), options)
+      }
+    },
+    organisers: {
+      type: new GraphQLList(Organiser),
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve: (parent, args, context, resolveInfo) => {
         return joinMonster(resolveInfo, context, sql => dbCall(sql, knex, context), options)
       }
     }

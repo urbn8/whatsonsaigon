@@ -8,6 +8,6 @@ export default async function dbCall(sql, knex, context) {
   // }
   // send the request to the database
   const result = await knex.raw(sql)
+  console.log('result: ', JSON.stringify(sql))
   return result[0]
 }
-
