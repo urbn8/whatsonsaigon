@@ -13,12 +13,13 @@ import {
   connectionDefinitions
 } from 'graphql-relay'
 
-import knex from './database'
-import { nodeInterface } from './Node'
+import knex from '../database'
+import { nodeInterface } from '../Node'
 
-import BlogPost from './BlogPost'
+import BlogPost from '../BlogPost'
+import { GraphQLOrganiser, OrganiserConnection } from './Organiser'
 
-const User = new GraphQLObjectType({
+export const GraphQLUser = new GraphQLObjectType({
   description: 'a stem contract account',
   name: 'User',
   sqlTable: 'users',
@@ -45,11 +46,25 @@ const User = new GraphQLObjectType({
       // this is a one-to-many relation
       // this function tells join monster how to join these tables
       sqlJoin: (userTable, postTable) => `${userTable}.id = ${postTable}.user_id`,
+    },
+    organisers: {
+      // type: OrganiserConnection,
+      type: new GraphQLList(GraphQLOrganiser),
+      junction: {
+        // name the table that holds the two foreign keys
+        sqlTable: 'urbn8_wos_organiser_user_joins',
+        sqlJoins: [
+          // first the parent table to the junction
+          (userTable, junctionTable, args) => `${userTable}.id = ${junctionTable}.user_id`,
+          // then the junction to the child
+          (junctionTable, organiserTable, args) => `${junctionTable}.organiser_id = ${organiserTable}.id`
+        ]
+      }
+      // sqlJoin: (userTable, organiserTable) => `${userTable}.id = ${organiserTable}.user_id`,
     }
   })
 })
 
-const { connectionType: UserConnection } = connectionDefinitions({ nodeType: User })
+const { connectionType: UserConnection } = connectionDefinitions({ nodeType: GraphQLUser })
 
-export default User 
 

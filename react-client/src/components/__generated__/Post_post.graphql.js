@@ -8,10 +8,10 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type Organiser_organiser = {|
+export type Post_post = {|
   +id: string;
-  +name: ?string;
-  +slug: ?string;
+  +description: string;
+  +imageUrl: string;
 |};
 */
 
@@ -20,7 +20,7 @@ const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "Organiser_organiser",
+  "name": "Post_post",
   "selections": [
     {
       "kind": "ScalarField",
@@ -33,18 +33,18 @@ const fragment /*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "name",
+      "name": "description",
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "slug",
+      "name": "imageUrl",
       "storageKey": null
     }
   ],
-  "type": "Organiser"
+  "type": "Post"
 };
 
 module.exports = fragment;

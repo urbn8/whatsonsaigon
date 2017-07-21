@@ -76,6 +76,9 @@ https://sourcegraph.com/github.com/jscomplete/learning-graphql-and-relay/-/blob/
 https://sourcegraph.com/github.com/soonlive/relay-cart@master/-/blob/data/mutations/addToCartMutation.js#L41:49
 https://sourcegraph.com/github.com/chrisbolin/understanding-relay-mutations@master/-/blob/examples/todo/server.js
 
+### pagination
+https://sourcegraph.com/github.com/stems/join-monster-demo@master/-/blob/schema-paginated/QueryRoot.js?utm_source=chrome-extension
+
 ## Apollo:
 https://sourcegraph.com/github.com/Quadric/perfect-graphql-starter@master/-/blob/package.json#L37:6-37:18
 
@@ -98,6 +101,10 @@ intergate mobx-state-tree with relay
 routing and server rendering
 
 react login, register
+
+how to handle user visit page requires login? response body? status code?
+
+pagination with connection type?
 
 # How to Setup Watchman on Ubuntu 16.04
 

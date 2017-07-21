@@ -7,7 +7,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "relay": "relay-compiler --src ./src --schema schema.graphql",
-    "get-schema": "node scripts/getSchema.js"
+    "relay-instagram": "relay-compiler --src ./src --schema instagram-full.graphql"
   },
   "dependencies": {
     "autoprefixer": "7.1.1",

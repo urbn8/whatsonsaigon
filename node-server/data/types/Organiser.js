@@ -16,7 +16,7 @@ import {
 import knex from '../database'
 import { nodeInterface } from '../Node'
 
-const GraphQLOrganiser = new GraphQLObjectType({
+export const GraphQLOrganiser = new GraphQLObjectType({
   description: 'a stem contract account',
   name: 'Organiser',
   sqlTable: 'urbn8_wos_organisers',
@@ -69,12 +69,13 @@ const GraphQLOrganiser = new GraphQLObjectType({
       type: GraphQLInt,
       sqlColumn: 'status'
     },
-  })
+  }),
+  resolve: (parent, args, context, resolveInfo) => {
+    return joinMonster(resolveInfo, context, sql => dbCall(sql, knex, context), options)
+  }
 })
 
 export const {
   connectionType: OrganiserConnection,
   edgeType: GraphQLOrganiserEdge,
 } = connectionDefinitions({ nodeType: GraphQLOrganiser })
-
-export default GraphQLOrganiser

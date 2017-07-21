@@ -23,10 +23,10 @@ import {
 
 import slugify from 'slug'
 
-import { DBOrganiser } from './database'
+import { DBOrganiser, DBUser } from './database'
 import logger from './logger'
 
-import GraphQLOrganiser, { GraphQLOrganiserEdge } from './types/Organiser'
+import { GraphQLOrganiser, GraphQLOrganiserEdge } from './types/Organiser'
 
 const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
   name: 'AddOrganiser',
@@ -89,6 +89,10 @@ const GraphQLUpdateOrganiserMutation = mutationWithClientMutationId({
     const entityId = fromGlobalId(id).id
     const slug = slugify(name)
     const entity = await new DBOrganiser({id: entityId}).save({name, slug}, {patch: true})
+
+    logger.debug('entityId', entityId)
+    const user = new DBUser({id: 1})
+    await new DBOrganiser({id: entityId}).users().attach(1)
     // const entity = await new DBOrganiser({id: entityId, name}).save()
     return {entity}
   },

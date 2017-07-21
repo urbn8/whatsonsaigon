@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 import {
   createFragmentContainer,
   graphql
@@ -34,4 +34,4 @@ export class OrganiserList extends Component {
 //       }
     
 //   }
-// `)
+// `)*/

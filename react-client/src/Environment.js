@@ -10,7 +10,7 @@ const store = new Store(new RecordSource())
 
 // 3
 const network = Network.create((operation, variables) => {
-  return fetch('https://api.graph.cool/relay/v1/cj5dne7wd63n701272stvea9l', {
+  return fetch('https://api.graph.cool/relay/v1/cj4jiyyppztzv0130z9strhq4', {
   // return fetch('http://localhost:4000/', {
     method: 'POST',
     headers: {

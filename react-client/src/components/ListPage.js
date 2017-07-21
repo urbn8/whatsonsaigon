@@ -23,6 +23,8 @@ const mockPostData = [
   }
 ]
 
+// {"data":{"viewer":{"allPosts":{"edges":[],"pageInfo":{"endCursor":null,"hasNextPage":false,"hasPreviousPage":false,"startCursor":null}},"id":"viewer-fixed"}}}
+
 class ListPage extends React.Component {
 
   render () {

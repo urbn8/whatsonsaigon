@@ -9,8 +9,8 @@ import joinMonster from 'join-monster'
 
 import knex from './database'
 import BlogPost from './BlogPost'
-import User from './User'
-import Organiser from './types/Organiser'
+import { GraphQLUser } from './types/User'
+import { GraphQLOrganiser } from './types/Organiser'
 
 import { nodeField } from './Node'
 import dbCall from './dbCall'
@@ -28,7 +28,7 @@ export default new GraphQLObjectType({
     // implement the Node type from Relay spec
     node: nodeField,
     user: {
-      type: User,
+      type: GraphQLUser,
       args: {
         id: {
           type: GraphQLInt
@@ -65,7 +65,7 @@ export default new GraphQLObjectType({
       }
     },
     organisers: {
-      type: new GraphQLList(Organiser),
+      type: new GraphQLList(GraphQLOrganiser),
       args: {
         id: {
           type: GraphQLInt
@@ -74,6 +74,12 @@ export default new GraphQLObjectType({
       resolve: (parent, args, context, resolveInfo) => {
         return joinMonster(resolveInfo, context, sql => dbCall(sql, knex, context), options)
       }
-    }
+    },
+    viewer: {
+      type: GraphQLUser,
+      resolve: (parent, args, context, resolveInfo) => {
+        return joinMonster(resolveInfo, context, sql => dbCall(sql, knex, context), options)
+      }
+    },
   })
 })
