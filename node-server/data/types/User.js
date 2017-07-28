@@ -48,8 +48,13 @@ export const GraphQLUser = new GraphQLObjectType({
       sqlJoin: (userTable, postTable) => `${userTable}.id = ${postTable}.user_id`,
     },
     organisers: {
-      // type: OrganiserConnection,
-      type: new GraphQLList(GraphQLOrganiser),
+      type: OrganiserConnection,
+      // type: new GraphQLList(GraphQLOrganiser),
+      args: connectionArgs,
+      sqlPaginate: true,
+      orderBy: {
+        id: 'desc'
+      },
       junction: {
         // name the table that holds the two foreign keys
         sqlTable: 'urbn8_wos_organiser_user_joins',
@@ -59,6 +64,10 @@ export const GraphQLUser = new GraphQLObjectType({
           thisKey: 'user_id',
           // the column to match in the user table
           parentKey: 'id',
+          sortKey: {
+            order: 'desc',
+            key: [ 'organiser_id' ]
+          },
           // how to join the related table to the junction table
           sqlJoin: (junctionTable, organiserTable) => `${junctionTable}.organiser_id = ${organiserTable}.id`
         }

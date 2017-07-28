@@ -25,13 +25,11 @@ export class OrganiserList extends Component {
 }
 
 export const OrganiserListContainer = createFragmentContainer(OrganiserList, graphql`
-  fragment OrganiserList_organisers on Organiser @connection(key: "OrganiserList_organisers", filters: []) {
-    
-      edges {
-        node {
-          ...Organiser_organiser
-        }
+  fragment OrganiserList_viewer on Viewer {
+    edges {
+      node {
+        ...Organiser_organiser
       }
-    
+    }
   }
 `)

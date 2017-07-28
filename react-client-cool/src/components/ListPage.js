@@ -38,7 +38,6 @@ class ListPage extends React.Component {
       </div>
     )
   }
-
 }
 
 export default createFragmentContainer(ListPage, graphql`
