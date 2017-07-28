@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react'
+import React, { Component } from 'react'
 import {
   createFragmentContainer,
   graphql
@@ -24,14 +24,14 @@ export class OrganiserList extends Component {
   }
 }
 
-// export const OrganiserListContainer = createFragmentContainer(OrganiserList, graphql`
-//   fragment OrganiserList_organisers on Organiser @connection(key: "OrganiserList_organisers", filters: []) {
+export const OrganiserListContainer = createFragmentContainer(OrganiserList, graphql`
+  fragment OrganiserList_organisers on Organiser @connection(key: "OrganiserList_organisers", filters: []) {
     
-//       edges {
-//         node {
-//           ...Organiser_organiser
-//         }
-//       }
+      edges {
+        node {
+          ...Organiser_organiser
+        }
+      }
     
-//   }
-// `)*/
+  }
+`)

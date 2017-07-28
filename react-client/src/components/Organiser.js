@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react'
+import React, { Component } from 'react'
 import {
   createFragmentContainer,
   graphql
@@ -20,4 +20,4 @@ export const OrganiserContainer = createFragmentContainer(Organiser, graphql`
     name
     slug
   }
-`)*/
+`)

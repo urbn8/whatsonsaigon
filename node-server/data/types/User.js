@@ -53,12 +53,21 @@ export const GraphQLUser = new GraphQLObjectType({
       junction: {
         // name the table that holds the two foreign keys
         sqlTable: 'urbn8_wos_organiser_user_joins',
-        sqlJoins: [
-          // first the parent table to the junction
-          (userTable, junctionTable, args) => `${userTable}.id = ${junctionTable}.user_id`,
-          // then the junction to the child
-          (junctionTable, organiserTable, args) => `${junctionTable}.organiser_id = ${organiserTable}.id`
-        ]
+        uniqueKey: [ 'organiser_id', 'user_id' ],
+        sqlBatch: {
+          // the matching column in the junction table
+          thisKey: 'user_id',
+          // the column to match in the user table
+          parentKey: 'id',
+          // how to join the related table to the junction table
+          sqlJoin: (junctionTable, organiserTable) => `${junctionTable}.organiser_id = ${organiserTable}.id`
+        }
+        // sqlJoins: [
+        //   // first the parent table to the junction
+        //   (userTable, junctionTable, args) => `${userTable}.id = ${junctionTable}.user_id`,
+        //   // then the junction to the child
+        //   (junctionTable, organiserTable, args) => `${junctionTable}.organiser_id = ${organiserTable}.id`
+        // ]
       }
       // sqlJoin: (userTable, organiserTable) => `${userTable}.id = ${organiserTable}.user_id`,
     }
