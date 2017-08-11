@@ -29,6 +29,7 @@ export const DBUser = bookshelf.Model.extend({
 })
 
 export const DBUserOrganiserJuntor = bookshelf.Model.extend({
+  idAttribute: null,
   tableName: 'urbn8_wos_organiser_user_joins',
 })
 

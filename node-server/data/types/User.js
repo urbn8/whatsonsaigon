@@ -77,9 +77,14 @@ export const GraphQLUser = new GraphQLObjectType({
       // type: new GraphQLList(GraphQLOrganiser),
       args: connectionArgs,
       sqlPaginate: true,
-      orderBy: {
-        id: 'desc'
+      // orderBy: {
+      //   id: 'DESC',
+      // },
+      sortKey: { // if sortKey, pagination will be Keyset, if orderBy, will be Integer Offset
+        order: 'DESC',
+        key: 'id'
       },
+      where: () => '', // hacky work around for error: missing FROM-clause entry for table "organisers"
       junction: {
         // name the table that holds the two foreign keys
         sqlTable: 'urbn8_wos_organiser_user_joins',
@@ -89,6 +94,9 @@ export const GraphQLUser = new GraphQLObjectType({
           thisKey: 'user_id',
           // the column to match in the user table
           parentKey: 'id',
+          orderBy: {
+            id: 'desc'
+          },
           // sortKey: {
           //   order: 'desc',
           //   key: [ 'organiser_id' ]

@@ -6,7 +6,7 @@ input AddOrganiserInput {
 }
 
 type AddOrganiserPayload {
-  organiserEdge: OrganiserEdge
+  edge: OrganiserEdge
   organiser: Organiser
   viewer: Organiser
   clientMutationId: String
@@ -54,7 +54,6 @@ type OrganiserConnection {
 
   # A list of edges.
   edges: [OrganiserEdge]
-  total: Int
 }
 
 # An edge in a connection.

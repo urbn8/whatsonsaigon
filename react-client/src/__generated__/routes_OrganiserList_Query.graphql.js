@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6f0377e0ce3931afbf323864333d576a
+ * @relayHash b2c9bf657ef9aa36285533180ded0cce
  */
 
 /* eslint-disable */
@@ -9,14 +9,14 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type AppAllOrganiserQueryResponse = {|
+export type routes_OrganiserList_QueryResponse = {|
   +viewer: ?{| |};
 |};
 */
 
 
 /*
-query AppAllOrganiserQuery {
+query routes_OrganiserList_Query {
   viewer {
     ...OrganiserList_viewer
     id
@@ -54,7 +54,7 @@ const batch /*: ConcreteBatch*/ = {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "AppAllOrganiserQuery",
+    "name": "routes_OrganiserList_Query",
     "selections": [
       {
         "kind": "LinkedField",
@@ -78,11 +78,11 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "AppAllOrganiserQuery",
+  "name": "routes_OrganiserList_Query",
   "query": {
     "argumentDefinitions": [],
     "kind": "Root",
-    "name": "AppAllOrganiserQuery",
+    "name": "routes_OrganiserList_Query",
     "operation": "query",
     "selections": [
       {
@@ -235,7 +235,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllOrganiserQuery {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: 100) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
+  "text": "query routes_OrganiserList_Query {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: 100) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
 };
 
 module.exports = batch;

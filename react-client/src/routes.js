@@ -4,9 +4,10 @@ import React from 'react';
 import { graphql } from 'react-relay';
 
 import { OrganiserListContainer } from './components/OrganiserList'
+import { OrganiserForm } from './components/OrganiserForm'
 
 const AppAllOrganiserQuery = graphql`
-  query AppAllOrganiserQuery {
+  query routes_OrganiserList_Query {
     viewer {
       ...OrganiserList_viewer
     }
@@ -16,8 +17,15 @@ const AppAllOrganiserQuery = graphql`
 export default makeRouteConfig(
   <Route
     path="/"
-    Component={ OrganiserListContainer }
-    query={ AppAllOrganiserQuery }
   >
+    <Route
+      Component={ OrganiserListContainer }
+      query={ AppAllOrganiserQuery }
+    />
+    <Route
+      path='organisers/new'
+      Component={ OrganiserForm }
+      query={ AppAllOrganiserQuery }
+    />
   </Route>,
 );

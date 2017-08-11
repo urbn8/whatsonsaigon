@@ -19,6 +19,7 @@ import {
   mutationWithClientMutationId,
   nodeDefinitions,
   toGlobalId,
+  offsetToCursor,
 } from 'graphql-relay'
 
 import slugify from 'slug'
@@ -26,7 +27,12 @@ import slugify from 'slug'
 import { DBOrganiser, DBUser } from './database'
 import logger from './logger'
 
-import { GraphQLOrganiser, GraphQLOrganiserEdge } from './types/Organiser'
+import { GraphQLOrganiser, GraphQLOrganiserEdge, OrganiserConnection } from './types/Organiser'
+
+function objToCursor(obj) {
+  const str = JSON.stringify(obj)
+  return new Buffer(str).toString('base64')
+}
 
 // mutation abc {
 //  	addOrganiser(input: {website: "a", name: "ab4", desc: "desc"}) {
@@ -52,7 +58,7 @@ const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
     desc: { type: new GraphQLNonNull(GraphQLString) },
   },
   outputFields: {
-    organiserEdge: { // ???
+    edge: { // ???
       type: GraphQLOrganiserEdge,
       // resolve: (entity) => {
       //   // var todo = getTodo(id);
@@ -64,9 +70,9 @@ const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
     },
     organiser: {
       type: GraphQLOrganiser,
-      resolve: async (a, b, c, d) => {
-        logger.debug('organiser resolve arguments', JSON.stringify(a.organiser))
-        return a.organiser
+      resolve: async (source, b, c, d) => {
+        logger.debug('organiser resolve arguments', JSON.stringify(source.entity))
+        return source.entity.toJSON()
       },
     },
     viewer: {
@@ -78,9 +84,20 @@ const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
   },
   mutateAndGetPayload: async ({name, website, desc}) => {
     const slug = slugify(name)
-    const organiser = await new DBOrganiser({name, slug, website, desc}).save()
-    logger.debug('organiser', organiser)
-    return {organiser}
+    const entity = await new DBOrganiser({name, slug, website, desc}).save()
+
+    // const entities = await DBOrganiser.fetchAll()
+    
+    // const user = new DBUser({id: 1})
+    const globalId = toGlobalId('Organiser', entity.id)
+    logger.debug('entity', entity, 'globalId', globalId)
+    await new DBOrganiser({id: entity.id}).users().attach(2)
+
+    return {entity, edge: {
+      // cursor: cursorForObjectInConnection(entities, entities.find((item) => item.id === entity.id)),
+      cursor: objToCursor({id: entity.id}),
+      node: entity.toJSON(),
+    }}
   },
 })
 

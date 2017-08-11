@@ -80,7 +80,7 @@ export const {
   edgeType: GraphQLOrganiserEdge,
 } = connectionDefinitions({
   nodeType: GraphQLOrganiser,
-  connectionFields: {
-    total: { type: GraphQLInt }
-  }
+  // connectionFields: {
+  //   total: { type: GraphQLInt }
+  // }
 })

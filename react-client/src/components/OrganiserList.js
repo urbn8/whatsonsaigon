@@ -11,6 +11,7 @@ export class OrganiserList extends Component {
     console.log('this.props', this.props)
     return (
       <div>
+        <a href="/organisers/new">New</a>
         <ul>
           {
             this.props.viewer.organisers.edges.map(({node}) => (
@@ -27,7 +28,7 @@ export class OrganiserList extends Component {
 
 export const OrganiserListContainer = createFragmentContainer(OrganiserList, graphql`
   fragment OrganiserList_viewer on User {
-    organisers(first: 3, after: "YXJyYXljb25uZWN0aW9uOjE=") {
+    organisers(first: 100) @connection(key: "OrganiserList_organisers") {
       edges {
         cursor
         node {

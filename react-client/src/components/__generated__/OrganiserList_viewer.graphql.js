@@ -22,28 +22,26 @@ export type OrganiserList_viewer = {|
 const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": null,
+        "cursor": null,
+        "direction": "forward",
+        "path": [
+          "organisers"
+        ]
+      }
+    ]
+  },
   "name": "OrganiserList_viewer",
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": null,
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "after",
-          "value": "YXJyYXljb25uZWN0aW9uOjE=",
-          "type": "String"
-        },
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 3,
-          "type": "Int"
-        }
-      ],
+      "alias": "organisers",
+      "args": null,
       "concreteType": "OrganiserConnection",
-      "name": "organisers",
+      "name": "__OrganiserList_organisers_connection",
       "plural": false,
       "selections": [
         {
@@ -81,7 +79,7 @@ const fragment /*: ConcreteFragment*/ = {
           "storageKey": null
         }
       ],
-      "storageKey": "organisers{\"after\":\"YXJyYXljb25uZWN0aW9uOjE=\",\"first\":3}"
+      "storageKey": null
     }
   ],
   "type": "User"
