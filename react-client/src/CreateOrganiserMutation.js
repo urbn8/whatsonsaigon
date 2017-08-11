@@ -68,7 +68,7 @@ export default (viewerId, name, desc, website, callback) => {
         console.log('newOrganiser', newOrganiser)
         console.log('viewerProxy', viewerProxy)
         console.log('cursor', newOrganiser.getType(), newOrganiser.getValue('cursor'))
-        const cursor = newOrganiser.getValue('cursor')
+        const cursor = newOrganiser.getValue('cursor') // No! this should be the cursor of the edgeCursor that we want to put this new organiser next to
 
         const connection = ConnectionHandler.getConnection(viewerProxy, 'OrganiserList_organisers')
         if (connection) {
