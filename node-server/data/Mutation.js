@@ -28,6 +28,22 @@ import logger from './logger'
 
 import { GraphQLOrganiser, GraphQLOrganiserEdge } from './types/Organiser'
 
+// mutation abc {
+//  	addOrganiser(input: {website: "a", name: "ab4", desc: "desc"}) {
+//  	  clientMutationId
+//   	organiser {
+//       id
+//       name
+//     }
+//     organiserEdge {
+//       cursor
+//     }
+//     viewer {
+//       id
+//       name
+//     }
+//  	}
+// }
 const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
   name: 'AddOrganiser',
   inputFields: {
@@ -36,7 +52,7 @@ const GraphQLAddOrganiserMutation = mutationWithClientMutationId({
     desc: { type: new GraphQLNonNull(GraphQLString) },
   },
   outputFields: {
-    organiserEdge: {
+    organiserEdge: { // ???
       type: GraphQLOrganiserEdge,
       // resolve: (entity) => {
       //   // var todo = getTodo(id);

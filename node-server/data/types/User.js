@@ -9,7 +9,7 @@ import {
 import {
   globalIdField,
   connectionArgs,
-  forwardConnectionArgs,
+  forwardConnectionArgs, // => for LIMIT, OFFSET based pagination. Can jump to middle page. Can get total items easily
   connectionDefinitions
 } from 'graphql-relay'
 
@@ -19,8 +19,12 @@ import { nodeInterface } from '../Node'
 import BlogPost from '../BlogPost'
 import { GraphQLOrganiser, OrganiserConnection } from './Organiser'
 
+// to navigate to any page in the middle:
+// import { offsetToCursor } from 'graphql-relay'
+// let cursor = offsetToCursor(9)
+
 export const GraphQLUser = new GraphQLObjectType({
-  description: 'a stem contract account',
+  description: 'a user',
   name: 'User',
   sqlTable: 'users',
   uniqueKey: 'id',
@@ -50,7 +54,7 @@ export const GraphQLUser = new GraphQLObjectType({
     organisers: {
       type: OrganiserConnection,
       // type: new GraphQLList(GraphQLOrganiser),
-      args: connectionArgs,
+      args: forwardConnectionArgs,
       sqlPaginate: true,
       orderBy: {
         id: 'desc'
@@ -64,10 +68,10 @@ export const GraphQLUser = new GraphQLObjectType({
           thisKey: 'user_id',
           // the column to match in the user table
           parentKey: 'id',
-          sortKey: {
-            order: 'desc',
-            key: [ 'organiser_id' ]
-          },
+          // sortKey: {
+          //   order: 'desc',
+          //   key: [ 'organiser_id' ]
+          // },
           // how to join the related table to the junction table
           sqlJoin: (junctionTable, organiserTable) => `${junctionTable}.organiser_id = ${organiserTable}.id`
         }

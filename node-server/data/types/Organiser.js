@@ -78,4 +78,9 @@ export const GraphQLOrganiser = new GraphQLObjectType({
 export const {
   connectionType: OrganiserConnection,
   edgeType: GraphQLOrganiserEdge,
-} = connectionDefinitions({ nodeType: GraphQLOrganiser })
+} = connectionDefinitions({
+  nodeType: GraphQLOrganiser,
+  connectionFields: {
+    total: { type: GraphQLInt }
+  }
+})
