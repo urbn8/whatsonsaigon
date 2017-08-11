@@ -125,6 +125,14 @@ $ echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches  && echo 99999
 
 # Setup development PostgreSQL
 
-`docker run --name wos-postgres -e POSTGRES_PASSWORD=root postgres:9.6`
+`docker run --name wos-postgres -p 5433:5432 -e POSTGRES_PASSWORD=root postgres:9.6`
 
-`docker run -d -p 5050:5050 --name pgadmin thajeztah/pgadmin4`
+```
+docker run --name some-pgadmin4 \
+           --link wos-postgres:postgres \
+           -p 5050:5050 \
+           -d fenglc/pgadmin4
+```
+
+UI login: pgadmin4@pgadmin.org/admin
+db connection: <machine ip>:5433/postgres/root

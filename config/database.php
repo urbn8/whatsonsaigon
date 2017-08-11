@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => 'mysql',
+    'default' => 'pgsql',
 
     /*
     |--------------------------------------------------------------------------
@@ -67,10 +67,10 @@ return [
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => 'localhost',
-            'port'     => '',
-            'database' => 'database',
-            'username' => 'root',
-            'password' => '',
+            'port'     => '5433',
+            'database' => 'wos',
+            'username' => 'postgres',
+            'password' => 'root',
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
