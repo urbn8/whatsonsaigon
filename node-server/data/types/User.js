@@ -54,7 +54,7 @@ export const GraphQLUser = new GraphQLObjectType({
     organisers: {
       type: OrganiserConnection,
       // type: new GraphQLList(GraphQLOrganiser),
-      args: forwardConnectionArgs,
+      args: connectionArgs,
       sqlPaginate: true,
       orderBy: {
         id: 'desc'
