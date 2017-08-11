@@ -8,12 +8,12 @@ import {
 } from 'react-relay'
 import environment from './Environment'
 
-import ListPage from './components/ListPage'
+import { OrganiserListContainer } from './components/OrganiserList'
 
-const AppAllPostQuery = graphql`
-  query AppAllPostQuery {
+const AppAllOrganiserQuery = graphql`
+  query AppAllOrganiserQuery {
     viewer {
-      ...ListPage_viewer
+      ...OrganiserList_viewer
     }
   }
 `
@@ -34,12 +34,12 @@ class App extends Component {
     return (
       <QueryRenderer
         environment={environment}
-        query={AppAllPostQuery}
+        query={AppAllOrganiserQuery}
         render={({error, props}) => {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
-            return <ListPage viewer={props.viewer} />
+            return <OrganiserListContainer viewer={props.viewer} />
           }
           return <div>Loading</div>
         }}

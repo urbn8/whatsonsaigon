@@ -66,6 +66,7 @@ https://api.graph.cool/simple/v1/cj4jiyyppztzv0130z9strhq4
 https://github.com/lvarayut/relay-fullstack
 https://sourcegraph.com/github.com/stems/join-monster-demo@master/-/blob/schema-basic/Post.js
 
+https://blog.graph.cool/getting-started-with-relay-modern-46f8de6bd6ec
 https://dev-blog.apollodata.com/exploring-relay-modern-276f5965f827
 https://sourcegraph.com/github.com/apollographql/relay-modern-hello-world/-/blob/schema.graphql
 

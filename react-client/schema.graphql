@@ -47,6 +47,16 @@ type Organiser implements Node {
   status: Int
 }
 
+# A connection to a list of items.
+type OrganiserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [OrganiserEdge]
+  total: Int
+}
+
 # An edge in a connection.
 type OrganiserEdge {
   # The item at the end of the edge
@@ -54,6 +64,21 @@ type OrganiserEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
 }
 
 # global query object
@@ -82,12 +107,12 @@ type UpdateOrganiserPayload {
   clientMutationId: String
 }
 
-# a stem contract account
+# a user
 type User implements Node {
   # The ID of an object
   id: ID!
   name: String
   email: String
   posts: [BlogPost]
-  organisers: [Organiser]
+  organisers(after: String, first: Int, before: String, last: Int): OrganiserConnection
 }

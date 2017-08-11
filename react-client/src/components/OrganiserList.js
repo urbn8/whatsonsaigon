@@ -8,13 +8,14 @@ import { OrganiserContainer } from './Organiser'
 
 export class OrganiserList extends Component {
   render() {
+    console.log('this.props', this.props)
     return (
       <div>
         <ul>
           {
-            this.props.organisers.map((organiser) => (
-              <li key={ organiser.id }>
-                <OrganiserContainer organiser={organiser}/>
+            this.props.viewer.organisers.edges.map(({node}) => (
+              <li key={ node.__id }>
+                <OrganiserContainer organiser={node}/>
               </li>
             ))
           }
@@ -25,10 +26,13 @@ export class OrganiserList extends Component {
 }
 
 export const OrganiserListContainer = createFragmentContainer(OrganiserList, graphql`
-  fragment OrganiserList_viewer on Viewer {
-    edges {
-      node {
-        ...Organiser_organiser
+  fragment OrganiserList_viewer on User {
+    organisers(first: 3, after: "YXJyYXljb25uZWN0aW9uOjE=") {
+      edges {
+        cursor
+        node {
+          ...Organiser_organiser
+        }
       }
     }
   }

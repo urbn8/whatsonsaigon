@@ -23,6 +23,27 @@ import { GraphQLOrganiser, OrganiserConnection } from './Organiser'
 // import { offsetToCursor } from 'graphql-relay'
 // let cursor = offsetToCursor(9)
 
+/*
+query ABC {
+  viewer {
+    organisers(first: 3, after: "YXJyYXljb25uZWN0aW9uOjE=") {
+      pageInfo {
+        endCursor
+      }
+      total
+      edges {
+        cursor
+        node {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+*/
+
 export const GraphQLUser = new GraphQLObjectType({
   description: 'a user',
   name: 'User',
