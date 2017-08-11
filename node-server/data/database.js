@@ -1,10 +1,21 @@
+// const knex = require('knex')({
+//   client: 'mysql',
+//   connection: {
+//     host: '127.0.0.1',
+//     user: 'root',
+//     password: '',
+//     database: 'whatsonsaigon',
+//   },
+// })
+
 const knex = require('knex')({
-  client: 'mysql',
+  client: 'pg',
   connection: {
     host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'whatsonsaigon',
+    port: 5433,
+    user: 'postgres',
+    password: 'root',
+    database: 'wos',
   },
 })
 

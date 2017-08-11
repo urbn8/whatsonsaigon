@@ -15,7 +15,7 @@ import { GraphQLOrganiser } from './types/Organiser'
 import { nodeField } from './Node'
 import dbCall from './dbCall'
 
-const options = { dialect: 'mysql' }
+const options = { dialect: 'pg' }
 
 export default new GraphQLObjectType({
   description: 'global query object',

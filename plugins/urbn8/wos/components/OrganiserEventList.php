@@ -84,7 +84,7 @@ class OrganiserEventList extends ComponentBase
 
       $organiserId = $this->property('organiserId');
 
-      $organiser = OrganiserModel::join('urbn8_wos_organiser_user', function ($join) use ($user) {
+      $organiser = OrganiserModel::join('urbn8_wos_organiser_user_joins', function ($join) use ($user) {
         $join->on('organiser_id', '=', 'id')
           ->where('user_id', '=', $user->id);
       })->findOrFail($organiserId);
