@@ -4,7 +4,7 @@ import React from 'react';
 import { graphql } from 'react-relay';
 
 import { OrganiserListContainer } from './components/OrganiserList'
-import { OrganiserForm } from './components/OrganiserForm'
+import { OrganiserFormContainer } from './components/OrganiserForm'
 
 const AppAllOrganiserQuery = graphql`
   query routes_OrganiserList_Query($count: Int!, $cursor: String) {
@@ -25,8 +25,14 @@ export default makeRouteConfig(
     />
     <Route
       path='organisers/new'
-      Component={ OrganiserForm }
-      query={ AppAllOrganiserQuery }
+      Component={ OrganiserFormContainer }
+      query={ graphql`
+        query routes_ViewerId_Query {
+          viewer {
+            id
+          }
+        }
+      ` }
     />
   </Route>,
 );

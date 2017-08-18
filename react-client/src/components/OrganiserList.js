@@ -99,7 +99,7 @@ export const OrganiserListContainer = createPaginationContainer(OrganiserList,
       };
     },
     query: graphql`
-      query OrganiserListPaginationQuery(
+      query OrganiserListPagination_Query(
         $count: Int!
         $cursor: String
       ) {
