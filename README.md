@@ -138,5 +138,7 @@ docker run --name some-pgadmin4 \
            -d fenglc/pgadmin4
 ```
 
-UI login: pgadmin4@pgadmin.org/admin
+UI login:
+http://localhost:5050
+pgadmin4@pgadmin.org/admin
 db connection: <machine ip>:5433/postgres/root

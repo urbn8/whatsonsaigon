@@ -2,12 +2,17 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors'
 
+import {
+  fromGlobalId,
+} from 'graphql-relay'
+
 import { makeExecutableSchema } from 'graphql-tools'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 
 const graphqlHTTP = require('express-graphql')
 
 import schema from './data/schema'
+import deglobalId from './data/deglobalId'
 
 // const typeDefs = `
 //   type Query {
@@ -41,6 +46,8 @@ app.use(cors())
 //   graphiql: true
 // }))
 
+app.get('/deglobal/:id', function(req, res) { res.send(fromGlobalId(req.params.id)) });
+// app.get('/deglobal/:id', deglobalId);
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 

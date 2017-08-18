@@ -14,19 +14,34 @@ export type OrganiserList_viewer = {|
       +cursor: string;
       +node: ?{| |};
     |}>;
+    +pageInfo: {|
+      +endCursor: ?string;
+      +hasNextPage: boolean;
+    |};
   |};
 |};
 */
 
 
 const fragment /*: ConcreteFragment*/ = {
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "count",
+      "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "cursor",
+      "type": "String"
+    }
+  ],
   "kind": "Fragment",
   "metadata": {
     "connection": [
       {
-        "count": null,
-        "cursor": null,
+        "count": "count",
+        "cursor": "cursor",
         "direction": "forward",
         "path": [
           "organisers"
@@ -73,6 +88,31 @@ const fragment /*: ConcreteFragment*/ = {
                   "args": null
                 }
               ],
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "endCursor",
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "hasNextPage",
               "storageKey": null
             }
           ],

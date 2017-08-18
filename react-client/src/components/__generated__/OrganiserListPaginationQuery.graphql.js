@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ff399325bfe0ee833e48729244be34d0
+ * @relayHash 73a6b93face470fb3c25d43f65b48511
  */
 
 /* eslint-disable */
@@ -9,14 +9,14 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type routes_OrganiserList_QueryResponse = {|
+export type OrganiserListPaginationQueryResponse = {|
   +viewer: ?{| |};
 |};
 */
 
 
 /*
-query routes_OrganiserList_Query(
+query OrganiserListPaginationQuery(
   $count: Int!
   $cursor: String
 ) {
@@ -70,7 +70,7 @@ const batch /*: ConcreteBatch*/ = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "routes_OrganiserList_Query",
+    "name": "OrganiserListPaginationQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -94,7 +94,7 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "routes_OrganiserList_Query",
+  "name": "OrganiserListPaginationQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -111,7 +111,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ],
     "kind": "Root",
-    "name": "routes_OrganiserList_Query",
+    "name": "OrganiserListPaginationQuery",
     "operation": "query",
     "selections": [
       {
@@ -276,7 +276,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query routes_OrganiserList_Query(\n  $count: Int!\n  $cursor: String\n) {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: $count, after: $cursor) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
+  "text": "query OrganiserListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: $count, after: $cursor) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
 };
 
 module.exports = batch;

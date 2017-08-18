@@ -7,7 +7,7 @@ import { OrganiserListContainer } from './components/OrganiserList'
 import { OrganiserForm } from './components/OrganiserForm'
 
 const AppAllOrganiserQuery = graphql`
-  query routes_OrganiserList_Query {
+  query routes_OrganiserList_Query($count: Int!, $cursor: String) {
     viewer {
       ...OrganiserList_viewer
     }
@@ -21,6 +21,7 @@ export default makeRouteConfig(
     <Route
       Component={ OrganiserListContainer }
       query={ AppAllOrganiserQuery }
+      prepareVariables={params => ({ ...params, count: 5 })}
     />
     <Route
       path='organisers/new'

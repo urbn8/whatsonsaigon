@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6f0377e0ce3931afbf323864333d576a
+ * @relayHash deae9fad64d7f3d51739a759347129b4
  */
 
 /* eslint-disable */
@@ -24,7 +24,7 @@ query AppAllOrganiserQuery {
 }
 
 fragment OrganiserList_viewer on User {
-  organisers(first: 100) {
+  organisers(first: $count, after: $cursor) {
     edges {
       cursor
       node {
@@ -98,9 +98,15 @@ const batch /*: ConcreteBatch*/ = {
             "alias": null,
             "args": [
               {
-                "kind": "Literal",
+                "kind": "Variable",
+                "name": "after",
+                "variableName": "cursor",
+                "type": "String"
+              },
+              {
+                "kind": "Variable",
                 "name": "first",
-                "value": 100,
+                "variableName": "count",
                 "type": "Int"
               }
             ],
@@ -205,16 +211,22 @@ const batch /*: ConcreteBatch*/ = {
                 "storageKey": null
               }
             ],
-            "storageKey": "organisers{\"first\":100}"
+            "storageKey": null
           },
           {
             "kind": "LinkedHandle",
             "alias": null,
             "args": [
               {
-                "kind": "Literal",
+                "kind": "Variable",
+                "name": "after",
+                "variableName": "cursor",
+                "type": "String"
+              },
+              {
+                "kind": "Variable",
                 "name": "first",
-                "value": 100,
+                "variableName": "count",
                 "type": "Int"
               }
             ],
@@ -235,7 +247,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllOrganiserQuery {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: 100) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
+  "text": "query AppAllOrganiserQuery {\n  viewer {\n    ...OrganiserList_viewer\n    id\n  }\n}\n\nfragment OrganiserList_viewer on User {\n  organisers(first: $count, after: $cursor) {\n    edges {\n      cursor\n      node {\n        ...Organiser_organiser\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Organiser_organiser on Organiser {\n  id\n  name\n  slug\n}\n"
 };
 
 module.exports = batch;
